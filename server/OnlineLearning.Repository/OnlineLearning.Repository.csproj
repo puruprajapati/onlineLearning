@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DTO\DTO.csproj" />
     <ProjectReference Include="..\OnlineLearning.Model\OnlineLearning.Model.csproj" />
   </ItemGroup>
 

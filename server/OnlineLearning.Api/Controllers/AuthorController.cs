@@ -18,8 +18,8 @@ namespace OnlineLearning.Api.Controllers
     public AuthorController(IAuthorRepository authorRepository)
     { _authorRepository = authorRepository; }
 
-    [HttpGet]
-    public async Task<IEnumerable<Author>> GetAllAuthots() => await _authorRepository.GetAll();
+    [HttpGet("")]
+    public IEnumerable<Author> GetAllAuthots() => _authorRepository.GetAll();
 
     [HttpGet("{authorName}")]
     public Task<Author> GetAuthorByName(String authorName) => _authorRepository.GetByName(authorName);

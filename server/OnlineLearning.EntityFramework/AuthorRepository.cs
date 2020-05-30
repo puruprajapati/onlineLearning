@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OnlineLearning.EntityFramework;
+using OnlineLearning.EntityFramework.Abstract;
 using OnlineLearning.EntityFramework.Context;
 using OnlineLearning.Model;
 using OnlineLearning.Repository;

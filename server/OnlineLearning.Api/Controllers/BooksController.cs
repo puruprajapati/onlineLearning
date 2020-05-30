@@ -21,11 +21,11 @@ namespace OnlineLearning.Api.Controllers
 
     [HttpGet]
     [Route("")]
-    public async Task<IEnumerable<Book>> GetAllBooks() => await bookRepository.GetAll();
+    public IEnumerable<Book> GetAllBooks() => bookRepository.GetAll();
 
     [HttpGet]
     [Route("{bookId}")]
-    public async Task<Book> GetBookById(Guid bookId) => await bookRepository.GetById(bookId);
+    public Book GetBookById(Guid bookId) => bookRepository.GetById(bookId);
 
     [HttpPost]
     [Route("")]
