@@ -1,4 +1,4 @@
-﻿using DTO.Response;
+﻿using OnlineLearning.DTO.Response;
 using OnlineLearning.Service.Interface;
 using OnlineLearning.Shared.Interface.Security;
 using OnlineLearning.Shared.Interface.Security.Tokens;

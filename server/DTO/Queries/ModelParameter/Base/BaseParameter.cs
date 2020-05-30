@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.Queries
+namespace OnlineLearning.DTO.Queries
 {
 	public class BaseParameter: QueryStringParameters
 	{

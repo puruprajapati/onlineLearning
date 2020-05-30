@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.Response
+namespace OnlineLearning.DTO.Response
 {
 	public abstract class BaseResponse
 	{

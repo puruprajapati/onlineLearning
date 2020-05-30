@@ -1,4 +1,4 @@
-﻿using DTO.Queries;
+﻿using OnlineLearning.DTO.Queries;
 using Microsoft.EntityFrameworkCore;
 using OnlineLearning.EntityFramework.Context;
 using OnlineLearning.Model;

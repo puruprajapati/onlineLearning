@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using DTO.ViewModel;
-using DTO.Response;
+using OnlineLearning.DTO.ViewModel;
+using OnlineLearning.DTO.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.Model;
 using OnlineLearning.Service.Interface;
-using DTO.Queries;
+using OnlineLearning.DTO.Queries;
 using Newtonsoft.Json;
 
 namespace OnlineLearning.Api.Controllers

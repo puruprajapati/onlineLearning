@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DTO.Queries
+namespace OnlineLearning.DTO.Queries
 {
 	public class PagedList<T> : List<T>
 	{

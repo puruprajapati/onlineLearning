@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.ViewModel
+namespace OnlineLearning.DTO.ViewModel
 {
 	public class UserViewModel
 	{

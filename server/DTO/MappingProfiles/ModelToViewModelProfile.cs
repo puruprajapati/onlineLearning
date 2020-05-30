@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using DTO.Response;
-using DTO.ViewModel;
+using OnlineLearning.DTO.Response;
+using OnlineLearning.DTO.ViewModel;
 using OnlineLearning.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.MappingProfiles
+namespace OnlineLearning.DTO.MappingProfiles
 {
 	public class ModelToViewModelProfile: Profile
 	{

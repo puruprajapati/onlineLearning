@@ -1,5 +1,5 @@
-﻿using DTO.Queries;
-using DTO.Response;
+﻿using OnlineLearning.DTO.Queries;
+using OnlineLearning.DTO.Response;
 using OnlineLearning.Model;
 using OnlineLearning.Repository;
 using OnlineLearning.Service.Interface;

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.Response
+namespace OnlineLearning.DTO.Response
 {
 	public class TokenResponse: BaseResponse
 	{
