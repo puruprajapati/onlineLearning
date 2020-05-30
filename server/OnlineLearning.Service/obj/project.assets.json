@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\pprajapati\\Project\\OnlineLearning\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+      "projectUniqueName": "C:\\pprajapati\\Project\\OnlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
       "projectName": "OnlineLearning.Service",
-      "projectPath": "C:\\pprajapati\\Project\\OnlineLearning\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+      "projectPath": "C:\\pprajapati\\Project\\OnlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
       "packagesPath": "C:\\Users\\praja\\.nuget\\packages\\",
-      "outputPath": "C:\\pprajapati\\Project\\OnlineLearning\\OnlineLearning.Service\\obj\\",
+      "outputPath": "C:\\pprajapati\\Project\\OnlineLearning\\server\\OnlineLearning.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
