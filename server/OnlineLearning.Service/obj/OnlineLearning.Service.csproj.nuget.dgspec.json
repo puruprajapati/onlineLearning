@@ -1,17 +1,82 @@
 {
   "format": 1,
   "restore": {
-    "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj": {}
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj": {}
   },
   "projects": {
-    "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj": {
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
-        "projectName": "OnlineLearning.Service",
-        "projectPath": "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj",
+        "projectName": "DTO",
+        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj",
         "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
-        "outputPath": "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\obj\\",
+        "outputPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\RoShan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj",
+        "projectName": "OnlineLearning.Model",
+        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj",
+        "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
+        "outputPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -40,6 +105,206 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj",
+        "projectName": "OnlineLearning.Repository",
+        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj",
+        "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
+        "outputPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\RoShan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+        "projectName": "OnlineLearning.Service",
+        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+        "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
+        "outputPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\RoShan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj"
+              },
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj"
+              },
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj"
+              },
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj",
+        "projectName": "Shared",
+        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
+        "outputPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\RoShan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

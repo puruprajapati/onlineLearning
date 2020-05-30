@@ -4,12 +4,12 @@ using System.Text;
 
 namespace OnlineLearning.Model
 {
-    public class Attendence : BaseEntity
+    public class SessionReference : BaseEntity
     {
         public Guid? SchoolId { get; set; }
-        public Guid? StudentId { get; set; }
         public Guid? TeacherId { get; set; }
         public Guid? SessionId { get; set; }
-        public Boolean IsPresent { get; set; }
+        public Guid? ReferenceTypeId { get; set; }
+        public String ReferenceDetail { get; set; }
     }
 }
