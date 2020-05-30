@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Shared.Security.Tokens
+namespace OnlineLearning.Shared.Security.Tokens
 {
 	public class SigningConfigurations
 	{

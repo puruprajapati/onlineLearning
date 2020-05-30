@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using OnlineLearning.Model;
-using Shared.Interface.Security;
-using Shared.Interface.Security.Tokens;
+using OnlineLearning.Shared.Interface.Security;
+using OnlineLearning.Shared.Interface.Security.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Shared.Security.Tokens
+namespace OnlineLearning.Shared.Security.Tokens
 {
 	public class TokenHandler : ITokenHandler
 	{
@@ -88,8 +88,13 @@ namespace Shared.Security.Tokens
 			var claims = new List<Claim>
 			{
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-				new Claim(JwtRegisteredClaimNames.Sub, user.Email)
-			};
+				new Claim(JwtRegisteredClaimNames.Email, user.Email),
+				new Claim("UserId", user.Id.ToString()),
+				new Claim("UserName", user.UserName.ToString()),
+				new Claim("FullName", user.FullName.ToString()),
+				new Claim("UserRole", user.UserRole.ToString()),
+				new Claim("SchoolId", user.SchoolId.ToString())
+	};
 
 			//foreach (var userRole in user.UserRoles)
 			//{

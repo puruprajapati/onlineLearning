@@ -48,6 +48,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -150,6 +154,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\DTO\\DTO.csproj"
+              },
               "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj": {
                 "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Model\\OnlineLearning.Model.csproj"
               }
@@ -218,8 +225,8 @@
               "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj": {
                 "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj"
               },
-              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj": {
-                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj"
+              "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj": {
+                "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj"
               }
             }
           }
@@ -251,12 +258,12 @@
         }
       }
     },
-    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj": {
+    "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj",
-        "projectName": "Shared",
-        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj",
+        "projectUniqueName": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj",
+        "projectName": "OnlineLearning.Shared",
+        "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj",
         "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
         "outputPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\obj\\",
         "projectStyle": "PackageReference",

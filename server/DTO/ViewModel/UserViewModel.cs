@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTO.Request
+namespace DTO.ViewModel
 {
 	public class UserViewModel
 	{

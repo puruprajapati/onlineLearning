@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OnlineLearning.EntityFramework.Context;
+using OnlineLearning.EntityFramework.Seed;
+using OnlineLearning.Shared.Interface.Security;
 
 namespace OnlineLearning.Api
 {
@@ -25,11 +27,11 @@ namespace OnlineLearning.Api
         try
         {
           var context = services.GetService<ApplicationDatabaseContext>();
-          //var passwordHasher = services.GetService<IPasswordHasher>();
+          var passwordHasher = services.GetService<IPasswordHasher>();
           //apply all migrations
           context.Database.Migrate();
           //seed data
-          //DatabaseSeed.Seed(context, passwordHasher);
+          DatabaseSeed.Seed(context, passwordHasher);
         }
         catch (Exception e)
         {

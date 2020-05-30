@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DTO.Queries;
+using Microsoft.EntityFrameworkCore;
 using OnlineLearning.EntityFramework.Context;
 using OnlineLearning.Model;
 using OnlineLearning.Repository;
@@ -33,13 +34,11 @@ namespace OnlineLearning.EntityFramework
       if (entity == null) throw new ArgumentNullException("entity");
 
       await entities.AddAsync(entity);
-      //context.SaveChanges();
     }
     public void Update(TModel entity)
     {
       if (entity == null) throw new ArgumentNullException("entity");
       entities.Update(entity);
-      //context.SaveChanges();
     }
     public void Delete(Guid id)
     {
@@ -47,7 +46,12 @@ namespace OnlineLearning.EntityFramework
 
       TModel entity = entities.Find(id);
       entities.Remove(entity);
-      //context.SaveChanges();
+    }
+
+    public async Task<PagedList<TModel>> GetPaginatedList(BaseParameter baseParameter)
+    {
+      var result = await entities.ToListAsync();
+      return PagedList<TModel>.ToPagedList(result, baseParameter.PageNumber, baseParameter.PageSize);
     }
   }
 }

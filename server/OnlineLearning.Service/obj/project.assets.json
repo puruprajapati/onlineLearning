@@ -15,6 +15,19 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "9.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -240,6 +253,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "AutoMapper": "9.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "OnlineLearning.Model": "1.0.0"
         },
         "compile": {
@@ -263,6 +277,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "DTO": "1.0.0",
           "OnlineLearning.Model": "1.0.0"
         },
         "compile": {
@@ -272,7 +287,7 @@
           "bin/placeholder/OnlineLearning.Repository.dll": {}
         }
       },
-      "Shared/1.0.0": {
+      "OnlineLearning.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -282,10 +297,10 @@
           "System.IdentityModel.Tokens.Jwt": "6.6.0"
         },
         "compile": {
-          "bin/placeholder/Shared.dll": {}
+          "bin/placeholder/OnlineLearning.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Shared.dll": {}
+          "bin/placeholder/OnlineLearning.Shared.dll": {}
         }
       }
     }
@@ -306,6 +321,19 @@
         "lib/netstandard2.0/AutoMapper.dll",
         "lib/netstandard2.0/AutoMapper.pdb",
         "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/7.0.0": {
+      "sha512": "szI4yeRIM7GWe9JyekW0dKYehPB0t6M+I55fPeCebN6PhS7zQZa0eG3bgOnOx+eP3caSNoE7KEJs2rk7MLsh8w==",
+      "type": "package",
+      "path": "automapper.extensions.microsoft.dependencyinjection/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.pdb"
       ]
     },
     "Microsoft.CSharp/4.5.0": {
@@ -1119,10 +1147,10 @@
       "path": "../OnlineLearning.Repository/OnlineLearning.Repository.csproj",
       "msbuildProject": "../OnlineLearning.Repository/OnlineLearning.Repository.csproj"
     },
-    "Shared/1.0.0": {
+    "OnlineLearning.Shared/1.0.0": {
       "type": "project",
-      "path": "../Shared/Shared.csproj",
-      "msbuildProject": "../Shared/Shared.csproj"
+      "path": "../Shared/OnlineLearning.Shared.csproj",
+      "msbuildProject": "../Shared/OnlineLearning.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1130,7 +1158,7 @@
       "DTO >= 1.0.0",
       "OnlineLearning.Model >= 1.0.0",
       "OnlineLearning.Repository >= 1.0.0",
-      "Shared >= 1.0.0"
+      "OnlineLearning.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1172,8 +1200,8 @@
             "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj": {
               "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\OnlineLearning.Repository\\OnlineLearning.Repository.csproj"
             },
-            "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj": {
-              "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\Shared.csproj"
+            "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj": {
+              "projectPath": "D:\\RN Work\\LMS\\FinalCode\\onlineLearning\\server\\Shared\\OnlineLearning.Shared.csproj"
             }
           }
         }

@@ -1,8 +1,9 @@
-﻿using DTO.Response;
+﻿using DTO.Queries;
+using DTO.Response;
 using OnlineLearning.Model;
 using OnlineLearning.Repository;
 using OnlineLearning.Service.Interface;
-using Shared.Interface.Security;
+using OnlineLearning.Shared.Interface.Security;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,11 @@ namespace OnlineLearning.Service
 			_passwordHasher = passwordHasher;
 			_unitOfWork = unitOfWork;
 			_userRepository = userRepository;
+		}
+
+		public async Task<PagedList<User>> ListAsync(BaseParameter baseParameter)
+		{
+			return await _userRepository.GetPaginatedList(baseParameter);
 		}
 		public async Task<UserResponse> CreateUserAsync(User user)
 		{
@@ -66,6 +72,10 @@ namespace OnlineLearning.Service
 			}
 		}
 
+		public async Task<User> FindByUsernameAsync(string userName)
+		{
+			return await _userRepository.FindByUserName(userName);
+		}
 		public Task<User> FindByEmailAsync(string email)
 		{
 			throw new NotImplementedException();
@@ -80,5 +90,7 @@ namespace OnlineLearning.Service
 		{
 			throw new NotImplementedException();
 		}
+
+	
 	}
 }
