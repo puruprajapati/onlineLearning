@@ -1,4 +1,5 @@
-﻿using DTO.Response;
+﻿using DTO.Queries;
+using DTO.Response;
 using OnlineLearning.Model;
 using OnlineLearning.Repository;
 using OnlineLearning.Service.Interface;
@@ -21,6 +22,11 @@ namespace OnlineLearning.Service
 			_passwordHasher = passwordHasher;
 			_unitOfWork = unitOfWork;
 			_userRepository = userRepository;
+		}
+
+		public async Task<PagedList<User>> ListAsync(BaseParameter baseParameter)
+		{
+			return await _userRepository.GetPaginatedList(baseParameter);
 		}
 		public async Task<UserResponse> CreateUserAsync(User user)
 		{
@@ -84,5 +90,7 @@ namespace OnlineLearning.Service
 		{
 			throw new NotImplementedException();
 		}
+
+	
 	}
 }
