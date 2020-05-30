@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineLearning.DTO.MappingProfiles
+namespace OnlineLearning.Api.MappingProfiles
 {
 	public class ModelToViewModelProfile: Profile
 	{

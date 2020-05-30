@@ -37,14 +37,8 @@ namespace OnlineLearning.Api.Controllers
         return BadRequest(new ErrorResource(response.Message));
       }
 
-      //TODO: why automapper is not working
-      //var accessTokenResource = _mapper.Map<AccessToken, AccessTokenViewModel>(response.Token);
-      var accessTokenResource = new AccessTokenViewModel()
-      {
-        AccessToken = response.Token.Token,
-        RefreshToken = response.Token.RefreshToken.Token,
-        Expiration = response.Token.Expiration
-      };
+      var accessTokenResource = _mapper.Map<AccessToken, AccessTokenViewModel>(response.Token);
+      
       return Ok(accessTokenResource);
     }
   }
