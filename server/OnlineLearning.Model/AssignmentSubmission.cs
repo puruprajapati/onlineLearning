@@ -12,5 +12,6 @@ namespace OnlineLearning.Model
         public Guid? CheckbyIdTeacherId { get; set; }
         public String Remarks { get; set; }
 
+        public Guid SubmissionStatusId { get; set; }
     }
 }
