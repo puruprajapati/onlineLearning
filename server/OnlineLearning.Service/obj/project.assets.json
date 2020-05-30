@@ -8,23 +8,23 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\praja\\.nuget\\packages\\": {},
+    "C:\\Users\\RoShan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\pprajapati\\Project\\OnlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+      "projectUniqueName": "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
       "projectName": "OnlineLearning.Service",
-      "projectPath": "C:\\pprajapati\\Project\\OnlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
-      "packagesPath": "C:\\Users\\praja\\.nuget\\packages\\",
-      "outputPath": "C:\\pprajapati\\Project\\OnlineLearning\\server\\OnlineLearning.Service\\obj\\",
+      "projectPath": "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\OnlineLearning.Service.csproj",
+      "packagesPath": "C:\\Users\\RoShan\\.nuget\\packages\\",
+      "outputPath": "D:\\RN Work\\LMS\\codebase\\onlineLearning\\server\\OnlineLearning.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\praja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\RoShan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
