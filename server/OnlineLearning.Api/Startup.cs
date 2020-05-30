@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,10 +13,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using OnlineLearning.Api.Configuration;
 using OnlineLearning.EntityFramework;
-using OnlineLearning.EntityFramework.Abstract;
 using OnlineLearning.EntityFramework.Context;
 using OnlineLearning.Repository;
+
 
 namespace OnlineLearning.Api
 {
@@ -31,8 +35,14 @@ namespace OnlineLearning.Api
 		public void ConfigureServices(IServiceCollection services)
 		{
 
-			//services.AddDbContext<ApplicationDatabaseContext>(opts => opts.UseInMemoryDatabase("database"));
-			//services.AddScoped<ApplicationDatabaseContext>();
+			services.ConfigureServicesInAssembly(Configuration);
+
+			services.AddAuthorization(config =>
+			{
+				config.AddPolicy(Policies.SuperAdmin, Policies.SuperAdminPolicy());
+				config.AddPolicy(Policies.Admin, Policies.AdminPolicy());
+				config.AddPolicy(Policies.User, Policies.UserPolicy());
+			});
 
 			services.AddDbContext<ApplicationDatabaseContext>(item => item.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
 
@@ -52,6 +62,8 @@ namespace OnlineLearning.Api
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
+
+			app.UseAuthentication();
 
 			app.UseAuthorization();
 

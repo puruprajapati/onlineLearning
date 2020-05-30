@@ -5,25 +5,23 @@ using OnlineLearning.Model;
 using OnlineLearning.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineLearning.EntityFramework
 {
-	public class AuthorRepository: Repository<Author>, IAuthorRepository
-	{
+  public class UserRepository : Repository<User>, IUserRepository
+  {
     public ApplicationDatabaseContext ApplicationDatabaseContext
     {
       get { return ApplicationDatabaseContext as ApplicationDatabaseContext; }
     }
 
-    public AuthorRepository(ApplicationDatabaseContext context) : base(context) { }
+    public UserRepository(ApplicationDatabaseContext context) : base(context) { }
 
-    public Task<Author> GetByName(string name)
+    public async Task<User> FindByUserName(string userName)
     {
-      return context.Set<Author>().FirstOrDefaultAsync(author => author.Name == name);
-      // return FirstOrDefault(author => author.Name == name);
+      return await context.Set<User>().FirstOrDefaultAsync(user => user.UserName == userName);
     }
   }
 }
