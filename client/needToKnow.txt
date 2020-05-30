@@ -1,0 +1,40 @@
+$ npx kill-port 3000
+
+
+
+To avoid using hashed routes, you must edit your webserver configuration properly, which is the best solution. You just have to configure it so it fallbacks to index.html, which is Angular's bootstrap. Although there is no universal configuration for this, here are some:
+
+Apache
+
+Add a rewrite rule to .htaccess file
+
+RewriteEngine On
+    # If an existing asset or directory is requested go to it as it is
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+    RewriteRule ^ - [L]
+    # If the requested resource doesn't exist, use index.html
+RewriteRule ^ /index.html
+Nginx
+
+Use try_files in your location block
+
+try_files $uri $uri/ /index.html;
+IIS
+
+Add a rewrite rule to web.config
+
+<system.webServer>
+  <rewrite>
+    <rules>
+      <rule name="Angular Routes" stopProcessing="true">
+        <match url=".*" />
+        <conditions logicalGrouping="MatchAll">
+          <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+          <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+        </conditions>
+        <action type="Rewrite" url="/index.html" />
+      </rule>
+    </rules>
+  </rewrite>
+</system.webServer>
