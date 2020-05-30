@@ -6,8 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace OnlineLearning.EntityFramework.Abstract
+namespace OnlineLearning.EntityFramework
 {
   public class Repository<TModel> : IRepository<TModel> where TModel : class
   {
@@ -19,25 +20,26 @@ namespace OnlineLearning.EntityFramework.Abstract
       this.context = context;
       entities = context.Set<TModel>();
     }
-    public IEnumerable<TModel> GetAll()
+    public async Task<IEnumerable<TModel>> GetAll()
     {
-      return entities.ToList();
+      return await entities.ToListAsync();
     }
-    public TModel GetById(Guid id)
+    public async Task<TModel> GetById(Guid id)
     {
-      return entities.Find(id);
+      return await entities.FindAsync(id);
     }
-    public void Insert(TModel entity)
+    public async Task Insert(TModel entity)
     {
       if (entity == null) throw new ArgumentNullException("entity");
 
-      entities.Add(entity);
-      context.SaveChanges();
+      await entities.AddAsync(entity);
+      //context.SaveChanges();
     }
     public void Update(TModel entity)
     {
       if (entity == null) throw new ArgumentNullException("entity");
-      context.SaveChanges();
+      entities.Update(entity);
+      //context.SaveChanges();
     }
     public void Delete(Guid id)
     {
@@ -45,7 +47,7 @@ namespace OnlineLearning.EntityFramework.Abstract
 
       TModel entity = entities.Find(id);
       entities.Remove(entity);
-      context.SaveChanges();
+      //context.SaveChanges();
     }
   }
 }
