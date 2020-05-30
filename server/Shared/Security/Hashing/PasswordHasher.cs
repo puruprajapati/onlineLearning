@@ -1,9 +1,9 @@
 ﻿using System;
-using Shared.Interface.Security;
+using OnlineLearning.Shared.Interface.Security;
 using System.Security.Cryptography;
 using System.Runtime.CompilerServices;
 
-namespace Shared.Security
+namespace OnlineLearning.Shared.Security
 {
 	public class PasswordHasher : IPasswordHasher
 	{

@@ -1,4 +1,6 @@
-﻿namespace Shared.Interface.Security
+﻿using System;
+
+namespace OnlineLearning.Shared.Interface.Security
 {
 	public interface IPasswordHasher
 	{

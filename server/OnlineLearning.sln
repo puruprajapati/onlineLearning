@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineLearning.Repository",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineLearning.Service", "OnlineLearning.Service\OnlineLearning.Service.csproj", "{A5090946-2E50-4CDC-8B12-6292671FE95E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{3C831AD6-81CC-4CF4-91CF-E8F88BA50E19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{3C831AD6-81CC-4CF4-91CF-E8F88BA50E19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{11A0C7B7-75EB-4B7E-80F8-07E72B0D6E64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineLearning.Shared", "Shared\OnlineLearning.Shared.csproj", "{11A0C7B7-75EB-4B7E-80F8-07E72B0D6E64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -14,6 +14,8 @@ namespace OnlineLearning.Service.Interface
 		Task<UserResponse> FindByIdAsync(Guid id);
 
 		Task<User> FindByEmailAsync(string email);
+
+		Task<User> FindByUsernameAsync(string userName);
 		Task<UserResponse> UpdateAsync(Guid id, User user);
 		Task<UserResponse> DeleteAsync(Guid id);
 	}

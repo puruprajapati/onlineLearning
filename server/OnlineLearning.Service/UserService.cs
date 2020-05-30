@@ -2,7 +2,7 @@
 using OnlineLearning.Model;
 using OnlineLearning.Repository;
 using OnlineLearning.Service.Interface;
-using Shared.Interface.Security;
+using OnlineLearning.Shared.Interface.Security;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -66,6 +66,10 @@ namespace OnlineLearning.Service
 			}
 		}
 
+		public async Task<User> FindByUsernameAsync(string userName)
+		{
+			return await _userRepository.FindByUserName(userName);
+		}
 		public Task<User> FindByEmailAsync(string email)
 		{
 			throw new NotImplementedException();

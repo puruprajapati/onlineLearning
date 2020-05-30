@@ -1,6 +1,6 @@
 ﻿using OnlineLearning.Model;
 
-namespace Shared.Interface.Security.Tokens
+namespace OnlineLearning.Shared.Interface.Security.Tokens
 {
 	public interface ITokenHandler
 	{

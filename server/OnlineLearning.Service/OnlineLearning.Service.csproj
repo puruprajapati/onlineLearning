@@ -8,7 +8,7 @@
     <ProjectReference Include="..\DTO\DTO.csproj" />
     <ProjectReference Include="..\OnlineLearning.Model\OnlineLearning.Model.csproj" />
     <ProjectReference Include="..\OnlineLearning.Repository\OnlineLearning.Repository.csproj" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Shared\OnlineLearning.Shared.csproj" />
   </ItemGroup>
 
 </Project>
