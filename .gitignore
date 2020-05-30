@@ -40,6 +40,10 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+[Ll]og/
+
+# Visual Studio 2015 cache/options directory
+.vs/
 
 # compiled output
 /dist
@@ -72,3 +76,5 @@ obj
 .vs
 bin
 obj
+/server/OnlineLearning.Service/obj
+/server/.vs
