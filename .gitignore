@@ -6,6 +6,19 @@ project.lock.json
 
 # Visual Studio Code
 .vscode
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # User-specific files
 *.suo
@@ -27,6 +40,29 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
 
 # Visual Studio 2015
 .vs/
