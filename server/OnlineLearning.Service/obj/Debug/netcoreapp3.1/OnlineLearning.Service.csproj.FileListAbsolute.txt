@@ -1,8 +1,0 @@
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\bin\Debug\netcoreapp3.1\OnlineLearning.Service.deps.json
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\bin\Debug\netcoreapp3.1\OnlineLearning.Service.dll
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\bin\Debug\netcoreapp3.1\OnlineLearning.Service.pdb
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\obj\Debug\netcoreapp3.1\OnlineLearning.Service.csprojAssemblyReference.cache
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\obj\Debug\netcoreapp3.1\OnlineLearning.Service.AssemblyInfoInputs.cache
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\obj\Debug\netcoreapp3.1\OnlineLearning.Service.AssemblyInfo.cs
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\obj\Debug\netcoreapp3.1\OnlineLearning.Service.dll
-C:\pprajapati\Project\OnlineLearning\OnlineLearning.Service\obj\Debug\netcoreapp3.1\OnlineLearning.Service.pdb

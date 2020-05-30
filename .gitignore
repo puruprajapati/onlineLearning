@@ -40,6 +40,7 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+[Ll]og/
 
 # compiled output
 /dist
@@ -65,4 +66,10 @@ Thumbs.db
 
 
 # Visual Studio 2015
-.vs/
+
+obj
+/server/OnlineLearning.Service/bin
+/server/.vs
+.vs
+bin
+obj

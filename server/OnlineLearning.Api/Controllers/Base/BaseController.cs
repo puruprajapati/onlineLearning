@@ -16,12 +16,6 @@ namespace OnlineLearning.Api.Controllers.Base
       this.Repository = repository;
     }
 
-    [HttpGet]
-    public IEnumerable<TModel> Get()
-    {
-      return Repository.GetAll();
-    }
-
     [HttpPost]
     public void Add([FromBody] TModel item)
     {
