@@ -6,9 +6,9 @@ namespace OnlineLearning.Model
 {
     public class MessageMain : BaseEntity
     {
-        public Guid? SchoolId { get; set; }
-        public Guid? FromUserId { get; set; }
-        public Guid? ToUserId { get; set; }
+        public Guid SchoolId { get; set; }
+        public Guid FromUserId { get; set; }
+        public Guid ToUserId { get; set; }
         public string Subject { get; set; }
         public Boolean HighPriority { get; set; }
         public String Message { get; set; }

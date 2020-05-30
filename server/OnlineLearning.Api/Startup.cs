@@ -51,7 +51,6 @@ namespace OnlineLearning.Api
 			services.AddDbContext<ApplicationDatabaseContext>(item => item.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
 
 			services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-			services.AddScoped<IAuthorRepository, AuthorRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 
