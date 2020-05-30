@@ -65,7 +65,4 @@ Thumbs.db
 
 
 # Visual Studio 2015
-.vs/
-/server/.vs
-/server/OnlineLearning.Service/bin
-/server/OnlineLearning.Service/obj
+
