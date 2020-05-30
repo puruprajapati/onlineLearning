@@ -65,7 +65,7 @@ namespace OnlineLearning.Shared.Security.Tokens
 
 		private AccessToken BuildAccessToken(User user, RefreshToken refreshToken)
 		{
-			var accessTokenExpiration = DateTime.UtcNow.AddSeconds(_tokenOptions.AccessTokenExpiration);
+			var accessTokenExpiration = DateTime.UtcNow.AddHours(_tokenOptions.AccessTokenExpiration);
 
 			var securityToken = new JwtSecurityToken
 			(
@@ -94,12 +94,7 @@ namespace OnlineLearning.Shared.Security.Tokens
 				new Claim("FullName", user.FullName.ToString()),
 				new Claim("UserRole", user.UserRole.ToString()),
 				new Claim("SchoolId", user.SchoolId.ToString())
-	};
-
-			//foreach (var userRole in user.UserRoles)
-			//{
-			//	claims.Add(new Claim(ClaimTypes.Role, userRole.Role.Name));
-			//}
+			};
 
 			return claims;
 		}

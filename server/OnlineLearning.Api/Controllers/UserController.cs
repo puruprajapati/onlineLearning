@@ -12,10 +12,11 @@ using OnlineLearning.Model;
 using OnlineLearning.Service.Interface;
 using OnlineLearning.DTO.Queries;
 using Newtonsoft.Json;
+using OnlineLearning.Api.Extensions;
 
 namespace OnlineLearning.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -32,6 +33,7 @@ namespace OnlineLearning.Api.Controllers
     [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] BaseParameter baseParameter)
     {
+      //var userContext = HttpContext.GetUserContext(); //pprajapati: reference for user context
       var results = await _userService.ListAsync(baseParameter);
       var resultViewModel = _mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(results);
       var metadata = new
@@ -54,7 +56,6 @@ namespace OnlineLearning.Api.Controllers
     public async Task<IActionResult> CreateUserAsync([FromBody] UserViewModel newUser)
     {
       var user = _mapper.Map<UserViewModel, User>(newUser);
-      user.Id = Guid.NewGuid();
 
       var response = await _userService.CreateUserAsync(user);
       if (!response.Success)

@@ -40,6 +40,14 @@ namespace OnlineLearning.Api
 		{
 
 			services.ConfigureServicesInAssembly(Configuration);
+			
+			services.AddCors();
+
+			services.AddControllers().ConfigureApiBehaviorOptions(options =>
+			{
+				// Adds a custom error response factory when ModelState is invalid
+				options.InvalidModelStateResponseFactory = InvalidModelStateResponseFactory.ProduceErrorResponse;
+			});
 
 			services.AddAuthorization(config =>
 			{
@@ -60,7 +68,7 @@ namespace OnlineLearning.Api
 			services.AddSingleton<IPasswordHasher, PasswordHasher>();
 			services.AddSingleton<Shared.Interface.Security.Tokens.ITokenHandler, Shared.Security.Tokens.TokenHandler>();
 			
-			services.AddControllers();
+			
 
 			services.AddAutoMapper(typeof(Startup));
 
@@ -77,6 +85,11 @@ namespace OnlineLearning.Api
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
+
+			app.UseCors(x => x
+								.AllowAnyOrigin()
+								.AllowAnyMethod()
+								.AllowAnyHeader());
 
 			app.UseAuthentication();
 
