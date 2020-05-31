@@ -5,19 +5,17 @@ using System.Text;
 
 namespace OnlineLearning.Model
 {
-    public class SubmitAssignment : BaseEntity
+    public class SubmitAssignmentAttachments : BaseEntity
     {
-        public Guid SchoolId { get; set; }
-        [ForeignKey("SchoolId")]
-        public School School { get; set; }
-
+        public Guid SubmitAssignmentId { get; set; }
+        [ForeignKey("SubmitAssignmentId")]
+        public SubmitAssignment SubmitAssignment { get; set; }
         public Guid StudentId { get; set; }
         [ForeignKey("StudentId")]
         public Student Student { get; set; }
         public Guid SessionId { get; set; }
         [ForeignKey("SessionId")]
         public SessionDetail SessionDetail { get; set; }
-        public String AssignmentContent { get; set; }
-        public int DoCount { get; set; }
+        public String AttachmentFileName { get; set; }
     }
 }

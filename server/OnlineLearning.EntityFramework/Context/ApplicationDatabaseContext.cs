@@ -29,6 +29,8 @@ namespace OnlineLearning.EntityFramework.Context
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Subject> Subject { get; set; }
+        public DbSet<SubmitAssignmentAttachments> SubmitAssignmentAttachments { get; set; }
+        
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
