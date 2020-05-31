@@ -1,34 +1,72 @@
-import { INavData } from '@coreui/angular';
+import { INavData } from "@coreui/angular";
 
 export const navItems: INavData[] = [
   {
-    name: 'Dashboard',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
+    name: "Dashboard",
+    url: "/dashboard",
+    icon: "icon-speedometer",
     badge: {
-      variant: 'info',
-      text: ''
-    }
+      variant: "info",
+      text: "",
+    },
   },
   {
-    divider: true
+    divider: true,
   },
   {
     title: true,
-    name: 'Settings',
+    name: "Assignment",
   },
   {
-    name: 'User and Roles',
-    url: '/users',
-    icon: 'icon-people',
+    name: "Assignment",
+    url: "/theme/typography",
+    icon: "icon-pencil",
+  },
+  {
+    divider: true,
+  },
+  {
+    title: true,
+    name: "Settings",
+  },
+  {
+    name: "Users",
+    url: "/users",
+    icon: "icon-people",
     children: [
       {
-        name: 'User',
-        url: '/settings/user',
-        icon: 'icon-user'
-      }
-    ]
+        name: "User",
+        url: "/settings/user",
+        icon: "icon-user",
+      },
+      {
+        name: "Teacher",
+        url: "/settings/user",
+        icon: "icon-user",
+      },
+      {
+        name: "Student",
+        url: "/settings/user",
+        icon: "icon-user",
+      },
+      {
+        name: "Parent",
+        url: "/settings/user",
+        icon: "icon-user",
+      },
+    ],
   },
+  {
+    name: "School",
+    url: "/class",
+    icon: "icon-pie-chart",
+  },
+  {
+    name: "Class",
+    url: "/class",
+    icon: "icon-pie-chart",
+  },
+
   // {
   //   name: 'Disabled',
   //   url: '/dashboard',
@@ -40,7 +78,6 @@ export const navItems: INavData[] = [
   //   attributes: { disabled: true },
   // }
 ];
-
 
 /*
 export const navItems: INavData[] = [
