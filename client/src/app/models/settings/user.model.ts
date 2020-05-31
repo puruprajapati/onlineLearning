@@ -2,21 +2,16 @@ import { Guid } from "guid-typescript";
 
 export class User {
   id: Guid;
-  firstName: string;
-  middleName: string;
-  lastName: string;
+  fullName: string;
+  userName: string;
   email: string;
-  phoneNumber: string;
-  isEmailConfirmed: string;
+  user: string;
   active: string;
-  parentId: Guid;
-  roleId: Guid;  password: string;
+  isValid: Guid;
+  userRole: Guid;
   accessToken?: string;
   refreshToken?: string;
   expiration?: string;
 
-
-  constructor(){
-
-  }
+  constructor() {}
 }
