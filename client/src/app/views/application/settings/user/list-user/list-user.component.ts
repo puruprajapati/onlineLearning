@@ -17,10 +17,27 @@ export class ListUserComponent implements OnInit {
   public loading: boolean = false;
   public rowData: User[];
   public selectedUser;
+  public paginationData;
 
   private columnDefs: ColDef[];
   private api: GridApi;
   private columnApi: ColumnApi;
+
+  private paginationPageSize = 10;
+  private totalPages = 0;
+  private pageNumber = 1;
+
+  get PaginationPageSize(): number {
+    return this.paginationPageSize;
+  }
+
+  get gridAPI(): GridApi {
+    return this.api;
+  }
+
+  get TotalPages(): number {
+    return this.totalPages;
+  }
 
   constructor(private router: Router, private userService: UserService) {
     this.columnDefs = this.createColumnDefs();
@@ -91,6 +108,7 @@ export class ListUserComponent implements OnInit {
   onGridReady(params): void {
     this.api = params.api;
     this.columnApi = params.columnApi;
+    // this.totalPages = this.paginationData.TotalCount;
 
     this.api.sizeColumnsToFit();
   }
@@ -141,10 +159,15 @@ export class ListUserComponent implements OnInit {
 
   getUsers() {
     this.loading = true;
-    this.userService.getAll().subscribe((users) => {
-      this.loading = false;
-      this.rowData = users;
-    });
+    this.userService
+      .getAll(this.pageNumber, this.paginationPageSize)
+      .subscribe((response) => {
+        this.loading = false;
+        this.rowData = response.body;
+        this.paginationData = response.headers.get("X-Pagination");
+        this.totalPages = this.paginationData.TotalCount;
+        console.log(this.paginationData);
+      });
   }
 
   editUser(user) {
@@ -153,3 +176,5 @@ export class ListUserComponent implements OnInit {
     this.router.navigate(["/settings/user-edit", user.id]);
   }
 }
+
+//[domLayout]="'autoHeight'" in html

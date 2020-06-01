@@ -13,7 +13,7 @@ namespace OnlineLearning.DTO.ViewModel
     public string FullName { get; set; }
     public string Password { get; set; }
     public string UserRole { get; set; }
-    public bool Active { get; set; }
+    public string Active { get; set; }
     public bool IsValid { get; set; }
   }
 }
