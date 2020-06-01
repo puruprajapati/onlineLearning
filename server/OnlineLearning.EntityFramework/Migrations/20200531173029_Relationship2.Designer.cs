@@ -10,8 +10,8 @@ using OnlineLearning.EntityFramework.Context;
 namespace OnlineLearning.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDatabaseContext))]
-    [Migration("20200531084157_Relationship")]
-    partial class Relationship
+    [Migration("20200531173029_Relationship2")]
+    partial class Relationship2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
