@@ -15,7 +15,6 @@ namespace OnlineLearning.Service
 	{
 		private readonly ISchoolRepository _schoolRepository;
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly IPasswordHasher _passwordHasher;
 
 		public SchoolService(ISchoolRepository schoolRepository, IUnitOfWork unitOfWork)
 		{
