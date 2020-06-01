@@ -12,6 +12,6 @@ namespace OnlineLearning.Model
 		public String ContactNumber { get; set; }
 		public String EmailAddress { get; set; }
 		public String LogoLocation { get; set; }
-		public Boolean Active { get; set; }
+		//public Boolean Active { get; set; }
 	}
 }

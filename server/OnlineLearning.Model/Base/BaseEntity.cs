@@ -15,5 +15,6 @@ namespace OnlineLearning.Model
 		public string IPAddress { get; set; }
 		public Guid CreatedByUserId { get; set; }
 		public Guid ModifiedByUserId { get; set; }
+		public string Active { get; set; } = "Active";
 	}
 }

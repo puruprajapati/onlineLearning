@@ -394,7 +394,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade -- RoShan 
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AssignmentSubmissions_SubmissionStatus_SubmissionStatusId",
@@ -410,7 +411,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SubmittedByStudentId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade);-- RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Attendences_Schools_SchoolId",
@@ -442,7 +444,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "TeacherId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ClassDetails_Schools_SchoolId",
@@ -450,7 +453,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageMains_Users_FromUserId",
@@ -458,7 +462,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "FromUserId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageMains_Schools_SchoolId",
@@ -466,7 +471,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageMains_Users_ToUserId",
@@ -474,7 +480,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "ToUserId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageReplies_Users_FromUserId",
@@ -482,7 +489,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "FromUserId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageReplies_Schools_SchoolId",
@@ -490,7 +498,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MessageReplies_Users_ToUserId",
@@ -498,7 +507,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "ToUserId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Parents_Schools_SchoolId",
@@ -506,7 +516,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SectionDetails_Schools_SchoolId",
@@ -514,7 +525,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SessionReferences_ReferenceTypes_ReferenceTypeId",
@@ -522,7 +534,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "ReferenceTypeId",
                 principalTable: "ReferenceTypes",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SessionReferences_Schools_SchoolId",
@@ -530,7 +543,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SessionReferences_SessionDetail_SessionId",
@@ -538,7 +552,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SessionId",
                 principalTable: "SessionDetail",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SessionReferences_Teachers_TeacherId",
@@ -546,7 +561,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "TeacherId",
                 principalTable: "Teachers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_ClassDetails_ClassId",
@@ -554,7 +570,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "ClassId",
                 principalTable: "ClassDetails",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_Parents_ParentId",
@@ -562,7 +579,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "ParentId",
                 principalTable: "Parents",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_Schools_SchoolId",
@@ -570,7 +588,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_SectionDetails_SectionId",
@@ -578,7 +597,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SectionId",
                 principalTable: "SectionDetails",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SubmitAssignments_Schools_SchoolId",
@@ -586,7 +606,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SubmitAssignments_SessionDetail_SessionId",
@@ -594,7 +615,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SessionId",
                 principalTable: "SessionDetail",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_SubmitAssignments_Students_StudentId",
@@ -602,7 +624,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "StudentId",
                 principalTable: "Students",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Teachers_Schools_SchoolId",
@@ -610,7 +633,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "SchoolId",
                 principalTable: "Schools",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_TeacherSubjects_ClassDetails_ClassId",
@@ -628,13 +652,14 @@ namespace OnlineLearning.EntityFramework.Migrations
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
-            migrationBuilder.AddForeignKey(
+           migrationBuilder.AddForeignKey(
                 name: "FK_TeacherSubjects_Subject_SubjectId",
                 table: "TeacherSubjects",
                 column: "SubjectId",
                 principalTable: "Subject",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_TeacherSubjects_Teachers_TeacherId",
@@ -642,7 +667,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                 column: "TeacherId",
                 principalTable: "Teachers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                //onDelete: ReferentialAction.Cascade); --RoShan
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Users_Schools_SchoolId",

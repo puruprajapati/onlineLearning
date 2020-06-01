@@ -10,8 +10,8 @@ using OnlineLearning.EntityFramework.Context;
 namespace OnlineLearning.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDatabaseContext))]
-    [Migration("20200530155559_InitialModelCreation")]
-    partial class InitialModelCreation
+    [Migration("20200601053148_AddedActive")]
+    partial class AddedActive
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AssignmentContent")
                         .HasColumnType("nvarchar(max)");
@@ -68,6 +68,12 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("TeacherId");
+
                     b.ToTable("Assignments");
                 });
 
@@ -76,6 +82,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("AssignmentId")
                         .HasColumnType("uniqueidentifier");
@@ -112,6 +121,16 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AssignmentId");
+
+                    b.HasIndex("CheckbyIdTeacherId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SubmissionStatusId");
+
+                    b.HasIndex("SubmittedByStudentId");
+
                     b.ToTable("AssignmentSubmissions");
                 });
 
@@ -120,6 +139,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -156,6 +178,14 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("TeacherId");
+
                     b.ToTable("Attendences");
                 });
 
@@ -164,6 +194,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClassName")
                         .HasColumnType("nvarchar(max)");
@@ -191,6 +224,8 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
                     b.ToTable("ClassDetails");
                 });
 
@@ -199,6 +234,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -228,6 +266,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -267,6 +308,12 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("ToUserId");
+
                     b.ToTable("MessageMains");
                 });
 
@@ -275,6 +322,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -311,6 +361,12 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("ToUserId");
+
                     b.ToTable("MessageReplies");
                 });
 
@@ -319,6 +375,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -330,7 +389,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -355,6 +415,8 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
                     b.ToTable("Parents");
                 });
 
@@ -363,6 +425,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -393,8 +458,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -440,6 +505,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -466,7 +534,65 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
                     b.ToTable("SectionDetails");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SessionDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ClassId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<TimeSpan>("EndingTime")
+                        .HasColumnType("time");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ModifiedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ScheduledDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("SchoolId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SessionDesc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SessionStatusId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SessionTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("StartingTime")
+                        .HasColumnType("time");
+
+                    b.Property<Guid>("TeacherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SessionDetail");
                 });
 
             modelBuilder.Entity("OnlineLearning.Model.SessionReference", b =>
@@ -474,6 +600,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -507,6 +636,14 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ReferenceTypeId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("TeacherId");
+
                     b.ToTable("SessionReferences");
                 });
 
@@ -515,6 +652,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -545,8 +685,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
@@ -583,7 +723,57 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SectionId");
+
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Subject", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ClassId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ModifiedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SchoolId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SubjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("Subject");
                 });
 
             modelBuilder.Entity("OnlineLearning.Model.SubmissionStatus", b =>
@@ -591,6 +781,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -621,10 +814,10 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AssignmentContent")
+                    b.Property<string>("Active")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AssignmentUpload")
+                    b.Property<string>("AssignmentContent")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -656,7 +849,60 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("StudentId");
+
                     b.ToTable("SubmitAssignments");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SubmitAssignmentAttachments", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AttachmentFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ModifiedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SubmitAssignmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("SubmitAssignmentId");
+
+                    b.ToTable("SubmitAssignmentAttachments");
                 });
 
             modelBuilder.Entity("OnlineLearning.Model.Teacher", b =>
@@ -665,8 +911,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -681,7 +927,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -700,6 +947,8 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
                     b.ToTable("Teachers");
                 });
 
@@ -708,6 +957,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
@@ -738,6 +990,14 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("TeacherId");
+
                     b.ToTable("TeacherSubjects");
                 });
 
@@ -747,8 +1007,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -757,7 +1017,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
@@ -788,6 +1049,8 @@ namespace OnlineLearning.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
                     b.ToTable("Users");
                 });
 
@@ -796,6 +1059,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -818,6 +1084,310 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Assignment", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SessionDetail", "Session")
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.AssignmentSubmission", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.Assignment", "GetAssignment")
+                        .WithMany()
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.User", "UserTeacher")
+                        .WithMany()
+                        .HasForeignKey("CheckbyIdTeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SubmissionStatus", "SubmissionStatus")
+                        .WithMany()
+                        .HasForeignKey("SubmissionStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.User", "UserStudent")
+                        .WithMany()
+                        .HasForeignKey("SubmittedByStudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Attendence", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SessionDetail", "Session")
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.User", "UserStudent")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.User", "UserTeacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.ClassDetail", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.MessageMain", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.User", "UserFrom")
+                        .WithMany()
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.User", "UserTo")
+                        .WithMany()
+                        .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.MessageReply", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.User", "UserFrom")
+                        .WithMany()
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.User", "UserTo")
+                        .WithMany()
+                        .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Parent", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SectionDetail", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SessionReference", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.ReferenceType", "ReferenceType")
+                        .WithMany()
+                        .HasForeignKey("ReferenceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SessionDetail", "SessionDetail")
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Student", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.ClassDetail", "ClassDetail")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Parent", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SectionDetail", "SectionDetail")
+                        .WithMany()
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Subject", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.ClassDetail", "ClassDetail")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SubmitAssignment", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SessionDetail", "SessionDetail")
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SubmitAssignmentAttachments", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.SessionDetail", "SessionDetail")
+                        .WithMany()
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.SubmitAssignment", "SubmitAssignment")
+                        .WithMany()
+                        .HasForeignKey("SubmitAssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.Teacher", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.TeacherSubject", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.ClassDetail", "ClassDetail")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.User", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId");
                 });
 #pragma warning restore 612, 618
         }

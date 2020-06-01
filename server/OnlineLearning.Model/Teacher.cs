@@ -18,6 +18,6 @@ namespace OnlineLearning.Model
 		[DataType(DataType.EmailAddress)]
 		[StringLength(255)]
 		public String EmailAddress { get; set; }
-		public Boolean Active { get; set; }
+		//public Boolean Active { get; set; }
 	}
 }

@@ -25,8 +25,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AssignmentContent")
                         .HasColumnType("nvarchar(max)");
@@ -80,6 +80,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("AssignmentId")
                         .HasColumnType("uniqueidentifier");
@@ -135,6 +138,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -187,6 +193,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ClassName")
                         .HasColumnType("nvarchar(max)");
 
@@ -224,6 +233,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -252,6 +264,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -306,6 +321,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -356,6 +374,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
@@ -403,6 +424,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -432,8 +456,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -479,6 +503,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -515,6 +542,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
@@ -569,6 +599,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -618,6 +651,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -647,8 +683,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
@@ -702,8 +738,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
@@ -744,6 +780,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -772,6 +811,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AssignmentContent")
                         .HasColumnType("nvarchar(max)");
@@ -820,6 +862,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AttachmentFileName")
                         .HasColumnType("nvarchar(max)");
 
@@ -864,8 +909,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -910,6 +955,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ClassId")
                         .HasColumnType("uniqueidentifier");
@@ -957,8 +1005,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -1009,6 +1057,9 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Active")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

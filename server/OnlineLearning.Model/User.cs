@@ -25,7 +25,7 @@ namespace OnlineLearning.Model
 		public string Password { get; set; }
 		public string UserRole { get; set; }
 		public bool IsVerified { get; set; }
-		public bool Active { get; set; }
+		//public bool Active { get; set; }
 
 	}
 }
