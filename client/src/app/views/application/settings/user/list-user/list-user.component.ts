@@ -1,18 +1,21 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { AgGridAngular } from "ag-grid-angular";
-import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
-import { Router } from "@angular/router";
+import { Component, OnInit, ViewChild, NgModule } from '@angular/core';
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef, ColumnApi, GridApi } from 'ag-grid-community';
+import { Router } from '@angular/router';
 
-import { User } from "../../../../../models";
-import { UserService } from "../../../../../services";
+import { User } from '../../../../../models';
+import { UserService } from '../../../../../services';
+
 
 @Component({
-  selector: "app-list-user",
-  templateUrl: "./list-user.component.html",
-  styleUrls: ["./list-user.component.css"],
+  selector: 'app-list-user',
+  templateUrl: './list-user.component.html',
+  styleUrls: ['./list-user.component.css'],
 })
+
+
 export class ListUserComponent implements OnInit {
-  @ViewChild("agGrid") agGrid: AgGridAngular;
+  @ViewChild('agGrid') agGrid: AgGridAngular;
 
   public loading: boolean = false;
   public rowData: User[];
@@ -53,49 +56,49 @@ export class ListUserComponent implements OnInit {
   private createColumnDefs() {
     return [
       {
-        headerName: "",
-        field: "selectField",
+        headerName: '',
+        field: 'selectField',
         editable: false,
         checkboxSelection: true,
         width: 50,
       },
       {
-        headerName: "User Name",
-        field: "userName",
+        headerName: 'User Name',
+        field: 'userName',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Full Name",
-        field: "fullName",
+        headerName: 'Full Name',
+        field: 'fullName',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Role",
-        field: "userRole",
+        headerName: 'Role',
+        field: 'userRole',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Email",
-        field: "email",
+        headerName: 'Email',
+        field: 'email',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Is Active?",
-        field: "active",
+        headerName: 'Is Active?',
+        field: 'active',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Actions",
+        headerName: 'Actions',
         width: 250,
         cellRenderer: (params) => {
           return `<a id='delete'><i class='fa fa-trash' aria-hidden='true' style='color:#FF0000;' (click)='deleteRow()'></i> Delete</a> &nbsp; &nbsp;
@@ -115,24 +118,24 @@ export class ListUserComponent implements OnInit {
 
   onRowClicked(params): void {
     let userId = 0;
-    let action = "";
+    let action = '';
     if (
       params.event.srcElement !== undefined &&
-      params.event.srcElement.getAttribute("id")
+      params.event.srcElement.getAttribute('id')
     ) {
       userId = params.data.id;
-      if (params.event.srcElement.getAttribute("id") === "delete") {
-        action = "delete";
-      } else if (params.event.srcElement.getAttribute("id") == "edit") {
-        action = "edit";
+      if (params.event.srcElement.getAttribute('id') === 'delete') {
+        action = 'delete';
+      } else if (params.event.srcElement.getAttribute('id') == 'edit') {
+        action = 'edit';
       }
     }
     //TODO: edit link is not working for icon
-    console.log("check", userId, action);
+    console.log('check', userId, action);
     if (userId) {
-      if (action === "edit") {
+      if (action === 'edit') {
         this.editUser(params.data);
-      } else if (action === "delete") {
+      } else if (action === 'delete') {
         this.deleteUser(userId);
       }
     }
@@ -164,7 +167,7 @@ export class ListUserComponent implements OnInit {
       .subscribe((response) => {
         this.loading = false;
         this.rowData = response.body;
-        this.paginationData = response.headers.get("X-Pagination");
+        this.paginationData = response.headers.get('X-Pagination');
         this.totalPages = this.paginationData.TotalCount;
         console.log(this.paginationData);
       });
@@ -173,7 +176,7 @@ export class ListUserComponent implements OnInit {
   editUser(user) {
     // used observable to transfer data from list to edit
     this.userService.changeSelectedUser(user);
-    this.router.navigate(["/settings/user-edit", user.id]);
+    this.router.navigate(['/settings/user-edit', user.id]);
   }
 }
 
