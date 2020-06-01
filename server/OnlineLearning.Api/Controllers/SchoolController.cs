@@ -13,42 +13,34 @@ using OnlineLearning.Service.Interface;
 using OnlineLearning.DTO.Queries;
 using Newtonsoft.Json;
 using OnlineLearning.Api.Extensions;
+using OnlineLearning.Repository;
+
 namespace OnlineLearning.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class SchoolController : ControllerBase
     {
-        private readonly IMapper _mapper;
-        private readonly ISchoolService _schoolService;
-
-
-        public SchoolController(ISchoolService schoolService, IMapper mapper)
-        {
-            _schoolService = schoolService;
-            _mapper = mapper;
-        }
-
+        private IRepository<School> schoolRepository;
+        public SchoolController(IRepository<School> schoolRepository)
+        { this.schoolRepository = schoolRepository; }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync([FromQuery] BaseParameter baseParameter)
-        {
-            //var userContext = HttpContext.GetUserContext(); //pprajapati: reference for user context
-            var results = await _schoolService.ListAsync(baseParameter);
-            var resultViewModel = _mapper.Map<IEnumerable<School>, IEnumerable<SchoolViewModel>>(results);
-            var metadata = new
-            {
-                results.TotalCount,
-                results.PageSize,
-                results.CurrentPage,
-                results.TotalPages,
-                results.HasNext,
-                results.HasPrevious
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        [Route("")]
+        public async Task<IEnumerable<School>> GetAllSchool() => await schoolRepository.GetAll();
 
-            return Ok(resultViewModel);
+        [HttpGet]
+        [Route("{schoolId}")]
+        public async Task<School> GetSchoolById(Guid schoolId) => await schoolRepository.GetById(schoolId);
 
-        }
+        [HttpPost]
+        [Route("")]
+        //[AllowAnonymous]
+        public void AddSchool([FromBody] School school) => schoolRepository.Insert(school);
+
+        [HttpDelete]
+        [Route("{schoolId}")]
+        //[AllowAnonymous]
+        public void DeleteSchool(Guid schoolId) => schoolRepository.Delete(schoolId);
     }
 }
