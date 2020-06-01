@@ -26,7 +26,7 @@ namespace OnlineLearning.EntityFramework.Seed
 						UserName = "superadmin",
 						FullName = "Super Admin",
 						UserRole = Role.SuperAdmin.ToString(),
-						Active = true,
+						//Active = true,
 						IsVerified = true
 						}
 				};

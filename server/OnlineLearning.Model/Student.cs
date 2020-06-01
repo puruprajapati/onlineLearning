@@ -22,6 +22,6 @@ namespace OnlineLearning.Model
 		public Guid ParentId { set; get; }
 		[ForeignKey("ParentId")]
 		public Parent Parent { get; set; }
-		public Boolean Active { get; set; }
+		//public Boolean Active { get; set; }
 	}
 }

@@ -64,6 +64,7 @@ namespace OnlineLearning.Api
 
 			services.AddScoped<IAuthenticationService, AuthenticationService>();
 			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<ISchoolService, SchoolService >();
 
 			services.AddSingleton<IPasswordHasher, PasswordHasher>();
 			services.AddSingleton<Shared.Interface.Security.Tokens.ITokenHandler, Shared.Security.Tokens.TokenHandler>();
