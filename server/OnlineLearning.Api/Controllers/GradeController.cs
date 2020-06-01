@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,17 +9,17 @@ using OnlineLearning.Repository;
 
 namespace OnlineLearning.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class GradeController : ControllerBase
-    {
-        private IRepository<Grade> gradeRepository;
-        public GradeController(IRepository<Grade> gradeRepository)
-        { this.gradeRepository = gradeRepository; }
+  [Route("api/[controller]")]
+  [ApiController]
+  public class GradeController : ControllerBase
+  {
+    private IRepository<Grade> gradeRepository;
+    public GradeController(IRepository<Grade> gradeRepository)
+    { this.gradeRepository = gradeRepository; }
 
-        [HttpGet]
-        [Route("")]
-        public async Task<IEnumerable<Grade>> GetAllGrade() => await gradeRepository.GetAll();
+    [HttpGet]
+    [Route("")]
+    public async Task<IEnumerable<Grade>> GetAllGrade() => await gradeRepository.GetAll();
 
-    }
+  }
 }
