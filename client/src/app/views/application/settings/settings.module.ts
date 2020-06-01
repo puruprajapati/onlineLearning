@@ -1,19 +1,20 @@
-import { RouterModule } from "@angular/router";
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { AgGridModule } from "ag-grid-angular";
+import { AgGridModule } from 'ag-grid-angular';
 
-import { AuthGuard } from "../../../helpers";
+import { AuthGuard } from '../../../helpers';
 
-import { JwtInterceptor, ErrorInterceptor } from "../../../helpers";
-import { AddUserComponent } from "./user/add-user/add-user.component";
-import { ListUserComponent } from "./user/list-user/list-user.component";
-import { EditUserComponent } from "./user/edit-user/edit-user.component";
+import { JwtInterceptor, ErrorInterceptor } from '../../../helpers';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { ListUserComponent } from './user/list-user/list-user.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
-// import { PaginationModule } from "../shared/pagination/pagination.module";
+ import { PaginationModule } from '../shared/pagination/pagination.module';
+// import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 @NgModule({
   imports: [
@@ -21,41 +22,41 @@ import { EditUserComponent } from "./user/edit-user/edit-user.component";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    // PaginationModule,
+    PaginationModule,
     AgGridModule.withComponents([]),
     RouterModule.forChild([
       {
-        path: "",
+        path: '',
         data: {
-          title: "Settings",
+          title: 'Settings',
         },
         children: [
           {
-            path: "",
-            redirectTo: "user",
+            path: '',
+            redirectTo: 'user',
           },
           {
-            path: "user",
+            path: 'user',
             component: ListUserComponent,
             canActivate: [AuthGuard],
             data: {
-              title: "Users",
+              title: 'Users',
             },
           },
           {
-            path: "user-edit/:id",
+            path: 'user-edit/:id',
             component: EditUserComponent,
             canActivate: [AuthGuard],
             data: {
-              title: "Edit User",
+              title: 'Edit User',
             },
           },
           {
-            path: "user-add",
+            path: 'user-add',
             component: AddUserComponent,
             canActivate: [AuthGuard],
             data: {
-              title: "Add User",
+              title: 'Add User',
             },
           },
         ],

@@ -1,13 +1,15 @@
-import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
-import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
-import { PaginationService } from "../../../../services";
+import { Component, Input, OnChanges, SimpleChanges, NgModule } from '@angular/core';
+import { ColDef, ColumnApi, GridApi } from 'ag-grid-community';
+import { PaginationService } from '../../../../services';
+
 
 @Component({
-  selector: "app-pagination",
-  templateUrl: "./pagination.component.html",
-  styleUrls: ["./pagination.component.scss"],
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss'],
   providers: [PaginationService],
 })
+
 export class PaginationComponent implements OnChanges {
   @Input() pageSize = 0;
   @Input() gridApi: GridApi;
@@ -30,7 +32,7 @@ export class PaginationComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
-      if (propName === "noOfPages") {
+      if (propName === 'noOfPages') {
         this.paginationPages = this.noOfPages
           ? this.paginationService.getPager(this.noOfPages, 1)
           : {};
