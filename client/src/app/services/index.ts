@@ -5,3 +5,4 @@ export * from "./shared/pagination.service";
 
 export * from "./settings/user.service";
 export * from "./settings/role.service";
+export * from "./settings/school.service";
