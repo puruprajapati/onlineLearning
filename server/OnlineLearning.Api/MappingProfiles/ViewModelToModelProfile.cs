@@ -7,13 +7,13 @@ using System.Text;
 
 namespace OnlineLearning.Api.MappingProfiles
 {
-  public class ViewModelToModelProfile : Profile
-  {
-    public ViewModelToModelProfile()
+    public class ViewModelToModelProfile : Profile
     {
-      CreateMap<UserViewModel, User>();
-      CreateMap<StudentViewModel, Student>();
+        public ViewModelToModelProfile()
+        {
+            CreateMap<UserViewModel, User>();
+            CreateMap<StudentViewModel, Student>();
+            CreateMap<TeacherViewModel, Teacher>();
+        }
     }
-
-  }
 }
