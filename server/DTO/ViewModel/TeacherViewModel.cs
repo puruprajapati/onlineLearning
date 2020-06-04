@@ -13,5 +13,6 @@ namespace OnlineLearning.DTO.ViewModel
 		public String ContactNumber { get; set; }
 		public String EmailAddress { get; set; }
 		public Boolean Active { get; set; }
+		public String UserName { get; set; }
 	}
 }
