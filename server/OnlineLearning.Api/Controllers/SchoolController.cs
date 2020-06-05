@@ -17,38 +17,81 @@ using OnlineLearning.Repository;
 
 namespace OnlineLearning.Api.Controllers
 {
+  [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class SchoolController : ControllerBase
   {
-    private IRepository<School> schoolRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    public SchoolController(IRepository<School> schoolRepository, IUnitOfWork unitOfWork)
+
+    private readonly IMapper _mapper;
+    private readonly ISchoolService _schoolService;
+    public SchoolController(ISchoolService schoolService, IMapper mapper)
     {
-      this.schoolRepository = schoolRepository;
-      _unitOfWork = unitOfWork;
+      _mapper = mapper;
+      _schoolService = schoolService;
     }
 
     [HttpGet]
     [Route("")]
-    public async Task<IEnumerable<School>> GetAllSchool() => await schoolRepository.GetAll();
+    public async Task<IActionResult> GetAllSchool([FromQuery] BaseParameter baseParameter)
+    {
+      var results = await _schoolService.ListAsync(baseParameter);
+      var resultViewModel = _mapper.Map<IEnumerable<School>, IEnumerable<SchoolViewModel>>(results);
+      var metadata = new
+      {
+        results.TotalCount,
+        results.PageSize,
+        results.CurrentPage,
+        results.TotalPages,
+        results.HasNext,
+        results.HasPrevious
+      };
 
-    [HttpGet]
-    [Route("{schoolId}")]
-    public async Task<School> GetSchoolById(Guid schoolId) => await schoolRepository.GetById(schoolId);
+      Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+      return Ok(resultViewModel);
+    }
 
     [HttpPost]
-    [Route("")]
-    //[AllowAnonymous]
-    public async void AddSchool([FromBody] School school)
+    public async Task<IActionResult> CreateSchoolAsync([FromBody] SchoolViewModel newSchool)
     {
-      await schoolRepository.Insert(school);
-      await _unitOfWork.CompleteAsync();
+      var userContext = HttpContext.GetUserContext();
+      var school = _mapper.Map<SchoolViewModel, School>(newSchool);
+
+      var response = await _schoolService.CreateSchoolAsync(school, userContext);
+      if (!response.Success)
+      {
+        return BadRequest(new ErrorResource(response.Message));
+      }
+
+      var schoolResource = _mapper.Map<School, SchoolViewModel>(response.School);
+      return Ok(schoolResource);
     }
 
-    [HttpDelete]
-    [Route("{schoolId}")]
-    //[AllowAnonymous]
-    public void DeleteSchool(Guid schoolId) => schoolRepository.Delete(schoolId);
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutAsync(Guid id, [FromBody] SchoolViewModel request)
+    {
+      var userContext = HttpContext.GetUserContext();
+      var school = _mapper.Map<SchoolViewModel, School>(request);
+      var result = await _schoolService.UpdateAsync(id, school, userContext);
+
+      if (!result.Success)
+        return BadRequest(new ErrorResource(result.Message));
+
+      var resultViewModel = _mapper.Map<School, SchoolViewModel>(result.School);
+      return Ok(resultViewModel);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(Guid id)
+    {
+      var userContext = HttpContext.GetUserContext();
+      var result = await _schoolService.DeleteAsync(id, userContext);
+
+      if (!result.Success)
+        return BadRequest(new ErrorResource(result.Message));
+      var resultViewModel = _mapper.Map<School, SchoolViewModel>(result.School);
+      return Ok(resultViewModel);
+    }
   }
 }
