@@ -84,15 +84,22 @@ namespace OnlineLearning.Service
       if (existingSchool == null)
         return new SchoolResponse("School not found.");
 
-      school.ModifiedAt = DateTime.Now;
-      school.ModifiedByUserId = userContext.Id;
+      existingSchool.SchoolCode = school.SchoolCode;
+      existingSchool.Name = school.Name;
+      existingSchool.EmailAddress = school.EmailAddress;
+      existingSchool.Address = school.Address;
+      existingSchool.ContactNumber = school.ContactNumber;
+      existingSchool.LogoLocation = school.LogoLocation;
+      existingSchool.ModifiedAt = DateTime.Now;
+      existingSchool.ModifiedByUserId = userContext.Id;
+      existingSchool.Active = school.Active;
 
       try
       {
-        _schoolRepository.Update(school);
+        _schoolRepository.Update(existingSchool);
         await _unitOfWork.CompleteAsync();
 
-        return new SchoolResponse(school);
+        return new SchoolResponse(existingSchool);
       }
       catch (Exception ex)
       {

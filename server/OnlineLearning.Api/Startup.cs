@@ -54,8 +54,8 @@ namespace OnlineLearning.Api
 
       services.AddControllers().ConfigureApiBehaviorOptions(options =>
       {
-              // Adds a custom error response factory when ModelState is invalid
-              options.InvalidModelStateResponseFactory = InvalidModelStateResponseFactory.ProduceErrorResponse;
+        // Adds a custom error response factory when ModelState is invalid
+        options.InvalidModelStateResponseFactory = InvalidModelStateResponseFactory.ProduceErrorResponse;
       });
 
       services.AddAuthorization(config =>

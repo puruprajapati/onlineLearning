@@ -1,1 +1,207 @@
-<p>edit-school works!</p>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <div class="text-right">
+      <a
+        [routerLink]="['/settings/school']"
+        class="btn btn-primary btn-flat btn-social"
+        ><i class="fa fa-list"></i> List</a
+      >
+    </div>
+  </div>
+  <br />
+  <div class="box-body">
+    <div class="animated fadeIn">
+      <div>
+        <div class="row">
+          <div class="col-sm-12">
+            <form [formGroup]="modelForm" (ngSubmit)="onSubmit()">
+              <div class="card">
+                <div class="card-header">
+                  <strong>Edit School</strong>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="name"
+                          >School Name <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          formControlName="name"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.name.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.name.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.name.errors.required">
+                            School Name is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="schoolCode"
+                          >School Code<span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          formControlName="schoolCode"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.schoolCode.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.schoolCode.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.schoolCode.errors.required">
+                            School Code is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="emailAddress"
+                          >Email <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="emailAddress"
+                          formControlName="emailAddress"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.emailAddress.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.emailAddress.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.emailAddress.errors.required">
+                            Email is required
+                          </div>
+                          <div *ngIf="f.emailAddress.errors.email">
+                            Email must be a valid email address
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="contactNumber"
+                          >Contact Number
+                          <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="contactNumber"
+                          formControlName="contactNumber"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.contactNumber.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.contactNumber.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.contactNumber.errors.required">
+                            Phone number required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="address">Address</label>
+                        <input
+                          type="text"
+                          formControlName="address"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.address.errors
+                          }"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="active"
+                          >IsActive ? <span class="text-danger">*</span></label
+                        >
+                        <select
+                          class="form-control"
+                          formControlName="active"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.active.errors
+                          }"
+                        >
+                          <option value="" disabled>Select Status</option>
+                          <option
+                            *ngFor="let status of statusList"
+                            [ngValue]="status"
+                            >{{ status }}</option
+                          >
+                        </select>
+                        <div
+                          *ngIf="submitted && f.active.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.active.errors.required">
+                            Status is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="form-group">
+                    <button
+                      [disabled]="loading"
+                      class="btn btn-primary btn-flat btn-social"
+                    >
+                      <i class="fa fa-save"></i
+                      ><span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm mr-1"
+                      ></span>
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-flat btn-social"
+                      (click)="resetForm()"
+                    >
+                      <i class="fa fa-times"></i> Cancel
+                    </button>
+                    <span class="text-danger pull-right"
+                      >* indicates mandatory fields</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
