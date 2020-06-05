@@ -1,0 +1,49 @@
+<div class="page-container">
+  <button
+    (click)="goToPage(0)"
+    [disabled]="currentPage === 0"
+    class="btn btn-info"
+  >
+    <i class="fa fa-angle-double-left"></i>
+  </button>
+  <button
+    (click)="goToPrevious()"
+    [disabled]="currentPage === 0"
+    class="btn btn-info"
+  >
+    <i class="fa fa-angle-left"></i>
+  </button>
+  <span *ngFor="let page of PaginationPages.pages">
+    <button (click)="goToPage(page - 1)" class="btn btn-info">
+      {{ page }}
+    </button>
+  </span>
+  <button
+    *ngIf="PaginationPages.totalPages - PaginationPages.startPage > 5"
+    (click)="goToPage(PaginationPages.startPage + 5)"
+    class="btn btn-info"
+  >
+    ...
+  </button>
+  <button
+    *ngIf="PaginationPages.totalPages - PaginationPages.startPage > 5"
+    (click)="goToPage(PaginationPages.totalPages - 1)"
+    class="btn btn-info"
+  >
+    {{ PaginationPages.totalPages }}
+  </button>
+  <button
+    (click)="goToNext()"
+    [disabled]="currentPage === PaginationPages.totalPages - 1"
+    class="btn btn-info"
+  >
+    <i class="fa fa-angle-right"></i>
+  </button>
+  <button
+    (click)="goToPage(PaginationPages.totalPages - 1)"
+    [disabled]="currentPage === PaginationPages.totalPages - 1"
+    class="btn btn-info"
+  >
+    <i class="fa fa-angle-double-right"></i>
+  </button>
+</div>

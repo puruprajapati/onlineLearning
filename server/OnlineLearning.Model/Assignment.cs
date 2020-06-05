@@ -20,6 +20,6 @@ namespace OnlineLearning.Model
 		public String Description { get; set; }
 		public String AssignmentContent { get; set; }
 		public DateTime Deadline { get; set; }
-		public Boolean Active { get; set; }
+		//public Boolean Active { get; set; }
 	}
 }

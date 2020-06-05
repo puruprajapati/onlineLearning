@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, NgModule } from "@angular/core";
 import { AgGridAngular } from "ag-grid-angular";
 import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
 import { Router } from "@angular/router";
@@ -14,13 +14,19 @@ import { UserService } from "../../../../../services";
 export class ListUserComponent implements OnInit {
   @ViewChild("agGrid") agGrid: AgGridAngular;
 
+  private columnDefs: ColDef[];
+  private api: GridApi;
+  private columnApi: ColumnApi;
+
   public loading: boolean = false;
   public rowData: User[];
   public selectedUser;
 
-  private columnDefs: ColDef[];
-  private api: GridApi;
-  private columnApi: ColumnApi;
+  public paginationPageSize = 4;
+  public totalPages = 3; // default no of pagination navigation button
+  public url = "users";
+  public currentPage = 0; // default page no to load data
+  public paginationData: any;
 
   constructor(private router: Router, private userService: UserService) {
     this.columnDefs = this.createColumnDefs();
@@ -91,8 +97,8 @@ export class ListUserComponent implements OnInit {
   onGridReady(params): void {
     this.api = params.api;
     this.columnApi = params.columnApi;
-
     this.api.sizeColumnsToFit();
+    this.api.setDomLayout("autoHeight");
   }
 
   onRowClicked(params): void {
@@ -141,15 +147,31 @@ export class ListUserComponent implements OnInit {
 
   getUsers() {
     this.loading = true;
-    this.userService.getAll().subscribe((users) => {
-      this.loading = false;
-      this.rowData = users;
-    });
+    this.userService
+      .getAll(this.currentPage + 1, this.paginationPageSize)
+      .subscribe((response) => {
+        this.loading = false;
+        this.rowData = response.body;
+        this.paginationData = response.headers.get("X-Pagination");
+        this.totalPages = JSON.parse(this.paginationData).TotalPages;
+        this.currentPage = JSON.parse(this.paginationData).CurrentPage - 1;
+      });
   }
 
   editUser(user) {
     // used observable to transfer data from list to edit
     this.userService.changeSelectedUser(user);
     this.router.navigate(["/settings/user-edit", user.id]);
+  }
+
+  fetchData($event) {
+    this.loading = true;
+    $event.subscribe((dataSource) => {
+      this.loading = false;
+      this.rowData = dataSource.body;
+      this.paginationData = dataSource.headers.get("X-Pagination");
+      this.totalPages = JSON.parse(this.paginationData).TotalPages;
+      this.currentPage = JSON.parse(this.paginationData).CurrnetPage;
+    });
   }
 }

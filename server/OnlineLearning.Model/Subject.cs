@@ -15,6 +15,6 @@ namespace OnlineLearning.Model
 		public Guid ClassId { get; set; }
 		[ForeignKey("ClassId")]
 		public ClassDetail ClassDetail { get; set; }
-		public Boolean Active { get; set; }
+		//public Boolean Active { get; set; }
 	}
 }

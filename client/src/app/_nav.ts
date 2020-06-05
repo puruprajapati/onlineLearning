@@ -20,7 +20,7 @@ export const navItems: INavData[] = [
   {
     name: "Assignment",
     url: "/theme/typography",
-    icon: "icon-pencil",
+    icon: "icon-calculator",
   },
   {
     divider: true,
@@ -58,13 +58,13 @@ export const navItems: INavData[] = [
   },
   {
     name: "School",
-    url: "/class",
-    icon: "icon-pie-chart",
+    url: "/settings/school",
+    icon: "icon-graduation",
   },
   {
     name: "Class",
-    url: "/class",
-    icon: "icon-pie-chart",
+    url: "/settings/class",
+    icon: "icon-screen-desktop",
   },
 
   // {

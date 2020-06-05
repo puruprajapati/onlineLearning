@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { tap, catchError, map } from "rxjs/operators";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from "rxjs";
 
 import { environment } from "../../../environments/environment";
 import { User } from "../../models";
@@ -16,14 +16,17 @@ export class UserService {
     this.currentSelectedUser = this.selectedUser.asObservable();
   }
 
-  changeSelectedUser(user){
+  changeSelectedUser(user) {
     this.selectedUser.next(user);
   }
 
-  getAll() {
+  getAll(pageNumber, pageSize) {
     return this.http
-      .get<User[]>(`${environment.apiUrl}/users`)
-      .pipe(tap((users) => users));
+      .get<User[]>(
+        `${environment.apiUrl}/users?PageNumber=${pageNumber}&PageSize=${pageSize}`,
+        { observe: "response" }
+      )
+      .pipe(tap((response) => response));
   }
 
   register(user: User) {

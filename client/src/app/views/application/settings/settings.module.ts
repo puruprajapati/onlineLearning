@@ -8,10 +8,17 @@ import { AgGridModule } from "ag-grid-angular";
 
 import { AuthGuard } from "../../../helpers";
 
+import { PaginationModule } from "../shared/pagination/pagination.module";
+
 import { JwtInterceptor, ErrorInterceptor } from "../../../helpers";
 import { AddUserComponent } from "./user/add-user/add-user.component";
 import { ListUserComponent } from "./user/list-user/list-user.component";
 import { EditUserComponent } from "./user/edit-user/edit-user.component";
+
+import { AddSchoolComponent } from "./school/add-school/add-school.component";
+import { EditSchoolComponent } from "./school/edit-school/edit-school.component";
+import { ListSchoolComponent } from "./school/list-school/list-school.component";
+// import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 @NgModule({
   imports: [
@@ -19,6 +26,7 @@ import { EditUserComponent } from "./user/edit-user/edit-user.component";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    PaginationModule,
     AgGridModule.withComponents([]),
     RouterModule.forChild([
       {
@@ -55,12 +63,43 @@ import { EditUserComponent } from "./user/edit-user/edit-user.component";
               title: "Add User",
             },
           },
+          {
+            path: "school",
+            component: ListSchoolComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Schools",
+            },
+          },
+          {
+            path: "school-edit/:id",
+            component: EditSchoolComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Edit School",
+            },
+          },
+          {
+            path: "school-add",
+            component: AddSchoolComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Add School",
+            },
+          },
         ],
       },
     ]),
   ],
   exports: [RouterModule],
-  declarations: [AddUserComponent, ListUserComponent, EditUserComponent],
+  declarations: [
+    AddUserComponent,
+    ListUserComponent,
+    EditUserComponent,
+    AddSchoolComponent,
+    EditSchoolComponent,
+    ListSchoolComponent,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
