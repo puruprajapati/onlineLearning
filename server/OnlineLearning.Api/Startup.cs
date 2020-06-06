@@ -24,6 +24,10 @@ using AutoMapper;
 using OnlineLearning.Service.Interface;
 using OnlineLearning.Service;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace OnlineLearning.Api
 {
@@ -50,6 +54,14 @@ namespace OnlineLearning.Api
          .AllowAnyHeader()
          .WithExposedHeaders("X-Pagination"));
      });
+
+      //to avoid multipartbodylength error during upload
+      services.Configure<FormOptions>(o =>
+      {
+        o.ValueLengthLimit = int.MaxValue;
+        o.MultipartBodyLengthLimit = int.MaxValue;
+        o.MemoryBufferThreshold = int.MaxValue;
+      });
 
 
       services.AddControllers().ConfigureApiBehaviorOptions(options =>
@@ -102,6 +114,11 @@ namespace OnlineLearning.Api
       app.UseCors("CorsPolicy");
 
       app.UseStaticFiles(); //enables using static files for the request. If we don’t set a path to the static files, it will use a wwwroot folder in our solution explorer by default.
+      app.UseStaticFiles(new StaticFileOptions()
+      {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+        RequestPath = new PathString("/Resources")
+      });
 
 
       app.UseAuthentication();

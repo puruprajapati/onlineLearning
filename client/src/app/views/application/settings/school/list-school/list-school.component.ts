@@ -76,13 +76,13 @@ export class ListSchoolComponent implements OnInit {
         sortable: true,
         filter: true,
       },
-      {
-        headerName: "Logo",
-        field: "logoLocation",
-        editable: false,
-        sortable: true,
-        filter: true,
-      },
+      // {
+      //   headerName: "Logo",
+      //   field: "logoLocation",
+      //   editable: false,
+      //   sortable: true,
+      //   filter: true,
+      // },
       {
         headerName: "Is Active?",
         field: "active",

@@ -1,2 +1,11 @@
 // Here you can add other styles
-a { cursor: pointer;}
+a {
+  cursor: pointer;
+}
+
+uploadImage {
+  max-width: 100%;
+  border: 1px;
+  width: 100%;
+  height: 200px; // adjust it based on your need
+}

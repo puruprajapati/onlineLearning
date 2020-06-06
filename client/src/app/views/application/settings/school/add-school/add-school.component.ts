@@ -7,12 +7,10 @@ import {
   FormGroupName,
 } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
-import { School, List } from "../../../../../models";
-import {
-  SchoolService,
-  AlertService,
-  RoleService,
-} from "../../../../../services";
+import { UploadResponse } from "../../../../../models";
+import { SchoolService, AlertService } from "../../../../../services";
+
+import { environment } from "../../../../../../environments/environment";
 
 @Component({
   selector: "app-add-school",
@@ -23,6 +21,9 @@ export class AddSchoolComponent implements OnInit {
   modelForm: FormGroup;
   public submitted: boolean = false;
   public loading: boolean = false;
+  public uploadResponse = new UploadResponse();
+  public imageUrl: string;
+  public isUploadComplete: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,10 +47,17 @@ export class AddSchoolComponent implements OnInit {
       name: ["", Validators.required],
       emailAddress: ["", [Validators.required, Validators.email]],
       contactNumber: ["", Validators.required],
-      logoLocatoin: [""],
+      logoLocation: [""],
       address: [""],
     });
   }
+
+  public uploadFinished = (event) => {
+    this.uploadResponse = event;
+    this.modelForm.value.logoLocation = this.uploadResponse.dbPath;
+    this.isUploadComplete = true;
+    this.imageUrl = `${environment.baseUrl}${this.uploadResponse.dbPath}`;
+  };
 
   onSubmit() {
     this.submitted = true;
@@ -63,6 +71,7 @@ export class AddSchoolComponent implements OnInit {
     }
 
     this.loading = true;
+    console.log(this.modelForm.value);
     this.schoolService
       .add(this.modelForm.value)
       .pipe(first())

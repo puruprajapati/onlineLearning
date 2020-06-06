@@ -7,7 +7,7 @@ export class School {
   address: string;
   contactNumber: string;
   emailAddress: string;
-  logoLocatoin: string;
+  logoLocation: string;
   active: boolean;
 
   constructor() {}

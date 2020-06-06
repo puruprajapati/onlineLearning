@@ -30,6 +30,7 @@ import { LoginComponent } from "./views/application/login/login.component";
 import { RegisterComponent } from "./views/application/register/register.component";
 
 import { PaginationModule } from "./views/application/shared/pagination/pagination.module";
+import { UploadModule } from "./views/application/shared/upload/upload.module";
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -74,6 +75,7 @@ import { NgProgressRouterModule } from "ngx-progressbar/router";
     NgProgressModule,
     NgProgressRouterModule,
     PaginationModule,
+    UploadModule,
   ],
   declarations: [
     AppComponent,

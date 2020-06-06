@@ -56,7 +56,7 @@ export class EditSchoolComponent implements OnInit {
       name: ["", Validators.required],
       emailAddress: ["", [Validators.required, Validators.email]],
       contactNumber: ["", Validators.required],
-      logoLocatoin: [""],
+      logoLocation: [""],
       address: [""],
       active: [""],
     });
@@ -77,7 +77,7 @@ export class EditSchoolComponent implements OnInit {
     this.selectedSchool.name = this.f.name.value;
     this.selectedSchool.emailAddress = this.f.emailAddress.value;
     this.selectedSchool.contactNumber = this.f.contactNumber.value;
-    this.selectedSchool.logoLocatoin = this.f.logoLocatoin.value;
+    this.selectedSchool.logoLocation = this.f.logoLocation.value;
     this.selectedSchool.address = this.f.address.value;
     this.selectedSchool.active = this.f.active.value;
 

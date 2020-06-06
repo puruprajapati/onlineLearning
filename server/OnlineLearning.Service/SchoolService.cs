@@ -3,6 +3,7 @@ using OnlineLearning.DTO.Response;
 using OnlineLearning.Model;
 using OnlineLearning.Repository;
 using OnlineLearning.Service.Interface;
+using OnlineLearning.Shared.Enums;
 using OnlineLearning.Shared.Interface.Security;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace OnlineLearning.Service
       try
       {
         school.CreatedByUserId = userContext.Id;
+        school.Active = ActiveStatus.Active.ToString();
         await _schoolRepository.Insert(school);
         await _unitOfWork.CompleteAsync();
 
