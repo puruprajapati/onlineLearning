@@ -37,6 +37,10 @@ export class SchoolService {
     return this.http.delete(`${environment.apiUrl}/school/${id}`);
   }
 
+  deleteMultiple(ids) {
+    return this.http.post(`${environment.apiUrl}/school/deletemultiple`, ids);
+  }
+
   udpate(school) {
     return this.http.put(`${environment.apiUrl}/school/${school.id}`, school);
   }

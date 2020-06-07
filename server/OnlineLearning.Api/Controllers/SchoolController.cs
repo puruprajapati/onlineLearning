@@ -93,5 +93,17 @@ namespace OnlineLearning.Api.Controllers
       var resultViewModel = _mapper.Map<School, SchoolViewModel>(result.School);
       return Ok(resultViewModel);
     }
+
+    [HttpPost]
+    [Route("deletemultiple")]
+    public async Task<IActionResult> MultipleDelete([FromBody] List<Guid> ids)
+    {
+      var userContext = HttpContext.GetUserContext();
+      var result = await _schoolService.MultipleDeleteAsync(ids, userContext);
+      if (!result.Success)
+        return BadRequest(new ErrorResource(result.Message));
+      return Ok(result);
+
+    }
   }
 }

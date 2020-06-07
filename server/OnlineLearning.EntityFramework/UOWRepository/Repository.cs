@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineLearning.Shared.Enums;
 
 namespace OnlineLearning.EntityFramework
 {
-  public class Repository<TModel> : IRepository<TModel> where TModel : class
+  public class Repository<TModel> : IRepository<TModel> where TModel : class, IEntity
   {
     protected readonly ApplicationDatabaseContext context;
     private DbSet<TModel> entities;
@@ -45,13 +46,30 @@ namespace OnlineLearning.EntityFramework
       if (id == null) throw new ArgumentNullException("entity");
 
       TModel entity = entities.Find(id);
-      entities.Remove(entity);
+      entity.Active = ActiveStatus.Deleted.ToString();
+      entities.Update(entity);
+      // entities.Remove(entity);
+    }
+
+    public async void MultipleDelete(List<Guid> ids)
+    {
+      var toBeDeletedModels = await entities.Where(r => ids.Contains(r.Id)).ToListAsync();
+      List<TModel> entityCollection = new List<TModel>();
+      entityCollection = toBeDeletedModels;
+      if (entityCollection == null || entityCollection.Count == 0) throw new ArgumentNullException("entity");
+      entityCollection.ForEach(x => x.Active = ActiveStatus.Active.ToString());
+
     }
 
     public async Task<PagedList<TModel>> GetPaginatedList(BaseParameter baseParameter)
     {
-      var result = await entities.ToListAsync();
+      var result = await entities.Where(x => x.Active == ActiveStatus.Active.ToString()).ToListAsync();
       return PagedList<TModel>.ToPagedList(result, baseParameter.PageNumber, baseParameter.PageSize);
+    }
+
+    public async Task<IEnumerable<TModel>> GetByIds(List<Guid> ids)
+    {
+      return await entities.Where(r => ids.Contains(r.Id)).ToListAsync();
     }
   }
 }

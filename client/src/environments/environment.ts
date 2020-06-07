@@ -7,4 +7,6 @@ export const environment = {
   production: false,
   apiUrl: "https://localhost:5001/api",
   baseUrl: "https://localhost:5001/",
+  // apiUrl: "http://lmsapi.rnventure.com.np/api",
+  // baseUrl: "http://lmsapi.rnventure.com.np/",
 };

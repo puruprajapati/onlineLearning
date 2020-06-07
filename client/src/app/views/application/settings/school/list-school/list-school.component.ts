@@ -126,9 +126,9 @@ export class ListSchoolComponent implements OnInit {
     console.log("check", schoolId, action);
     if (schoolId) {
       if (action === "edit") {
-        this.editUser(params.data);
+        this.editModel(params.data);
       } else if (action === "delete") {
-        this.deleteUser(schoolId);
+        this.deleteModel(schoolId);
       }
     }
   }
@@ -138,12 +138,19 @@ export class ListSchoolComponent implements OnInit {
   }
 
   deleteSelectedRows() {
+    this.loading = true;
     const selectRows = this.api.getSelectedRows();
-    //TODO: delete multiple users at a time
-    console.log(selectRows);
+    const selectedIds = selectRows.map((row) => row.id);
+    this.schoolService.deleteMultiple(selectedIds).subscribe((response) => {
+      console.log(response);
+      this.rowData = this.rowData.filter(
+        (row) => !selectedIds.includes(row.id)
+      );
+      this.loading = false;
+    });
   }
 
-  deleteUser(schoolId) {
+  deleteModel(schoolId) {
     //TODO: confirmation box to delete and toastr
     this.loading = true;
     this.schoolService.delete(schoolId).subscribe((school) => {
@@ -167,7 +174,7 @@ export class ListSchoolComponent implements OnInit {
       });
   }
 
-  editUser(school) {
+  editModel(school) {
     // used observable to transfer data from list to edit
     this.schoolService.changeSelectedSchool(school);
     this.router.navigate(["/settings/school-edit", school.id]);

@@ -15,5 +15,6 @@ namespace OnlineLearning.Service.Interface
     Task<SchoolResponse> FindByIdAsync(Guid id);
     Task<SchoolResponse> UpdateAsync(Guid id, School school, UserContextInfo userContext);
     Task<SchoolResponse> DeleteAsync(Guid id, UserContextInfo userContext);
+    Task<SchoolResponse> MultipleDeleteAsync(List<Guid> ids, UserContextInfo userContext);
   }
 }

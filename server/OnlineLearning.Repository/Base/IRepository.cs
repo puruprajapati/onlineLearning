@@ -14,5 +14,8 @@ namespace OnlineLearning.Repository
     Task Insert(TModel entity);
     void Update(TModel entity);
     void Delete(Guid id);
+
+    void MultipleDelete(List<Guid> ids);
+    Task<IEnumerable<TModel>> GetByIds(List<Guid> ids);
   }
 }

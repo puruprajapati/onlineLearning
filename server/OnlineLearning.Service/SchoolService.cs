@@ -109,6 +109,11 @@ namespace OnlineLearning.Service
       }
     }
 
-
+    public async Task<SchoolResponse> MultipleDeleteAsync(List<Guid> ids, UserContextInfo userContext)
+    {
+      _schoolRepository.MultipleDelete(ids);
+      await _unitOfWork.CompleteAsync();
+      return new SchoolResponse($"Deleted successfully");
+    }
   }
 }
