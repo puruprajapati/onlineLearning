@@ -4,7 +4,10 @@ import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
 import { Router } from "@angular/router";
 
 import { School } from "../../../../../models";
-import { SchoolService } from "../../../../../services";
+import {
+  SchoolService,
+  ConfirmationDialogService,
+} from "../../../../../services";
 
 @Component({
   selector: "app-list-school",
@@ -28,7 +31,11 @@ export class ListSchoolComponent implements OnInit {
   public currentPage = 0; // default page no to load data
   public paginationData: any;
 
-  constructor(private router: Router, private schoolService: SchoolService) {
+  constructor(
+    private router: Router,
+    private schoolService: SchoolService,
+    private confirmationDialogService: ConfirmationDialogService
+  ) {
     this.columnDefs = this.createColumnDefs();
   }
 
@@ -141,18 +148,28 @@ export class ListSchoolComponent implements OnInit {
     this.loading = true;
     const selectRows = this.api.getSelectedRows();
     const selectedIds = selectRows.map((row) => row.id);
-    this.schoolService.deleteMultiple(selectedIds).subscribe((response) => {
-      console.log(response);
-      this.rowData = this.rowData.filter(
-        (row) => !selectedIds.includes(row.id)
-      );
-      this.loading = false;
-    });
+    this.confirmationDialogService
+      .openConfirmDialog("Confirm", "Are you sure want to delete?")
+      .subscribe((result) => {
+        console.log(result, "testssss");
+      });
+    // this.schoolService.deleteMultiple(selectedIds).subscribe((response) => {
+    //   console.log(response);
+    //   this.rowData = this.rowData.filter(
+    //     (row) => !selectedIds.includes(row.id)
+    //   );
+    //   this.loading = false;
+    // });
   }
 
   deleteModel(schoolId) {
-    //TODO: confirmation box to delete and toastr
     this.loading = true;
+
+    this.confirmationDialogService
+      .openConfirmDialog("Confirm", "Are you sure want to delete?")
+      .subscribe((result) => {
+        console.log(result, "testssss");
+      });
     this.schoolService.delete(schoolId).subscribe((school) => {
       this.rowData = this.rowData.filter((u) => u.id !== schoolId);
       this.loading = false;

@@ -31,6 +31,7 @@ import { RegisterComponent } from "./views/application/register/register.compone
 
 import { PaginationModule } from "./views/application/shared/pagination/pagination.module";
 import { UploadModule } from "./views/application/shared/upload/upload.module";
+import { ConfirmationDialogModule } from "./views/application/shared/confirmation-dialog/confirmation-dialog.module";
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -53,7 +54,7 @@ import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts";
 import { NgProgressModule } from "ngx-progressbar";
 import { NgProgressRouterModule } from "ngx-progressbar/router";
-import { ModalComponent } from './views/application/shared/modal/modal.component';
+import { ModalModule, BsModalRef } from "ngx-bootstrap/modal";
 
 @NgModule({
   imports: [
@@ -77,6 +78,8 @@ import { ModalComponent } from './views/application/shared/modal/modal.component
     NgProgressRouterModule,
     PaginationModule,
     UploadModule,
+    ConfirmationDialogModule,
+    ModalModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -85,12 +88,12 @@ import { ModalComponent } from './views/application/shared/modal/modal.component
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ModalComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    BsModalRef,
   ],
   bootstrap: [AppComponent],
 })
