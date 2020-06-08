@@ -14,7 +14,7 @@ import { SchoolService } from "../../../../../services";
 export class ListSchoolComponent implements OnInit {
   @ViewChild("agGrid") agGrid: AgGridAngular;
 
-  private columnDefs: ColDef[];
+  public columnDefs: ColDef[];
   private api: GridApi;
   private columnApi: ColumnApi;
 

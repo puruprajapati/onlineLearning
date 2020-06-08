@@ -53,6 +53,7 @@ import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts";
 import { NgProgressModule } from "ngx-progressbar";
 import { NgProgressRouterModule } from "ngx-progressbar/router";
+import { ModalComponent } from './views/application/shared/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -84,6 +85,7 @@ import { NgProgressRouterModule } from "ngx-progressbar/router";
     P500Component,
     LoginComponent,
     RegisterComponent,
+    ModalComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

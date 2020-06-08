@@ -14,7 +14,7 @@ import { UserService } from "../../../../../services";
 export class ListUserComponent implements OnInit {
   @ViewChild("agGrid") agGrid: AgGridAngular;
 
-  private columnDefs: ColDef[];
+  public columnDefs: ColDef[];
   private api: GridApi;
   private columnApi: ColumnApi;
 

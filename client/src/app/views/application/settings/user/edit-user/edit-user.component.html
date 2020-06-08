@@ -1,105 +1,224 @@
 <div class="box box-default">
   <div class="box-header with-border">
     <div class="text-right">
-      <a [routerLink]="['/settings/user']" class="btn btn-primary btn-flat btn-social"><i class="fa fa-list"></i> List</a>
+      <a
+        [routerLink]="['/settings/user']"
+        class="btn btn-primary btn-flat btn-social"
+        ><i class="fa fa-list"></i> List</a
+      >
     </div>
   </div>
-  <br>
+  <br />
   <div class="box-body">
     <div class="animated fadeIn">
-      <div >
+      <div>
         <div class="row">
           <div class="col-sm-12">
             <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-            <div class="card">
-              <div class="card-header">
-                <strong>Edit User</strong>
+              <div class="card">
+                <div class="card-header">
+                  <strong>Edit User</strong>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="firstName"
+                          >First Name <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          formControlName="firstName"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.firstName.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.firstName.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.firstName.errors.required">
+                            First Name is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input
+                          type="text"
+                          formControlName="middleName"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.middleName.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.middleName.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.middleName.errors.required">
+                            First Name is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="lastName"
+                          >Last Name <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          formControlName="lastName"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.lastName.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.lastName.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.lastName.errors.required">
+                            Last Name is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="email"
+                          >Email <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="email"
+                          formControlName="email"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.email.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.email.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.email.errors.required">
+                            Email is required
+                          </div>
+                          <div *ngIf="f.email.errors.email">
+                            Email must be a valid email address
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="phoneNumber"
+                          >Phone Number
+                          <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="phoneNumber"
+                          formControlName="phoneNumber"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.phoneNumber.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.phoneNumber.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.phoneNumber.errors.required">
+                            Phone number required
+                          </div>
+                          <div *ngIf="f.phoneNumber.errors.minlength">
+                            Invalid Phone Number
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="roleId"
+                          >Role <span class="text-danger">*</span></label
+                        >
+                        <select
+                          class="form-control"
+                          formControlName="roleId"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.roleId.errors
+                          }"
+                        >
+                          <option value="" disabled>Select role</option>
+                          <option
+                            *ngFor="let role of roles"
+                            [ngValue]="role.id"
+                            >{{ role.name }}</option
+                          >
+                        </select>
+                        <div
+                          *ngIf="submitted && f.roleId.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.roleId.errors.required">
+                            Role is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="parentUser">Parent User</label>
+                        <input
+                          type="text"
+                          formControlName="parentUser"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.parentUser.errors
+                          }"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="form-group">
+                    <button
+                      [disabled]="loading"
+                      class="btn btn-primary btn-flat btn-social"
+                    >
+                      <i class="fa fa-save"></i
+                      ><span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm mr-1"
+                      ></span>
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-flat btn-social"
+                      (click)="resetForm()"
+                    >
+                      <i class="fa fa-times"></i> Cancel
+                    </button>
+                    <span class="text-danger pull-right"
+                      >* indicates mandatory fields</span
+                    >
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="firstName">First Name <span class="text-danger">*</span></label>
-                      <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="middleName">Middle Name</label>
-                      <input type="text" formControlName="middleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.middleName.errors }" />
-                      <div *ngIf="submitted && f.middleName.errors" class="invalid-feedback">
-                        <div *ngIf="f.middleName.errors.required">First Name is required</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="lastName">Last Name <span class="text-danger">*</span></label>
-                      <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="email">Email <span class="text-danger">*</span></label>
-                      <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                        <div *ngIf="f.email.errors.required">Email is required</div>
-                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="phoneNumber">Phone Number <span class="text-danger">*</span></label>
-                      <input type="phoneNumber" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-                      <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                        <div *ngIf="f.phoneNumber.errors.required">Phone number required</div>
-                        <div *ngIf="f.phoneNumber.errors.minlength">Invalid Phone Number</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="roleId">Role <span class="text-danger">*</span></label>
-                      <select class="form-control" (change)="loadParentUser($event)" formControlName="roleId" [ngClass]="{ 'is-invalid': submitted && f.roleId.errors }">
-                        <option value="" disabled>Select role</option>
-                        <option *ngFor="let role of roles" [ngValue]="role.id">{{role.name}}</option>
-                     </select>
-                     <div *ngIf="submitted && f.roleId.errors" class="invalid-feedback">
-                        <div *ngIf="f.roleId.errors.required">Role is required</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="parentUser">Parent User</label>
-                      <input type="text" formControlName="parentUser" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.parentUser.errors }" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="form-group">
-                  <button [disabled]="loading" class="btn btn-primary btn-flat btn-social"><i class="fa fa-save"></i><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> Save </button>
-                  <button type="button" class="btn btn-secondary btn-flat btn-social" (click)="resetForm()"><i class="fa fa-times"></i> Cancel </button>
-                  <span class="text-danger pull-right">* indicates mandatory fields</span>
-                </div>
-              </div>
-            </div>
             </form>
           </div>
         </div>
@@ -107,6 +226,3 @@
     </div>
   </div>
 </div>
-
-
-
