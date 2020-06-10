@@ -7,6 +7,7 @@ import { School } from "../../../../../models";
 import {
   SchoolService,
   ConfirmationDialogService,
+  AlertService,
 } from "../../../../../services";
 
 @Component({
@@ -34,7 +35,9 @@ export class ListSchoolComponent implements OnInit {
   constructor(
     private router: Router,
     private schoolService: SchoolService,
-    private confirmationDialogService: ConfirmationDialogService
+    private confirmationDialogService: ConfirmationDialogService,
+
+    private alertService: AlertService
   ) {
     this.columnDefs = this.createColumnDefs();
   }
@@ -145,34 +148,43 @@ export class ListSchoolComponent implements OnInit {
   }
 
   deleteSelectedRows() {
+    this.alertService.clear();
     this.loading = true;
     const selectRows = this.api.getSelectedRows();
     const selectedIds = selectRows.map((row) => row.id);
-    this.confirmationDialogService
-      .openConfirmDialog("Confirm", "Are you sure want to delete?")
-      .subscribe((result) => {
-        console.log(result, "testssss");
+    // this.confirmationDialogService
+    //   .openConfirmDialog("Confirm", "Are you sure want to delete?")
+    //   .subscribe((result) => {
+    //     console.log(result, "testssss");
+    //   });
+    this.schoolService.deleteMultiple(selectedIds).subscribe((response) => {
+      this.rowData = this.rowData.filter(
+        (row) => !selectedIds.includes(row.id)
+      );
+      this.loading = false;
+      this.alertService.success("Deleted successfully.", {
+        autoClose: true,
+        keepAfterRouteChange: false,
       });
-    // this.schoolService.deleteMultiple(selectedIds).subscribe((response) => {
-    //   console.log(response);
-    //   this.rowData = this.rowData.filter(
-    //     (row) => !selectedIds.includes(row.id)
-    //   );
-    //   this.loading = false;
-    // });
+    });
   }
 
   deleteModel(schoolId) {
+    this.alertService.clear();
     this.loading = true;
 
-    this.confirmationDialogService
-      .openConfirmDialog("Confirm", "Are you sure want to delete?")
-      .subscribe((result) => {
-        console.log(result, "testssss");
-      });
+    // this.confirmationDialogService
+    //   .openConfirmDialog("Confirm", "Are you sure want to delete?")
+    //   .subscribe((result) => {
+    //     console.log(result, "testssss");
+    //   });
     this.schoolService.delete(schoolId).subscribe((school) => {
       this.rowData = this.rowData.filter((u) => u.id !== schoolId);
       this.loading = false;
+      this.alertService.success("Deleted successfully.", {
+        autoClose: true,
+        keepAfterRouteChange: false,
+      });
     });
   }
 
