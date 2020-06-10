@@ -113,7 +113,7 @@ namespace OnlineLearning.Service
     {
       _schoolRepository.MultipleDelete(ids);
       await _unitOfWork.CompleteAsync();
-      return new SchoolResponse($"Deleted successfully");
+      return new SchoolResponse(true, null, null);
     }
   }
 }

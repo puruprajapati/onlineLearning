@@ -51,13 +51,13 @@ namespace OnlineLearning.EntityFramework
       // entities.Remove(entity);
     }
 
-    public async void MultipleDelete(List<Guid> ids)
+    public void MultipleDelete(List<Guid> ids)
     {
-      var toBeDeletedModels = await entities.Where(r => ids.Contains(r.Id)).ToListAsync();
+      var toBeDeletedModels = entities.Where(r => ids.Contains(r.Id)).ToList();
       List<TModel> entityCollection = new List<TModel>();
       entityCollection = toBeDeletedModels;
       if (entityCollection == null || entityCollection.Count == 0) throw new ArgumentNullException("entity");
-      entityCollection.ForEach(x => x.Active = ActiveStatus.Active.ToString());
+      entityCollection.ForEach(x => x.Active = ActiveStatus.Deleted.ToString());
 
     }
 
