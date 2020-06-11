@@ -7,7 +7,6 @@ namespace OnlineLearning.DTO.ViewModel
     public class ParentViewModel
     {
         public Guid Id { get; set; }
-        public Guid SchoolId { get; set; }
         public string ParentName { get; set; }
         public String Address { get; set; }
         public String PrimaryContactNumber { get; set; }

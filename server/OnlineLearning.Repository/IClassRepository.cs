@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Repository
 {
-    public interface ISessionRepository : IRepository<SessionDetail>
+    public interface IClassRepository : IRepository<ClassDetail>
     {
-        Task<SessionDetail> FindSessionBySchoolId(Guid SchoolId);
+        Task<ClassDetail> FindByClass(string ClassName);
     }
 }

@@ -13,8 +13,8 @@ namespace OnlineLearning.Model
         public Guid ClassId { get; set; }
         public Guid TeacherId { get; set; }
         public DateTime ScheduledDate { set; get; }
-        public TimeSpan StartingTime { get; set; }
-        public TimeSpan EndingTime { get; set; }
+        public string StartingTime { get; set; }
+        public string EndingTime { get; set; }
         public Guid? SessionStatusId { get; set; }
     }
 }

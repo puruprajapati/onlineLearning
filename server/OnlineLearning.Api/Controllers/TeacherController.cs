@@ -69,7 +69,7 @@ namespace OnlineLearning.Api.Controllers
             };
 
             teacher.CreatedByUserId = userContext.Id;
-            teacher.SchoolId = userContext.Id;
+            teacher.SchoolId = userContext.SchoolId.Value;
 
             var response = await _teacherService.CreateTeacher(teacher, user);
             if (!response.Success)

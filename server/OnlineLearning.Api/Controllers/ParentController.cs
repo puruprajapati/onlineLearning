@@ -19,22 +19,22 @@ namespace OnlineLearning.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SessionController : ControllerBase
+    public class ParentController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ISessionService _sessionService;
-        public SessionController(ISessionService sessionService, IMapper mapper)
+        private readonly IParentService _service;
+        public ParentController(IParentService service, IMapper mapper)
         {
             _mapper = mapper;
-            _sessionService = sessionService;
+            _service = service;
         }
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllSection([FromQuery] BaseParameter baseParameter)
+        public async Task<IActionResult> GetAll([FromQuery] BaseParameter baseParameter)
         {
-            var results = await _sessionService.ListAsync(baseParameter);
-            var resultViewModel = _mapper.Map<IEnumerable<SessionDetail>, IEnumerable<SessionViewModel>>(results);
+            var results = await _service.ListAsync(baseParameter);
+            var resultViewModel = _mapper.Map<IEnumerable<Parent>, IEnumerable<ParentViewModel>>(results);
             var metadata = new
             {
                 results.TotalCount,
@@ -51,30 +51,30 @@ namespace OnlineLearning.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] SessionViewModel newSession)
+        public async Task<IActionResult> CreateAsync([FromBody] ParentViewModel newData)
         {
             var userContext = HttpContext.GetUserContext();
-            var session = _mapper.Map<SessionViewModel, SessionDetail>(newSession);
-            var response = await _sessionService.CreateSessionAsync(session, userContext);
+            var mappedData = _mapper.Map<ParentViewModel, Parent>(newData);
+            var response = await _service.CreateAsync(mappedData, userContext);
             if (!response.Success)
             {
                 return BadRequest(new ErrorResource(response.Message));
             }
-            var addSession = _mapper.Map<SessionDetail, SessionViewModel>(response.SessionDetail);
+            var addSession = _mapper.Map<Parent, ParentViewModel>(response.Parent);
             return Ok(addSession);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(Guid id, [FromBody] SessionViewModel request)
+        public async Task<IActionResult> PutAsync(Guid id, [FromBody] ParentViewModel request)
         {
             var userContext = HttpContext.GetUserContext();
-            var session = _mapper.Map<SessionViewModel, SessionDetail>(request);
-            var result = await _sessionService.UpdateAsync(id, session, userContext);
+            var data = _mapper.Map<ParentViewModel, Parent>(request);
+            var result = await _service.UpdateAsync(id, data, userContext);
 
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
 
-            var resultViewModel = _mapper.Map<SessionDetail, SessionViewModel>(result.SessionDetail);
+            var resultViewModel = _mapper.Map<Parent, ParentViewModel>(result.Parent);
             return Ok(resultViewModel);
         }
 
@@ -82,11 +82,11 @@ namespace OnlineLearning.Api.Controllers
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var userContext = HttpContext.GetUserContext();
-            var result = await _sessionService.DeleteAsync(id, userContext);
+            var result = await _service.DeleteAsync(id, userContext);
 
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
-            var resultViewModel = _mapper.Map<SessionDetail, SessionViewModel>(result.SessionDetail);
+            var resultViewModel = _mapper.Map<Parent, ParentViewModel>(result.Parent);
             return Ok(resultViewModel);
         }
 
@@ -95,7 +95,7 @@ namespace OnlineLearning.Api.Controllers
         public async Task<IActionResult> MultipleDelete([FromBody] List<Guid> ids)
         {
             var userContext = HttpContext.GetUserContext();
-            var result = await _sessionService.MultipleDeleteAsync(ids, userContext);
+            var result = await _service.MultipleDeleteAsync(ids, userContext);
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
             return Ok(result);

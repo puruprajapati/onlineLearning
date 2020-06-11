@@ -16,6 +16,9 @@ namespace OnlineLearning.Api.MappingProfiles
             CreateMap<TeacherViewModel, Teacher>();
             CreateMap<SchoolViewModel, School>();
             CreateMap<SessionViewModel, SessionDetail>();
+            CreateMap<SectionViewModel, SectionDetail>();
+            CreateMap<ClassViewModel, ClassDetail>();
+            CreateMap<ParentViewModel, Parent>();
         }
     }
 }
