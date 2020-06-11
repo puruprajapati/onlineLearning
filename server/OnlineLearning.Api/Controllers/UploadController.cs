@@ -9,77 +9,77 @@ using Microsoft.Extensions.Logging;
 
 namespace OnlineLearning.Api.Controllers
 {
-  [ApiController]
-  [Route("api/[controller]")]
-  public class UploadController : ControllerBase
-  {
-
-    [HttpPost, DisableRequestSizeLimit]
-    public async Task<IActionResult> Upload()
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UploadController : ControllerBase
     {
-      try
-      {
-        var file = Request.Form.Files[0];
-        var folderName = Path.Combine("Resources", "Images");
-        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-        if (file.Length > 0)
+        [HttpPost, DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload()
         {
-          var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-          var fullPath = Path.Combine(pathToSave, fileName);
-          var dbPath = Path.Combine(folderName, fileName);
+            try
+            {
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-          using (var stream = new FileStream(fullPath, FileMode.Create))
-          {
-            await file.CopyToAsync(stream);
-          }
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
 
-          return Ok(new { dbPath });
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    return Ok(new { dbPath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
         }
-        else
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("uploadMultipleFiles")]
+        public async Task<IActionResult> UploadMultipleFiles()
         {
-          return BadRequest();
+            try
+            {
+                var files = Request.Form.Files;
+                var folderName = Path.Combine("StaticFiles", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (files.Any(f => f.Length == 0))
+                {
+                    return BadRequest();
+                }
+
+                foreach (var file in files)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                }
+
+                return Ok("All the files are successfully uploaded.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error. Error Message : " + ex.Message);
+            }
         }
-      }
-      catch (Exception ex)
-      {
-        return StatusCode(500, $"Internal server error: {ex}");
-      }
     }
-
-    [HttpPost, DisableRequestSizeLimit]
-    [Route("uploadMultipleFiles")]
-    public async Task<IActionResult> UploadMultipleFiles()
-    {
-      try
-      {
-        var files = Request.Form.Files;
-        var folderName = Path.Combine("StaticFiles", "Images");
-        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-        if (files.Any(f => f.Length == 0))
-        {
-          return BadRequest();
-        }
-
-        foreach (var file in files)
-        {
-          var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-          var fullPath = Path.Combine(pathToSave, fileName);
-          var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
-
-          using (var stream = new FileStream(fullPath, FileMode.Create))
-          {
-            await file.CopyToAsync(stream);
-          }
-        }
-
-        return Ok("All the files are successfully uploaded.");
-      }
-      catch (Exception ex)
-      {
-        return StatusCode(500, "Internal server error");
-      }
-    }
-  }
 }

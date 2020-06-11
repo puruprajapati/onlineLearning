@@ -12,6 +12,7 @@ namespace OnlineLearning.Api.MappingProfiles
         public ViewModelToModelProfile()
         {
             CreateMap<UserViewModel, User>();
+            CreateMap<AssignmentViewModel, Assignment>();
             CreateMap<StudentViewModel, Student>();
             CreateMap<TeacherViewModel, Teacher>();
             CreateMap<SchoolViewModel, School>();
@@ -19,6 +20,7 @@ namespace OnlineLearning.Api.MappingProfiles
             CreateMap<SectionViewModel, SectionDetail>();
             CreateMap<ClassViewModel, ClassDetail>();
             CreateMap<ParentViewModel, Parent>();
+            CreateMap<AttendanceViewModel, Attendence>();
         }
     }
 }

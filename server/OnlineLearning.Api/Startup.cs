@@ -86,11 +86,14 @@ namespace OnlineLearning.Api
             services.AddScoped<ISectionRepository, SectionRepository>();
             services.AddScoped<IClassRepository, ClassRepository>();
             services.AddScoped<IParentRepository, ParentRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            services.AddScoped<IAssignmentRepository, AssignmentRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //Service Here
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAssignmentService, AssignmentService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<ITeacherService, TeacherService>();
@@ -98,7 +101,7 @@ namespace OnlineLearning.Api
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IClassService, ClassService>();
             services.AddScoped<IParentService, ParentService>();
-
+            services.AddScoped<IAttendanceService, AttendanceService>();
             services.AddScoped<ISessionService, SessionService>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();

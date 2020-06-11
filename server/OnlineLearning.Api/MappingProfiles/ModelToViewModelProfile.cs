@@ -20,6 +20,8 @@ namespace OnlineLearning.Api.MappingProfiles
             CreateMap<SectionDetail, SectionViewModel>();
             CreateMap<ClassDetail, ClassViewModel>();
             CreateMap<Parent, ParentViewModel>();
+            CreateMap<Attendence, AttendanceViewModel>();
+            CreateMap<Assignment, AssignmentViewModel>();
             CreateMap<AccessToken, AccessTokenViewModel>()
             .ForMember(a => a.AccessToken, opt => opt.MapFrom(a => a.Token))
             .ForMember(a => a.RefreshToken, opt => opt.MapFrom(a => a.RefreshToken.Token))
