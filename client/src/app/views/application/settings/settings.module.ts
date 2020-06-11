@@ -10,6 +10,7 @@ import { AuthGuard } from "../../../helpers";
 
 import { PaginationModule } from "../shared/pagination/pagination.module";
 import { UploadModule } from "../shared/upload/upload.module";
+import { ConfirmationDialogModule } from "../shared/confirmation-dialog/confirmation-dialog.module";
 
 import { JwtInterceptor, ErrorInterceptor } from "../../../helpers";
 import { AddUserComponent } from "./user/add-user/add-user.component";
@@ -29,6 +30,7 @@ import { ListSchoolComponent } from "./school/list-school/list-school.component"
     FormsModule,
     PaginationModule,
     UploadModule,
+    ConfirmationDialogModule,
     AgGridModule.withComponents([]),
     RouterModule.forChild([
       {

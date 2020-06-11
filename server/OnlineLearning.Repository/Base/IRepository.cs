@@ -1,4 +1,5 @@
 ﻿using OnlineLearning.DTO.Queries;
+using OnlineLearning.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Repository
 {
-  public interface IRepository<TModel> where TModel : class
+  public interface IRepository<TModel> where TModel : class, IEntity
   {
     Task<PagedList<TModel>> GetPaginatedList(BaseParameter baseParameter);
     Task<IEnumerable<TModel>> GetAll();
