@@ -4,10 +4,13 @@ using System.Text;
 
 namespace OnlineLearning.Shared.Enums
 {
-	public enum Role
-	{
-		Admin,
-		SuperAdmin,
-		User
-	}
+  public enum Role
+  {
+    Admin,
+    SuperAdmin,
+    User,
+    Teacher,
+    Student,
+    Parent
+  }
 }

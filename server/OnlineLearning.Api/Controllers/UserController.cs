@@ -16,11 +16,11 @@ using OnlineLearning.Api.Extensions;
 
 namespace OnlineLearning.Api.Controllers
 {
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsersController : ControllerBase
-    {
+  [Authorize]
+  [Route("api/[controller]")]
+  [ApiController]
+  public class UsersController : ControllerBase
+  {
     private readonly IMapper _mapper;
     private readonly IUserService _userService;
 
@@ -55,6 +55,7 @@ namespace OnlineLearning.Api.Controllers
     [HttpPost]
     public async Task<IActionResult> CreateUserAsync([FromBody] UserViewModel newUser)
     {
+      var userContext = HttpContext.GetUserContext();
       var user = _mapper.Map<UserViewModel, User>(newUser);
 
       var response = await _userService.CreateUserAsync(user);
@@ -65,6 +66,44 @@ namespace OnlineLearning.Api.Controllers
 
       var userResource = _mapper.Map<User, UserViewModel>(response.User);
       return Ok(userResource);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(Guid id)
+    {
+      var userContext = HttpContext.GetUserContext();
+      var result = await _userService.DeleteAsync(id, userContext);
+
+      if (!result.Success)
+        return BadRequest(new ErrorResource(result.Message));
+      var resultViewModel = _mapper.Map<User, UserViewModel>(result.User);
+      return Ok(resultViewModel);
+    }
+
+    [HttpPost]
+    [Route("deletemultiple")]
+    public async Task<IActionResult> MultipleDelete([FromBody] List<Guid> ids)
+    {
+      var userContext = HttpContext.GetUserContext();
+      var result = await _userService.MultipleDeleteAsync(ids, userContext);
+      if (!result.Success)
+        return BadRequest(new ErrorResource(result.Message));
+      return Ok(result);
+
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutAsync(Guid id, [FromBody] UserViewModel request)
+    {
+      var userContext = HttpContext.GetUserContext();
+      var user = _mapper.Map<UserViewModel, User>(request);
+      var result = await _userService.UpdateAsync(id, user, userContext);
+
+      if (!result.Success)
+        return BadRequest(new ErrorResource(result.Message));
+
+      var resultViewModel = _mapper.Map<User, UserViewModel>(result.User);
+      return Ok(resultViewModel);
     }
 
 

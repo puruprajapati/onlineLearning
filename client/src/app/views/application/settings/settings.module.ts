@@ -78,6 +78,30 @@ import { EditClassComponent } from "./class/edit-class/edit-class.component";
             },
           },
           {
+            path: "teacher",
+            component: ListTeacherComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Teachers",
+            },
+          },
+          {
+            path: "teacher-edit/:id",
+            component: EditTeacherComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Edit Teacher",
+            },
+          },
+          {
+            path: "teacher-add",
+            component: AddTeacherComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Add Teacher",
+            },
+          },
+          {
             path: "school",
             component: ListSchoolComponent,
             canActivate: [AuthGuard],

@@ -204,29 +204,27 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="roleId"
+                        <label for="userRole"
                           >Role <span class="text-danger">*</span></label
                         >
                         <!-- <input type="text" formControlName="roleId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.roleId.errors }" /> -->
                         <select
                           class="form-control"
-                          formControlName="roleId"
+                          formControlName="userRole"
                           [ngClass]="{
-                            'is-invalid': submitted && f.roleId.errors
+                            'is-invalid': submitted && f.userRole.errors
                           }"
                         >
                           <option value="" disabled>Select role</option>
-                          <option
-                            *ngFor="let role of roles"
-                            [ngValue]="role.id"
-                            >{{ role.name }}</option
-                          >
+                          <option *ngFor="let role of roles" [ngValue]="role">{{
+                            role
+                          }}</option>
                         </select>
                         <div
-                          *ngIf="submitted && f.roleId.errors"
+                          *ngIf="submitted && f.userRole.errors"
                           class="invalid-feedback"
                         >
-                          <div *ngIf="f.roleId.errors.required">
+                          <div *ngIf="f.userRole.errors.required">
                             Role is required
                           </div>
                         </div>
@@ -236,15 +234,25 @@
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="parentUser">Parent User</label>
+                        <label for="userName"
+                          >User Name <span class="text-danger">*</span></label
+                        >
                         <input
-                          type="text"
-                          formControlName="parentUser"
+                          type="userName"
+                          formControlName="userName"
                           class="form-control"
                           [ngClass]="{
-                            'is-invalid': submitted && f.parentUser.errors
+                            'is-invalid': submitted && f.userName.errors
                           }"
                         />
+                        <div
+                          *ngIf="submitted && f.userName.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.userName.errors.required">
+                            User Name is required
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
