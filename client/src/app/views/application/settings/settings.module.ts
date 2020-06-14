@@ -20,6 +20,16 @@ import { EditUserComponent } from "./user/edit-user/edit-user.component";
 import { AddSchoolComponent } from "./school/add-school/add-school.component";
 import { EditSchoolComponent } from "./school/edit-school/edit-school.component";
 import { ListSchoolComponent } from "./school/list-school/list-school.component";
+import { AddTeacherComponent } from "./teacher/add-teacher/add-teacher.component";
+import { ListTeacherComponent } from "./teacher/list-teacher/list-teacher.component";
+import { EditTeacherComponent } from "./teacher/edit-teacher/edit-teacher.component";
+import { AddStudentComponent } from "./student/add-student/add-student.component";
+import { ListStudentComponent } from "./student/list-student/list-student.component";
+import { EditStudentComponent } from "./student/edit-student/edit-student.component";
+import { AddClassComponent } from "./class/add-class/add-class.component";
+import { ListClassComponent } from "./class/list-class/list-class.component";
+import { EditClassComponent } from "./class/edit-class/edit-class.component";
+
 // import { PaginationComponent } from '../shared/pagination/pagination.component';
 
 @NgModule({
@@ -68,6 +78,30 @@ import { ListSchoolComponent } from "./school/list-school/list-school.component"
             },
           },
           {
+            path: "teacher",
+            component: ListTeacherComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Teachers",
+            },
+          },
+          {
+            path: "teacher-edit/:id",
+            component: EditTeacherComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Edit Teacher",
+            },
+          },
+          {
+            path: "teacher-add",
+            component: AddTeacherComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Add Teacher",
+            },
+          },
+          {
             path: "school",
             component: ListSchoolComponent,
             canActivate: [AuthGuard],
@@ -91,6 +125,30 @@ import { ListSchoolComponent } from "./school/list-school/list-school.component"
               title: "Add School",
             },
           },
+          {
+            path: "class",
+            component: ListClassComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "class",
+            },
+          },
+          {
+            path: "class-edit/:id",
+            component: EditClassComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Edit Class",
+            },
+          },
+          {
+            path: "class-add",
+            component: AddClassComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Add Class",
+            },
+          },
         ],
       },
     ]),
@@ -103,6 +161,15 @@ import { ListSchoolComponent } from "./school/list-school/list-school.component"
     AddSchoolComponent,
     EditSchoolComponent,
     ListSchoolComponent,
+    AddTeacherComponent,
+    ListTeacherComponent,
+    EditTeacherComponent,
+    AddStudentComponent,
+    ListStudentComponent,
+    EditStudentComponent,
+    AddClassComponent,
+    ListClassComponent,
+    EditClassComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

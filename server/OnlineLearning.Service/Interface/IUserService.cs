@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Service.Interface
 {
-	public interface IUserService
-	{
-		Task<PagedList<User>> ListAsync(BaseParameter baseParameter);
-		Task<UserResponse> CreateUserAsync(User user);
-		Task<UserResponse> FindByIdAsync(Guid id);
+  public interface IUserService
+  {
+    Task<PagedList<User>> ListAsync(BaseParameter baseParameter);
+    Task<UserResponse> CreateUserAsync(User user);
+    Task<UserResponse> FindByIdAsync(Guid id);
 
-		Task<User> FindByEmailAsync(string email);
+    Task<User> FindByEmailAsync(string email);
 
-		Task<User> FindByUsernameAsync(string userName);
-		Task<UserResponse> UpdateAsync(Guid id, User user);
-		Task<UserResponse> DeleteAsync(Guid id);
-	}
+    Task<User> FindByUsernameAsync(string userName);
+    Task<UserResponse> UpdateAsync(Guid id, User user, UserContextInfo userContext);
+    Task<UserResponse> DeleteAsync(Guid id, UserContextInfo userContext);
+    Task<UserResponse> MultipleDeleteAsync(List<Guid> ids, UserContextInfo userContext);
+
+  }
 }

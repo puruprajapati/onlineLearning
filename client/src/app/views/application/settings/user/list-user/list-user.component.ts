@@ -22,7 +22,7 @@ export class ListUserComponent implements OnInit {
   public rowData: User[];
   public selectedUser;
 
-  public paginationPageSize = 4;
+  public paginationPageSize = 10;
   public totalPages = 3; // default no of pagination navigation button
   public url = "users";
   public currentPage = 0; // default page no to load data
@@ -87,8 +87,8 @@ export class ListUserComponent implements OnInit {
         headerName: "Actions",
         width: 250,
         cellRenderer: (params) => {
-          return `<a id='delete'><i class='fa fa-trash' aria-hidden='true' style='color:#FF0000;' (click)='deleteRow()'></i> Delete</a> &nbsp; &nbsp;
-                  <a id='edit'><i class='fa fa-edit' aria-hidden='true' style='color:#228B22;' (click)='editRow()'></i>&nbsp; Edit</a>`;
+          return `<a id='delete'><i id='delete' class='fa fa-trash' aria-hidden='true' style='color:#FF0000;' (click)='deleteRow()'></i> Delete</a> &nbsp; &nbsp;
+                  <a id='edit'><i id='edit' class='fa fa-edit' aria-hidden='true' style='color:#228B22;' (click)='editRow()'></i>&nbsp; Edit</a>`;
         },
       },
     ];
@@ -115,8 +115,7 @@ export class ListUserComponent implements OnInit {
         action = "edit";
       }
     }
-    //TODO: edit link is not working for icon
-    console.log("check", userId, action);
+
     if (userId) {
       if (action === "edit") {
         this.editUser(params.data);
@@ -131,13 +130,18 @@ export class ListUserComponent implements OnInit {
   }
 
   deleteSelectedRows() {
+    this.loading = true;
     const selectRows = this.api.getSelectedRows();
-    //TODO: delete multiple users at a time
-    console.log(selectRows);
+    const selectedIds = selectRows.map((row) => row.id);
+    this.userService.deleteMultiple(selectedIds).subscribe((response) => {
+      this.rowData = this.rowData.filter(
+        (row) => !selectedIds.includes(row.id)
+      );
+    });
+    this.loading = false;
   }
 
   deleteUser(userId) {
-    //TODO: confirmation box to delete and toastr
     this.loading = true;
     this.userService.delete(userId).subscribe((user) => {
       this.rowData = this.rowData.filter((u) => u.id !== userId);

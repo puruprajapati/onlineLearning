@@ -1,0 +1,46 @@
+<div class="box box-default">
+  <div class="box-header with-border">
+    <div class="text-right">
+      <a [routerLink]="['/settings/teacher-add']" class="btn btn-primary"
+        ><i class="fa fa-plus"></i> Create</a
+      >
+      <button
+        (click)="deleteSelectedRows()"
+        [disabled]="!rowsSelected()"
+        class="btn btn-danger"
+      >
+        <i class="fa fa-trash"></i> Delete Selected
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="box-body">
+    <div class="animated fadeIn">
+      <div>
+        <ag-grid-angular
+          #agGrid
+          style="width: 100%;"
+          class="ag-theme-alpine"
+          (gridReady)="onGridReady($event)"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          rowSelection="multiple"
+          (rowClicked)="onRowClicked($event)"
+          [paginationPageSize]="paginationPageSize"
+          [pagination]="true"
+          [suppressPaginationPanel]="true"
+          suppressRowClickSelection
+          suppressHorizontalScroll
+        >
+        </ag-grid-angular>
+        <app-pagination
+          [pageSize]="paginationPageSize"
+          [url]="url"
+          [noOfPages]="totalPages"
+          [currentPage]="currentPage"
+          (fetchDataEvent)="fetchData($event)"
+        ></app-pagination>
+      </div>
+    </div>
+  </div>
+</div>

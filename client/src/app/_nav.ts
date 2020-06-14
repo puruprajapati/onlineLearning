@@ -41,17 +41,17 @@ export const navItems: INavData[] = [
       },
       {
         name: "Teacher",
-        url: "/settings/user",
+        url: "/settings/teacher",
         icon: "icon-user",
       },
       {
         name: "Student",
-        url: "/settings/user",
+        url: "/settings/student",
         icon: "icon-user",
       },
       {
         name: "Parent",
-        url: "/settings/user",
+        url: "/settings/parent",
         icon: "icon-user",
       },
     ],

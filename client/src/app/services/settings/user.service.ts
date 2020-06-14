@@ -40,4 +40,8 @@ export class UserService {
   udpate(user) {
     return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
   }
+
+  deleteMultiple(ids) {
+    return this.http.post(`${environment.apiUrl}/users/deletemultiple`, ids);
+  }
 }
