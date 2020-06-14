@@ -4,7 +4,7 @@ import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
 import { Router } from "@angular/router";
 
 import { Class, User } from "../../../../../models";
-import { Role } from "../../../../../enums";
+import { EnumRole } from "../../../../../enums";
 import {
   ClassService,
   AuthenticationService,
@@ -47,7 +47,7 @@ export class ListClassComponent implements OnInit {
 
   ngOnInit(): void {
     let currentUser = this.authenticationService.currentUserValue;
-    if (currentUser.userRole === Role.SuperAdmin.toString()) {
+    if (currentUser.userRole === EnumRole.SuperAdmin.toString()) {
       this.isSuperAdmin = true;
     }
     this.getClass();
