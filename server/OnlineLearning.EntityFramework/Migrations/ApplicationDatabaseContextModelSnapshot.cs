@@ -555,8 +555,8 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<Guid>("CreatedByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("EndingTime")
-                        .HasColumnType("time");
+                    b.Property<string>("EndingTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IPAddress")
                         .HasColumnType("nvarchar(max)");
@@ -582,13 +582,19 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.Property<string>("SessionTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("StartingTime")
-                        .HasColumnType("time");
+                    b.Property<string>("StartingTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("TeacherId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("SessionDetail");
                 });
@@ -1152,13 +1158,13 @@ namespace OnlineLearning.EntityFramework.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineLearning.Model.User", "UserStudent")
+                    b.HasOne("OnlineLearning.Model.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineLearning.Model.User", "UserTeacher")
+                    b.HasOne("OnlineLearning.Model.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1230,6 +1236,27 @@ namespace OnlineLearning.EntityFramework.Migrations
                     b.HasOne("OnlineLearning.Model.School", "School")
                         .WithMany()
                         .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineLearning.Model.SessionDetail", b =>
+                {
+                    b.HasOne("OnlineLearning.Model.ClassDetail", "ClassDetail")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineLearning.Model.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -12,108 +12,115 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Service
 {
-  public class SchoolService : ISchoolService
-  {
-    private readonly ISchoolRepository _schoolRepository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public SchoolService(ISchoolRepository schoolRepository, IUnitOfWork unitOfWork)
+    public class SchoolService : ISchoolService
     {
-      _schoolRepository = schoolRepository;
-      _unitOfWork = unitOfWork;
+        private readonly ISchoolRepository _schoolRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public SchoolService(ISchoolRepository schoolRepository, IUnitOfWork unitOfWork)
+        {
+            _schoolRepository = schoolRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<PagedList<School>> ListAsync(BaseParameter baseParameter)
+        {
+            return await _schoolRepository.GetPaginatedList(baseParameter);
+        }
+        public async Task<SchoolResponse> CreateSchoolAsync(School school, UserContextInfo userContext)
+        {
+            var existingSchool = await _schoolRepository.FindBySchoolCode(school.SchoolCode);
+            if (existingSchool != null)
+            {
+                return new SchoolResponse(false, "School Code already in use.", null);
+            }
+            try
+            {
+                school.CreatedByUserId = userContext.Id;
+                school.Active = ActiveStatus.Active.ToString();
+                await _schoolRepository.Insert(school);
+                await _unitOfWork.CompleteAsync();
+
+                return new SchoolResponse(true, null, school);
+
+            }
+            catch (Exception ex)
+            {
+                return new SchoolResponse($"An error occurred when saving the school: {ex.Message}");
+            }
+
+        }
+
+        public async Task<SchoolResponse> DeleteAsync(Guid id, UserContextInfo userContext)
+        {
+            var existingSchool = await _schoolRepository.GetById(id);
+
+            if (existingSchool == null)
+                return new SchoolResponse("School not found.");
+
+            try
+            {
+                _schoolRepository.Delete(id);
+                await _unitOfWork.CompleteAsync();
+
+                return new SchoolResponse(existingSchool);
+            }
+            catch (Exception ex)
+            {
+                return new SchoolResponse($"An error occurred when deleting the school: {ex.Message}");
+            }
+        }
+        public async Task<SchoolResponse> FindByIdAsync(Guid id)
+        {
+            var school = await _schoolRepository.GetById(id);
+            if (school == null)
+                return new SchoolResponse("School not found.");
+
+            return new SchoolResponse(school);
+        }
+
+        public async Task<SchoolResponse> UpdateAsync(Guid id, School school, UserContextInfo userContext)
+        {
+            var existingSchool = await _schoolRepository.GetById(id);
+
+            if (existingSchool == null)
+                return new SchoolResponse("School not found.");
+
+            existingSchool.SchoolCode = school.SchoolCode;
+            existingSchool.Name = school.Name;
+            existingSchool.EmailAddress = school.EmailAddress;
+            existingSchool.Address = school.Address;
+            existingSchool.ContactNumber = school.ContactNumber;
+            existingSchool.LogoLocation = school.LogoLocation;
+            existingSchool.ModifiedAt = DateTime.Now;
+            existingSchool.ModifiedByUserId = userContext.Id;
+            existingSchool.Active = school.Active;
+
+            try
+            {
+                _schoolRepository.Update(existingSchool);
+                await _unitOfWork.CompleteAsync();
+
+                return new SchoolResponse(existingSchool);
+            }
+            catch (Exception ex)
+            {
+                return new SchoolResponse($"An error occurred when updating the role: {ex.Message}");
+            }
+        }
+
+        public async Task<SchoolResponse> MultipleDeleteAsync(List<Guid> ids, UserContextInfo userContext)
+        {
+            try
+            {
+                _schoolRepository.MultipleDelete(ids);
+                await _unitOfWork.CompleteAsync();
+                return new SchoolResponse($"Deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return new SchoolResponse($"An error occurred when deleting the school: {ex.Message}");
+            }
+        }
     }
-
-    public async Task<PagedList<School>> ListAsync(BaseParameter baseParameter)
-    {
-      return await _schoolRepository.GetPaginatedList(baseParameter);
-    }
-    public async Task<SchoolResponse> CreateSchoolAsync(School school, UserContextInfo userContext)
-    {
-      var existingSchool = await _schoolRepository.FindBySchoolCode(school.SchoolCode);
-      if (existingSchool != null)
-      {
-        return new SchoolResponse(false, "School Code already in use.", null);
-      }
-      try
-      {
-        school.CreatedByUserId = userContext.Id;
-        school.Active = ActiveStatus.Active.ToString();
-        await _schoolRepository.Insert(school);
-        await _unitOfWork.CompleteAsync();
-
-        return new SchoolResponse(true, null, school);
-
-      }
-      catch (Exception ex)
-      {
-        return new SchoolResponse($"An error occurred when saving the school: {ex.Message}");
-      }
-
-    }
-
-    public async Task<SchoolResponse> DeleteAsync(Guid id, UserContextInfo userContext)
-    {
-      var existingSchool = await _schoolRepository.GetById(id);
-
-      if (existingSchool == null)
-        return new SchoolResponse("School not found.");
-
-      try
-      {
-        _schoolRepository.Delete(id);
-        await _unitOfWork.CompleteAsync();
-
-        return new SchoolResponse(existingSchool);
-      }
-      catch (Exception ex)
-      {
-        return new SchoolResponse($"An error occurred when deleting the school: {ex.Message}");
-      }
-    }
-    public async Task<SchoolResponse> FindByIdAsync(Guid id)
-    {
-      var school = await _schoolRepository.GetById(id);
-      if (school == null)
-        return new SchoolResponse("School not found.");
-
-      return new SchoolResponse(school);
-    }
-
-    public async Task<SchoolResponse> UpdateAsync(Guid id, School school, UserContextInfo userContext)
-    {
-      var existingSchool = await _schoolRepository.GetById(id);
-
-      if (existingSchool == null)
-        return new SchoolResponse("School not found.");
-
-      existingSchool.SchoolCode = school.SchoolCode;
-      existingSchool.Name = school.Name;
-      existingSchool.EmailAddress = school.EmailAddress;
-      existingSchool.Address = school.Address;
-      existingSchool.ContactNumber = school.ContactNumber;
-      existingSchool.LogoLocation = school.LogoLocation;
-      existingSchool.ModifiedAt = DateTime.Now;
-      existingSchool.ModifiedByUserId = userContext.Id;
-      existingSchool.Active = school.Active;
-
-      try
-      {
-        _schoolRepository.Update(existingSchool);
-        await _unitOfWork.CompleteAsync();
-
-        return new SchoolResponse(existingSchool);
-      }
-      catch (Exception ex)
-      {
-        return new SchoolResponse($"An error occurred when updating the role: {ex.Message}");
-      }
-    }
-
-    public async Task<SchoolResponse> MultipleDeleteAsync(List<Guid> ids, UserContextInfo userContext)
-    {
-      _schoolRepository.MultipleDelete(ids);
-      await _unitOfWork.CompleteAsync();
-      return new SchoolResponse(true, null, null);
-    }
-  }
 }

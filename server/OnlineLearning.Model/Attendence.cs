@@ -12,10 +12,10 @@ namespace OnlineLearning.Model
 		public School School { get; set; }
 		public Guid StudentId { get; set; }
 		[ForeignKey("StudentId")]
-		public User UserStudent { get; set; }
+		public Student Student { get; set; }
 		public Guid TeacherId { get; set; }
 		[ForeignKey("TeacherId")]
-		public User UserTeacher { get; set; }
+		public Teacher Teacher { get; set; }
 		public Guid SessionId { get; set; }
 		[ForeignKey("SessionId")]
 		public SessionDetail Session { get; set; }
