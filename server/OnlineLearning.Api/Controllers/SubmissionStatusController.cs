@@ -1,4 +1,4 @@
-﻿//SessionStatusController
+﻿//SubmissionStatusController
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace OnlineLearning.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SessionStatusController : ControllerBase
+    public class SubmissionStatusController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ISessionStatusService _service;
-        public SessionStatusController(ISessionStatusService service, IMapper mapper)
+        private readonly ISubmissionStatusService _service;
+        public SubmissionStatusController(ISubmissionStatusService service, IMapper mapper)
         {
             _mapper = mapper;
             _service = service;
@@ -35,7 +35,7 @@ namespace OnlineLearning.Api.Controllers
         public async Task<IActionResult> GetAll([FromQuery] BaseParameter baseParameter)
         {
             var results = await _service.ListAsync(baseParameter);
-            var resultViewModel = _mapper.Map<IEnumerable<SessionStatus>, IEnumerable<SessionStatusViewModel>>(results);
+            var resultViewModel = _mapper.Map<IEnumerable<SubmissionStatus>, IEnumerable<SubmissionStatusViewModel>>(results);
             var metadata = new
             {
                 results.TotalCount,
@@ -52,30 +52,30 @@ namespace OnlineLearning.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] SessionStatusViewModel newData)
+        public async Task<IActionResult> CreateAsync([FromBody] SubmissionStatusViewModel newData)
         {
             var userContext = HttpContext.GetUserContext();
-            var mappedData = _mapper.Map<SessionStatusViewModel, SessionStatus>(newData);
+            var mappedData = _mapper.Map<SubmissionStatusViewModel, SubmissionStatus>(newData);
             var response = await _service.CreateAsync(mappedData, userContext);
             if (!response.Success)
             {
                 return BadRequest(new ErrorResource(response.Message));
             }
-            var addSession = _mapper.Map<SessionStatus, SessionStatusViewModel>(response.SessionStatus);
+            var addSession = _mapper.Map<SubmissionStatus, SubmissionStatusViewModel>(response.SubmissionStatus);
             return Ok(addSession);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(Guid id, [FromBody] SessionStatusViewModel request)
+        public async Task<IActionResult> PutAsync(Guid id, [FromBody] SubmissionStatusViewModel request)
         {
             var userContext = HttpContext.GetUserContext();
-            var data = _mapper.Map<SessionStatusViewModel, SessionStatus>(request);
+            var data = _mapper.Map<SubmissionStatusViewModel, SubmissionStatus>(request);
             var result = await _service.UpdateAsync(id, data, userContext);
 
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
 
-            var resultViewModel = _mapper.Map<SessionStatus, SessionStatusViewModel>(result.SessionStatus);
+            var resultViewModel = _mapper.Map<SubmissionStatus, SubmissionStatusViewModel>(result.SubmissionStatus);
             return Ok(resultViewModel);
         }
 
@@ -87,7 +87,7 @@ namespace OnlineLearning.Api.Controllers
 
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
-            var resultViewModel = _mapper.Map<SessionStatus, SessionStatusViewModel>(result.SessionStatus);
+            var resultViewModel = _mapper.Map<SubmissionStatus, SubmissionStatusViewModel>(result.SubmissionStatus);
             return Ok(resultViewModel);
         }
 

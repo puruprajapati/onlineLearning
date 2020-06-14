@@ -83,11 +83,26 @@ namespace OnlineLearning.Api
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISchoolRepository, SchoolRepostiory>();
             services.AddScoped<ISessionRepository, SessionRepository>();
+            services.AddScoped<ISessionReferenceRepository, SessionReferenceRepository>();
+            services.AddScoped<ISessionStatusRepository, SessionStatusRepository>();
             services.AddScoped<ISectionRepository, SectionRepository>();
             services.AddScoped<IClassRepository, ClassRepository>();
             services.AddScoped<IParentRepository, ParentRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceRepository>();
             services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+            services.AddScoped<IAssignmentSubmissionRepository, AssignmentSubmissionRepository>();
+            //services.AddScoped<IGr, AssignmentSubmissionRepository>();
+            services.AddScoped<IMessageMainRepository, MessageMainRepository>();
+            services.AddScoped<IMessageReplyRepository, MessageReplyRepository>();
+            services.AddScoped<IAssignmentSubmissionRepository, AssignmentSubmissionRepository>();
+            services.AddScoped<IReferenceTypeRepository, ReferenceTypeRepository>();
+            services.AddScoped<ISubmitAssignmentRepository, SubmitAssignmentRepository>();
+            services.AddScoped<ISubmitAssignmentAttachmentsRepository, SubmitAssignmentAttachmentsRepository>();
+            //services.AddScoped<Itecher, SubmitAssignmentRepository>();
+            services.AddScoped<ITeacherSubjectRepository, TeacherSubjectRepository>();
+            services.AddScoped<ISubmissionStatusRepository, SubmissionStatusRepository>();
+            
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //Service Here
@@ -103,6 +118,21 @@ namespace OnlineLearning.Api
             services.AddScoped<IParentService, ParentService>();
             services.AddScoped<IAttendanceService, AttendanceService>();
             services.AddScoped<ISessionService, SessionService>();
+            services.AddScoped<IAssignmentSubmissionService, AssignmentSubmissionService>();
+            services.AddScoped<IAttendanceService, AttendanceService>();
+            //services.AddScoped<IGrade, SubmitAssignmentRepository>();
+            services.AddScoped<IMessageMainService, MessageMainService>();
+            services.AddScoped<IMessageReplyService, MessageReplyService>();
+            services.AddScoped<IReferenceTypeService, ReferenceTypeService>();
+            services.AddScoped<ISessionService, SessionService>();
+            services.AddScoped<ISessionReferenceService, SessionReferenceService>();
+            services.AddScoped<ISessionStatusService, SessionStatusService>();
+            services.AddScoped<ISubjectService, SubjectService>();
+            services.AddScoped<ISubmissionStatusService, SubmissionStatusService>();
+            services.AddScoped<ISubmitAssignmentService, SubmitAssignmentService>();
+            services.AddScoped<ISubmitAssignmentAttachmentsService, SubmitAssignmentAttachmentsService>();
+            services.AddScoped<ITeacherService, TeacherService>();
+
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddSingleton<Shared.Interface.Security.Tokens.ITokenHandler, Shared.Security.Tokens.TokenHandler>();

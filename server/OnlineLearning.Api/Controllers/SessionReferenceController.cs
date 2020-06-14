@@ -1,4 +1,4 @@
-﻿//SessionStatusController
+﻿//SessionReferenceController
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace OnlineLearning.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SessionStatusController : ControllerBase
+    public class SessionReferenceController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ISessionStatusService _service;
-        public SessionStatusController(ISessionStatusService service, IMapper mapper)
+        private readonly ISessionReferenceService _service;
+        public SessionReferenceController(ISessionReferenceService service, IMapper mapper)
         {
             _mapper = mapper;
             _service = service;
@@ -35,7 +35,7 @@ namespace OnlineLearning.Api.Controllers
         public async Task<IActionResult> GetAll([FromQuery] BaseParameter baseParameter)
         {
             var results = await _service.ListAsync(baseParameter);
-            var resultViewModel = _mapper.Map<IEnumerable<SessionStatus>, IEnumerable<SessionStatusViewModel>>(results);
+            var resultViewModel = _mapper.Map<IEnumerable<SessionReference>, IEnumerable<SessionReferenceViewModel>>(results);
             var metadata = new
             {
                 results.TotalCount,
@@ -52,30 +52,30 @@ namespace OnlineLearning.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] SessionStatusViewModel newData)
+        public async Task<IActionResult> CreateAsync([FromBody] SessionReferenceViewModel newData)
         {
             var userContext = HttpContext.GetUserContext();
-            var mappedData = _mapper.Map<SessionStatusViewModel, SessionStatus>(newData);
+            var mappedData = _mapper.Map<SessionReferenceViewModel, SessionReference>(newData);
             var response = await _service.CreateAsync(mappedData, userContext);
             if (!response.Success)
             {
                 return BadRequest(new ErrorResource(response.Message));
             }
-            var addSession = _mapper.Map<SessionStatus, SessionStatusViewModel>(response.SessionStatus);
+            var addSession = _mapper.Map<SessionReference, SessionReferenceViewModel>(response.SessionReference);
             return Ok(addSession);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(Guid id, [FromBody] SessionStatusViewModel request)
+        public async Task<IActionResult> PutAsync(Guid id, [FromBody] SessionReferenceViewModel request)
         {
             var userContext = HttpContext.GetUserContext();
-            var data = _mapper.Map<SessionStatusViewModel, SessionStatus>(request);
+            var data = _mapper.Map<SessionReferenceViewModel, SessionReference>(request);
             var result = await _service.UpdateAsync(id, data, userContext);
 
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
 
-            var resultViewModel = _mapper.Map<SessionStatus, SessionStatusViewModel>(result.SessionStatus);
+            var resultViewModel = _mapper.Map<SessionReference, SessionReferenceViewModel>(result.SessionReference);
             return Ok(resultViewModel);
         }
 
@@ -87,7 +87,7 @@ namespace OnlineLearning.Api.Controllers
 
             if (!result.Success)
                 return BadRequest(new ErrorResource(result.Message));
-            var resultViewModel = _mapper.Map<SessionStatus, SessionStatusViewModel>(result.SessionStatus);
+            var resultViewModel = _mapper.Map<SessionReference, SessionReferenceViewModel>(result.SessionReference);
             return Ok(resultViewModel);
         }
 
