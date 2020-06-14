@@ -1,4 +1,4 @@
-import { Guid } from 'guid-typescript';
+import { Guid } from "guid-typescript";
 
 export class User {
   id: Guid;
@@ -8,10 +8,11 @@ export class User {
   user: string;
   active: string;
   isValid: Guid;
-  userRole: Guid;
+  userRole: string;
   accessToken?: string;
   refreshToken?: string;
   expiration?: string;
+  schoolId?: Guid;
 
   constructor() {}
 }

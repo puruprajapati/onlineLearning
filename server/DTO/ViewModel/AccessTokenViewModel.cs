@@ -4,10 +4,13 @@ using System.Text;
 
 namespace OnlineLearning.DTO.ViewModel
 {
-	public class AccessTokenViewModel
-	{
-		public string AccessToken { get; set; }
-		public string RefreshToken { get; set; }
-		public long Expiration { get; set; }
-	}
+  public class AccessTokenViewModel : BaseViewModel
+  {
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+    public long Expiration { get; set; }
+
+
+
+  }
 }
