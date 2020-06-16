@@ -10,3 +10,4 @@ export * from "./settings/role.service";
 export * from "./settings/school.service";
 export * from "./settings/class.service";
 export * from "./settings/teacher.service";
+export * from "./settings/student.service";

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OnlineLearning.DTO.ViewModel;
 using OnlineLearning.EntityFramework;
 using OnlineLearning.EntityFramework.Context;
@@ -13,23 +13,18 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.EntityFramework
 {
-  public class StudentRepository : Repository<Student>, IStudentRepository
+  public class TeacherRepository : Repository<Teacher>, ITeacherRepository
   {
     public ApplicationDatabaseContext ApplicationDatabaseContext
     {
       get { return ApplicationDatabaseContext as ApplicationDatabaseContext; }
     }
 
-    public StudentRepository(ApplicationDatabaseContext context) : base(context) { }
-
-    public async Task<Student> FindByStudentName(string StudentName)
-    {
-      return await context.Set<Student>().FirstOrDefaultAsync(x => x.Name == StudentName);
-    }
+    public TeacherRepository(ApplicationDatabaseContext context) : base(context) { }
 
     public async Task<List<ListViewModel>> getList(Guid schoolId)
     {
-      var list = await context.Set<Student>().Where(student => student.Active == ActiveStatus.Active.ToString() && student.SchoolId == schoolId).ToListAsync();
+      var list = await context.Set<Teacher>().Where(teacher => teacher.Active == ActiveStatus.Active.ToString() && teacher.SchoolId == schoolId).ToListAsync();
 
       var result = (from data in list
                     select new ListViewModel

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Repository
 {
-  public interface ISchoolRepository : IRepository<School>
+  public interface ITeacherRepository : IRepository<Teacher>
   {
-    Task<School> FindBySchoolCode(string code);
-    Task<List<ListViewModel>> getList();
+    Task<List<ListViewModel>> getList(Guid schoolId);
   }
 }

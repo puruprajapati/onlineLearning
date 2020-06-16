@@ -71,7 +71,6 @@ export class AddTeacherComponent implements OnInit {
       return;
     }
 
-    console.log("superadin", this.isSuperAdmin);
     if (!this.isSuperAdmin) {
       this.modelForm.value.schoolId = this.authenticationService.currentUserValue.schoolId.toString();
     }
