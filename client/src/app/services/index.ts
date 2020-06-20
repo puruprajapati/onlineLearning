@@ -12,3 +12,6 @@ export * from "./settings/school.service";
 export * from "./settings/class.service";
 export * from "./settings/teacher.service";
 export * from "./settings/student.service";
+export * from "./settings/section.service";
+
+export * from "./session/session.service";

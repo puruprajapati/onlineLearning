@@ -8,7 +8,7 @@ export class School {
   contactNumber: string;
   emailAddress: string;
   logoLocation: string;
-  active: boolean;
+  active: string;
 
   constructor() {}
 }

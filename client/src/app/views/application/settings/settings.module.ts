@@ -29,9 +29,9 @@ import { EditStudentComponent } from "./student/edit-student/edit-student.compon
 import { AddClassComponent } from "./class/add-class/add-class.component";
 import { ListClassComponent } from "./class/list-class/list-class.component";
 import { EditClassComponent } from "./class/edit-class/edit-class.component";
-import { AddSectionComponent } from './section/add-section/add-section.component';
-import { ListSectionComponent } from './section/list-section/list-section.component';
-import { EditSectionComponent } from './section/edit-section/edit-section.component';
+import { AddSectionComponent } from "./section/add-section/add-section.component";
+import { ListSectionComponent } from "./section/list-section/list-section.component";
+import { EditSectionComponent } from "./section/edit-section/edit-section.component";
 
 // import { PaginationComponent } from '../shared/pagination/pagination.component';
 
@@ -174,6 +174,30 @@ import { EditSectionComponent } from './section/edit-section/edit-section.compon
             canActivate: [AuthGuard],
             data: {
               title: "Add Class",
+            },
+          },
+          {
+            path: "section",
+            component: ListSectionComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "section",
+            },
+          },
+          {
+            path: "section-edit/:id",
+            component: EditSectionComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Edit Section",
+            },
+          },
+          {
+            path: "section-add",
+            component: AddSectionComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Add Section",
             },
           },
         ],

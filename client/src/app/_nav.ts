@@ -18,6 +18,11 @@ export const navItems: INavData[] = [
     name: "Assignment",
   },
   {
+    name: "Session",
+    url: "/session",
+    icon: "icon-notebook",
+  },
+  {
     name: "Assignment",
     url: "/theme/typography",
     icon: "icon-calculator",
@@ -49,11 +54,6 @@ export const navItems: INavData[] = [
         url: "/settings/student",
         icon: "icon-user",
       },
-      {
-        name: "Parent",
-        url: "/settings/parent",
-        icon: "icon-user",
-      },
     ],
   },
   {
@@ -65,6 +65,11 @@ export const navItems: INavData[] = [
     name: "Class",
     url: "/settings/class",
     icon: "icon-screen-desktop",
+  },
+  {
+    name: "Section",
+    url: "/settings/section",
+    icon: "icon-layers",
   },
 
   // {
