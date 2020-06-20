@@ -29,6 +29,9 @@ import { EditStudentComponent } from "./student/edit-student/edit-student.compon
 import { AddClassComponent } from "./class/add-class/add-class.component";
 import { ListClassComponent } from "./class/list-class/list-class.component";
 import { EditClassComponent } from "./class/edit-class/edit-class.component";
+import { AddSectionComponent } from './section/add-section/add-section.component';
+import { ListSectionComponent } from './section/list-section/list-section.component';
+import { EditSectionComponent } from './section/edit-section/edit-section.component';
 
 // import { PaginationComponent } from '../shared/pagination/pagination.component';
 
@@ -102,6 +105,30 @@ import { EditClassComponent } from "./class/edit-class/edit-class.component";
             },
           },
           {
+            path: "student",
+            component: ListStudentComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Students",
+            },
+          },
+          {
+            path: "student-edit/:id",
+            component: EditStudentComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Edit Student",
+            },
+          },
+          {
+            path: "student-add",
+            component: AddStudentComponent,
+            canActivate: [AuthGuard],
+            data: {
+              title: "Add Student",
+            },
+          },
+          {
             path: "school",
             component: ListSchoolComponent,
             canActivate: [AuthGuard],
@@ -170,6 +197,9 @@ import { EditClassComponent } from "./class/edit-class/edit-class.component";
     AddClassComponent,
     ListClassComponent,
     EditClassComponent,
+    AddSectionComponent,
+    ListSectionComponent,
+    EditSectionComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -29,13 +29,13 @@ namespace OnlineLearning.EntityFramework
 
     public async Task<List<ListViewModel>> getList(Guid schoolId)
     {
-      var list = await context.Set<Teacher>().Where(section => section.Active == ActiveStatus.Active.ToString() && section.SchoolId == schoolId).ToListAsync();
+      var list = await context.Set<SectionDetail>().Where(sectionData => sectionData.Active == ActiveStatus.Active.ToString() && sectionData.SchoolId == schoolId).ToListAsync();
 
       var result = (from data in list
                     select new ListViewModel
                     {
                       Id = data.Id,
-                      Name = data.Name
+                      Name = data.SectionName
                     }).ToList();
       return result;
     }

@@ -3,13 +3,14 @@ import { AgGridAngular } from "ag-grid-angular";
 import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
 import { Router } from "@angular/router";
 
-import { Student } from "../../../../../models";
+import { Student, List } from "../../../../../models";
 import { EnumRole } from "../../../../../enums";
 import {
   StudentService,
   AuthenticationService,
   AlertService,
   ConfirmationDialogService,
+  ListService,
 } from "../../../../../services";
 
 @Component({
@@ -26,6 +27,9 @@ export class ListStudentComponent implements OnInit {
 
   public loading: boolean = false;
   public rowData: Student[];
+  public allList: any;
+  public classList: List[];
+  public sectionList: List[];
   public selectedModel;
   public isSuperAdmin: boolean = false;
 
@@ -40,7 +44,8 @@ export class ListStudentComponent implements OnInit {
     private studentService: StudentService,
     private confirmationDialogService: ConfirmationDialogService,
     private alertService: AlertService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private listService: ListService
   ) {
     this.columnDefs = this.createColumnDefs();
   }
@@ -51,6 +56,7 @@ export class ListStudentComponent implements OnInit {
       this.isSuperAdmin = true;
     }
     this.getStudent();
+    this.getList();
     this.studentService.currentSelectedModel.subscribe(
       (modelData) => (this.selectedModel = modelData)
     );
@@ -66,37 +72,16 @@ export class ListStudentComponent implements OnInit {
         width: 50,
       },
       {
-        headerName: "School Name",
-        field: "schoolName",
+        headerName: "Student Name",
+        field: "name",
         editable: false,
         sortable: true,
         filter: true,
         hide: !this.isSuperAdmin,
       },
       {
-        headerName: "Teacher Name",
-        field: "name",
-        editable: false,
-        sortable: true,
-        filter: true,
-      },
-      {
-        headerName: "Address",
-        field: "address",
-        editable: false,
-        sortable: true,
-        filter: true,
-      },
-      {
-        headerName: "Contact Number",
-        field: "contactNumber",
-        editable: false,
-        sortable: true,
-        filter: true,
-      },
-      {
-        headerName: "Email",
-        field: "emailAddress",
+        headerName: "Roll Number",
+        field: "rollNumber",
         editable: false,
         sortable: true,
         filter: true,
@@ -174,6 +159,16 @@ export class ListStudentComponent implements OnInit {
         autoClose: true,
         keepAfterRouteChange: false,
       });
+    });
+  }
+
+  getList() {
+    this.loading = true;
+    this.listService.getAll().subscribe((response) => {
+      this.loading = false;
+      this.allList = response;
+      this.classList = this.allList[1];
+      this.sectionList = this.allList[2];
     });
   }
 

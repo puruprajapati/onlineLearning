@@ -8,6 +8,7 @@ export class Student {
   sectionId: Guid;
   userName: string;
   rollNumber: string;
+  email: string;
 
   parentName: string;
   primaryContanctNo: string;
