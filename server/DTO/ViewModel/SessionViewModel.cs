@@ -13,8 +13,10 @@ namespace OnlineLearning.DTO.ViewModel
     public Guid TeacherId { get; set; }
     public String TeacherName { get; set; }
     public DateTime ScheduledDate { set; get; }
-    public string StartingTime { get; set; }
-    public string EndingTime { get; set; }
+    public String StartingTime { get; set; }
+    public String EndingTime { get; set; }
     public Guid? SessionStatusId { get; set; }
+
+    public String SessionStatus { get; set; }
   }
 }

@@ -16,7 +16,7 @@ namespace OnlineLearning.Api.MappingProfiles
       CreateMap<Student, StudentViewModel>();
       CreateMap<Teacher, TeacherViewModel>();
       CreateMap<School, SchoolViewModel>();
-      CreateMap<SessionDetail, SessionViewModel>();
+
       CreateMap<SectionDetail, SectionViewModel>();
       CreateMap<ClassDetail, ClassViewModel>();
       CreateMap<Parent, ParentViewModel>();
@@ -35,6 +35,11 @@ namespace OnlineLearning.Api.MappingProfiles
       CreateMap<SubmitAssignment, SubmitAssignmentViewModel>();
       CreateMap<SubmitAssignmentAttachments, SubmitAssignmentAttachmentsViewModel>();
       CreateMap<TeacherSubject, TeacherSubjectViewModel>();
+
+      CreateMap<SessionDetail, SessionViewModel>()
+      .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(src => src.Teacher.Name))
+      .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.ClassDetail.ClassName));
+      // .ForMember(dest => dest.SessionStatus, opt => opt.MapFrom(src => src.se.ClassName));
 
       CreateMap<School, ListViewModel>()
       .ForMember(a => a.Id, opt => opt.MapFrom(a => a.Id))

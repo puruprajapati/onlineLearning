@@ -12,6 +12,7 @@ export class Session {
   startingTime: string;
   endingTime: string;
   sessionStatusId: Guid;
+  sessionStatus: string;
   active: string;
 
   constructor() {}
