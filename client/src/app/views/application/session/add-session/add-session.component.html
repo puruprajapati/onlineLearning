@@ -1,1 +1,206 @@
-<p>add-session works!</p>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <div class="text-right">
+      <a [routerLink]="['/session']" class="btn btn-primary btn-flat btn-social"
+        ><i class="fa fa-list"></i> List</a
+      >
+    </div>
+  </div>
+  <br />
+  <div class="box-body">
+    <div class="animated fadeIn">
+      <div>
+        <div class="row">
+          <div class="col-sm-12">
+            <form [formGroup]="modelForm" (ngSubmit)="onSubmit()">
+              <div class="card">
+                <div class="card-header">
+                  <strong>Create Session</strong>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="sessionTitle"
+                          >Session Title
+                          <span class="text-danger">*</span></label
+                        >
+                        <input
+                          type="text"
+                          formControlName="sessionTitle"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.sessionTitle.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.sessionTitle.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.sessionTitle.errors.required">
+                            Session title is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="sessionDesc"
+                          >Session Description<span class="text-danger"
+                            >*</span
+                          ></label
+                        >
+                        <input
+                          type="text"
+                          formControlName="sessionDesc"
+                          class="form-control"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.sessionDesc.errors
+                          }"
+                        />
+                        <div
+                          *ngIf="submitted && f.sessionDesc.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.sessionDesc.errors.required">
+                            Session Description is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="classId"
+                          >Class <span class="text-danger">*</span></label
+                        >
+                        <select
+                          class="form-control"
+                          formControlName="classId"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.classId.errors
+                          }"
+                        >
+                          <option value="" disabled>Select Class</option>
+                          <option
+                            *ngFor="let class of classList"
+                            [ngValue]="class.id"
+                            >{{ class.name }}</option
+                          >
+                        </select>
+                        <div
+                          *ngIf="submitted && f.classId.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.classId.errors.required">
+                            Class is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="teacherId"
+                          >Teacher <span class="text-danger">*</span></label
+                        >
+                        <select
+                          class="form-control"
+                          formControlName="classId"
+                          [ngClass]="{
+                            'is-invalid': submitted && f.teacherId.errors
+                          }"
+                        >
+                          <option value="" disabled>Select Teacher</option>
+                          <option
+                            *ngFor="let teacher of teacherList"
+                            [ngValue]="teacher.id"
+                            >{{ teacher.name }}</option
+                          >
+                        </select>
+                        <div
+                          *ngIf="submitted && f.teacherId.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.teacherId.errors.required">
+                            Teacher is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br />
+
+                  <div class="card">
+                    <div class="card-header">
+                      <strong>Parent Information</strong>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="parentName"
+                              >Parent Name
+                              <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              formControlName="parentName"
+                              class="form-control"
+                              [ngClass]="{
+                                'is-invalid': submitted && f.parentName.errors
+                              }"
+                            />
+                            <div
+                              *ngIf="submitted && f.parentName.errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="f.parentName.errors.required">
+                                Parent Name is required
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="form-group">
+                    <button
+                      [disabled]="loading"
+                      class="btn btn-primary btn-flat btn-social"
+                    >
+                      <i class="fa fa-save"></i
+                      ><span
+                        *ngIf="loading"
+                        class="spinner-border spinner-border-sm mr-1"
+                      ></span>
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-flat btn-social"
+                      (click)="resetForm()"
+                    >
+                      <i class="fa fa-times"></i> Cancel
+                    </button>
+                    <span class="text-danger pull-right"
+                      >* indicates mandatory fields</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
