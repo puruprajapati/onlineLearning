@@ -134,6 +134,78 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="scheduledDate"
+                          >Scheduled Date
+                          <span class="text-danger">*</span></label
+                        >
+                        <div>
+                          <input
+                            type="text"
+                            class="form-control"
+                            #dp="bsDatepicker"
+                            bsDatepicker
+                            [bsValue]="bsValue"
+                          />
+
+                          <!-- <button
+                            class="btn btn-success"
+                            (click)="dp.toggle()"
+                            [attr.aria-expanded]="dp.isOpen"
+                            type="button"
+                          >
+                            Date Picker
+                          </button> -->
+                        </div>
+
+                        <div
+                          *ngIf="submitted && f.scheduledDate.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.scheduledDate.errors.required">
+                            Scheduled Date is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="startingTime"
+                          >Starting Time
+                          <span class="text-danger">*</span></label
+                        >
+                        <timepicker [(ngModel)]="mytime"></timepicker>
+                        <div
+                          *ngIf="submitted && f.startingTime.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.startingTime.errors.required">
+                            Starting Time is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="endingTime"
+                          >Ending Time <span class="text-danger">*</span></label
+                        >
+                        <timepicker [(ngModel)]="mytime"></timepicker>
+                        <div
+                          *ngIf="submitted && f.endingTime.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.endingTime.errors.required">
+                            Ending Time is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   <br />
 

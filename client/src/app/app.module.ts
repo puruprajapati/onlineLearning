@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -55,6 +56,7 @@ import { ChartsModule } from "ng2-charts";
 import { NgProgressModule } from "ngx-progressbar";
 import { NgProgressRouterModule } from "ngx-progressbar/router";
 import { ModalModule, BsModalRef } from "ngx-bootstrap/modal";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 
 @NgModule({
   imports: [
@@ -80,6 +82,7 @@ import { ModalModule, BsModalRef } from "ngx-bootstrap/modal";
     UploadModule,
     ConfirmationDialogModule,
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
   declarations: [
     AppComponent,

@@ -4,6 +4,8 @@ import { RouterModule } from "@angular/router";
 import { AgGridModule } from "ag-grid-angular";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import { TimepickerModule } from "ngx-bootstrap/timepicker";
 
 import { AuthGuard } from "../../../helpers";
 
@@ -34,6 +36,8 @@ import { EditSessionComponent } from "./edit-session/edit-session.component";
     UploadModule,
     ConfirmationDialogModule,
     AgGridModule.withComponents([]),
+    TimepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     RouterModule.forChild([
       {
         path: "",

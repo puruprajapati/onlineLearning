@@ -31,6 +31,8 @@ export class AddSessionComponent implements OnInit {
   public classList: List[];
   public sectionList: List[];
   public teacherList: List[];
+  public bsValue: Date = new Date();
+  public mytime: Date = new Date();
 
   constructor(
     private route: ActivatedRoute,
