@@ -16,6 +16,7 @@
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'"
 >
+  <!--
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
       <a class="nav-link" href="#">Dashboard</a>
@@ -27,7 +28,9 @@
       <a class="nav-link" href="#">Settings</a>
     </li>
   </ul>
+  -->
   <ul class="nav navbar-nav ml-auto">
+    <!--
     <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"
         ><i class="icon-bell"></i
@@ -40,6 +43,7 @@
     <li class="nav-item d-md-down-none">
       <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
     </li>
+    -->
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a
         class="nav-link"
@@ -63,31 +67,31 @@
         aria-labelledby="simple-dropdown"
       >
         <div class="dropdown-header text-center"><strong>Account</strong></div>
-        <a class="dropdown-item" href="#"
+        <!-- <a class="dropdown-item" href="#"
           ><i class="fa fa-bell-o"></i> Updates<span class="badge badge-info"
             >42</span
           ></a
-        >
+        > -->
         <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
         <a class="dropdown-item" href="#"
           ><i class="fa fa-key"></i> Change Password</a
         >
-        <a class="dropdown-item" href="#"
+        <!-- <a class="dropdown-item" href="#"
           ><i class="fa fa-user-circle-o"></i> Change Profile Picture</a
-        >
+        > -->
         <!-- <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="badge badge-danger">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning">42</span></a> -->
-        <div class="dropdown-header text-center"><strong>Settings</strong></div>
+        <!-- <div class="dropdown-header text-center"><strong>Settings</strong></div>
         <a class="dropdown-item" href="#"
           ><i class="fa fa-wrench"></i> Setting</a
-        >
+        > -->
         <!-- <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
         <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a> -->
         <div class="divider"></div>
-        <a class="dropdown-item" href="#"
+        <!-- <a class="dropdown-item" href="#"
           ><i class="fa fa-shield"></i> Lock account</a
-        >
+        > -->
         <a class="dropdown-item" (click)="logout()"
           ><i class="fa fa-lock"></i> Logout</a
         >
@@ -115,7 +119,7 @@
     <!-- Breadcrumb -->
     <!-- breaking change 'cui-breadcrumb' -->
     <cui-breadcrumb>
-      <!-- Breadcrumb Menu-->
+      <!--
       <li class="breadcrumb-menu d-md-down-none">
         <div
           class="btn-group"
@@ -131,6 +135,7 @@
           >
         </div>
       </li>
+      -->
     </cui-breadcrumb>
     <!-- deprecation warning for 'app-breadcrumb' -->
     <!--<ol class="breadcrumb">-->
@@ -150,6 +155,7 @@
     </div>
     <!-- /.container-fluid -->
   </main>
+  <!--
   <app-aside [fixed]="true" [display]="false" [ngClass]="'test'">
     <tabset>
       <tab>
@@ -598,6 +604,7 @@
       </tab>
     </tabset>
   </app-aside>
+  -->
 </div>
 <app-footer>
   <span><a href="http://evidhyalaya.com">Evidhyalaya</a> &copy; 2020.</span>
