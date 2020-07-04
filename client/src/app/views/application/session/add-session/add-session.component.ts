@@ -70,7 +70,6 @@ export class AddSessionComponent implements OnInit {
       scheduledDate: ["", Validators.required],
       startingTime: ["", Validators.required],
       endingTime: ["", [Validators.required]],
-      sessionStatusId: ["", Validators.required],
     });
   }
 
@@ -90,7 +89,7 @@ export class AddSessionComponent implements OnInit {
 
     // reset alerts on submit
     this.alertService.clear();
-
+    console.log(this.modelForm.value);
     // stop here if form is invalid
     if (this.modelForm.invalid) {
       return;

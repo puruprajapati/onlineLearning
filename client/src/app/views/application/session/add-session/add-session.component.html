@@ -111,7 +111,7 @@
                         >
                         <select
                           class="form-control"
-                          formControlName="classId"
+                          formControlName="teacherId"
                           [ngClass]="{
                             'is-invalid': submitted && f.teacherId.errors
                           }"
@@ -148,6 +148,7 @@
                             #dp="bsDatepicker"
                             bsDatepicker
                             [bsValue]="bsValue"
+                            formControlName="scheduledDate"
                           />
 
                           <!-- <button
@@ -171,6 +172,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -178,7 +180,10 @@
                           >Starting Time
                           <span class="text-danger">*</span></label
                         >
-                        <timepicker [(ngModel)]="mytime"></timepicker>
+                        <timepicker
+                          formControlName="startingTime"
+                          [(ngModel)]="mytime"
+                        ></timepicker>
                         <div
                           *ngIf="submitted && f.startingTime.errors"
                           class="invalid-feedback"
@@ -194,49 +199,16 @@
                         <label for="endingTime"
                           >Ending Time <span class="text-danger">*</span></label
                         >
-                        <timepicker [(ngModel)]="mytime"></timepicker>
+                        <timepicker
+                          formControlName="endingTime"
+                          [(ngModel)]="mytime"
+                        ></timepicker>
                         <div
                           *ngIf="submitted && f.endingTime.errors"
                           class="invalid-feedback"
                         >
                           <div *ngIf="f.endingTime.errors.required">
                             Ending Time is required
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <br />
-
-                  <div class="card">
-                    <div class="card-header">
-                      <strong>Parent Information</strong>
-                    </div>
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label for="parentName"
-                              >Parent Name
-                              <span class="text-danger">*</span></label
-                            >
-                            <input
-                              type="text"
-                              formControlName="parentName"
-                              class="form-control"
-                              [ngClass]="{
-                                'is-invalid': submitted && f.parentName.errors
-                              }"
-                            />
-                            <div
-                              *ngIf="submitted && f.parentName.errors"
-                              class="invalid-feedback"
-                            >
-                              <div *ngIf="f.parentName.errors.required">
-                                Parent Name is required
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>

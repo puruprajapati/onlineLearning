@@ -38,8 +38,8 @@ namespace OnlineLearning.Api.MappingProfiles
 
       CreateMap<SessionDetail, SessionViewModel>()
       .ForMember(dest => dest.TeacherName, opt => opt.MapFrom(src => src.Teacher.Name))
-      .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.ClassDetail.ClassName));
-      // .ForMember(dest => dest.SessionStatus, opt => opt.MapFrom(src => src.se.ClassName));
+      .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.ClassDetail.ClassName))
+      .ForMember(dest => dest.ScheduledDate, opt => opt.MapFrom(src => src.ScheduledDate.ToString("dd/MM/yyyy")));
 
       CreateMap<School, ListViewModel>()
       .ForMember(a => a.Id, opt => opt.MapFrom(a => a.Id))
