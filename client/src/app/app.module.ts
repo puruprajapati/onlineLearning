@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 
-import { NgModule } from "@angular/core";
+import { NgModule} from "@angular/core";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {
@@ -58,6 +58,8 @@ import { NgProgressRouterModule } from "ngx-progressbar/router";
 import { ModalModule, BsModalRef } from "ngx-bootstrap/modal";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -82,7 +84,7 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
     UploadModule,
     ConfirmationDialogModule,
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -90,7 +92,7 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

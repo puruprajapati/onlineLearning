@@ -44,3 +44,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #confirmTemplate>
+  <div class="modal-body text-center">
+    <p>Are you sure you want to Delete ?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+

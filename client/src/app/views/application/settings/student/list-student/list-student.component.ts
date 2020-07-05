@@ -1,25 +1,29 @@
-import { Component, OnInit, ViewChild, NgModule } from "@angular/core";
-import { AgGridAngular } from "ag-grid-angular";
-import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
-import { Router } from "@angular/router";
+import { Component, OnInit, ViewChild, NgModule, TemplateRef } from '@angular/core';
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef, ColumnApi, GridApi } from 'ag-grid-community';
+import { Router } from '@angular/router';
 
-import { Student, List } from "../../../../../models";
-import { EnumRole } from "../../../../../enums";
+import { Student, List } from '../../../../../models';
+import { EnumRole } from '../../../../../enums';
 import {
   StudentService,
   AuthenticationService,
   AlertService,
   ConfirmationDialogService,
   ListService,
-} from "../../../../../services";
+} from '../../../../../services';
+
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Guid } from 'guid-typescript';
 
 @Component({
-  selector: "app-list-student",
-  templateUrl: "./list-student.component.html",
-  styleUrls: ["./list-student.component.css"],
+  selector: 'app-list-student',
+  templateUrl: './list-student.component.html',
+  styleUrls: ['./list-student.component.css'],
 })
 export class ListStudentComponent implements OnInit {
-  @ViewChild("agGrid") agGrid: AgGridAngular;
+  @ViewChild('agGrid') agGrid: AgGridAngular;
+  @ViewChild('confirmTemplate') confirmTemplate: any;
 
   public columnDefs: ColDef[];
   private api: GridApi;
@@ -35,9 +39,13 @@ export class ListStudentComponent implements OnInit {
 
   public paginationPageSize = 10;
   public totalPages = 1; // default no of pagination navigation button
-  public url = "student";
+  public url = 'student';
   public currentPage = 0; // default page no to load data
   public paginationData: any;
+
+  modalRef: BsModalRef;
+  public selectedId: Guid = null;
+  public selectedIds = [];
 
   constructor(
     private router: Router,
@@ -45,7 +53,8 @@ export class ListStudentComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService,
     private alertService: AlertService,
     private authenticationService: AuthenticationService,
-    private listService: ListService
+    private listService: ListService,
+    private modalService: BsModalService
   ) {
     this.columnDefs = this.createColumnDefs();
   }
@@ -65,29 +74,29 @@ export class ListStudentComponent implements OnInit {
   private createColumnDefs() {
     return [
       {
-        headerName: "",
-        field: "selectField",
+        headerName: '',
+        field: 'selectField',
         editable: false,
         checkboxSelection: true,
         width: 50,
       },
       {
-        headerName: "Student Name",
-        field: "name",
+        headerName: 'Student Name',
+        field: 'name',
         editable: false,
         sortable: true,
         filter: true,
         hide: !this.isSuperAdmin,
       },
       {
-        headerName: "Roll Number",
-        field: "rollNumber",
+        headerName: 'Roll Number',
+        field: 'rollNumber',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Actions",
+        headerName: 'Actions',
         width: 250,
         cellRenderer: (params) => {
           return `<a id='delete'><i id='delete' class='fa fa-trash' aria-hidden='true' style='color:#FF0000;' (click)='deleteRow()'></i> Delete</a> &nbsp; &nbsp;
@@ -101,28 +110,19 @@ export class ListStudentComponent implements OnInit {
     this.api = params.api;
     this.columnApi = params.columnApi;
     this.api.sizeColumnsToFit();
-    this.api.setDomLayout("autoHeight");
+    this.api.setDomLayout('autoHeight');
   }
 
   onRowClicked(params): void {
-    let modelId = 0;
-    let action = "";
     if (
       params.event.srcElement !== undefined &&
-      params.event.srcElement.getAttribute("id")
+      params.event.srcElement.getAttribute('id')
     ) {
-      modelId = params.data.id;
-      if (params.event.srcElement.getAttribute("id") === "delete") {
-        action = "delete";
-      } else if (params.event.srcElement.getAttribute("id") == "edit") {
-        action = "edit";
-      }
-    }
-    if (modelId) {
-      if (action === "edit") {
+      this.selectedId = params.data.id;
+      if (params.event.srcElement.getAttribute('id') === 'delete') {
+        this.openConfirmation();
+      } else if (params.event.srcElement.getAttribute('id') === 'edit') {
         this.editModel(params.data);
-      } else if (action === "delete") {
-        this.deleteModel(modelId);
       }
     }
   }
@@ -135,30 +135,22 @@ export class ListStudentComponent implements OnInit {
     this.alertService.clear();
     this.loading = true;
     const selectRows = this.api.getSelectedRows();
-    const selectedIds = selectRows.map((row) => row.id);
-    this.studentService.deleteMultiple(selectedIds).subscribe((response) => {
-      this.rowData = this.rowData.filter(
-        (row) => !selectedIds.includes(row.id)
-      );
-      this.loading = false;
-      this.alertService.success("Deleted successfully.", {
-        autoClose: true,
-        keepAfterRouteChange: false,
-      });
-    });
+    this.selectedIds = selectRows.map((row) => row.id);
+    this.openConfirmation();
   }
 
-  deleteModel(modelId) {
+  deleteModel() {
     this.alertService.clear();
     this.loading = true;
 
-    this.studentService.delete(modelId).subscribe((modelData) => {
-      this.rowData = this.rowData.filter((u) => u.id !== modelId);
+    this.studentService.delete(this.selectedId).subscribe((modelData) => {
+      this.rowData = this.rowData.filter((u) => u.id !== this.selectedId);
       this.loading = false;
-      this.alertService.success("Deleted successfully.", {
+      this.alertService.success('Deleted successfully.', {
         autoClose: true,
         keepAfterRouteChange: false,
       });
+      this.selectedId = null;
     });
   }
 
@@ -179,7 +171,7 @@ export class ListStudentComponent implements OnInit {
       .subscribe((response) => {
         this.loading = false;
         this.rowData = response.body;
-        this.paginationData = response.headers.get("X-Pagination");
+        this.paginationData = response.headers.get('X-Pagination');
         if (this.paginationData) {
           this.totalPages = JSON.parse(this.paginationData).TotalPages;
           this.currentPage = JSON.parse(this.paginationData).CurrentPage - 1;
@@ -190,7 +182,7 @@ export class ListStudentComponent implements OnInit {
   editModel(modelData) {
     // used observable to transfer data from list to edit
     this.studentService.changeSelectedModel(modelData);
-    this.router.navigate(["/settings/student-edit", modelData.id]);
+    this.router.navigate(['/settings/student-edit', modelData.id]);
   }
 
   fetchData($event) {
@@ -198,9 +190,38 @@ export class ListStudentComponent implements OnInit {
     $event.subscribe((dataSource) => {
       this.loading = false;
       this.rowData = dataSource.body;
-      this.paginationData = dataSource.headers.get("X-Pagination");
+      this.paginationData = dataSource.headers.get('X-Pagination');
       this.totalPages = JSON.parse(this.paginationData).TotalPages;
       this.currentPage = JSON.parse(this.paginationData).CurrnetPage;
     });
   }
+
+  openConfirmation() {
+    this.modalRef = this.modalService.show(this.confirmTemplate, {class: 'modal-sm'});
+  }
+
+  decline(): void {
+    this.modalRef.hide();
+    this.loading = false;
+  }
+
+
+  confirm(): void {
+    if (this.selectedId != null) {
+    this.deleteModel();
+    } else if (this.selectedIds.length > 0) {
+      this.studentService.deleteMultiple(this.selectedIds).subscribe((response) => {
+        this.rowData = this.rowData.filter(
+          (row) => !this.selectedIds.includes(row.id)
+        );
+        this.loading = false;
+        this.alertService.success('Deleted successfully.', {
+          autoClose: true,
+          keepAfterRouteChange: false,
+        });
+        this.selectedIds = [];
+      });
+      this.modalRef.hide();
+  }
+ }
 }

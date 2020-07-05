@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, NgModule } from "@angular/core";
+import { Component, OnInit, ViewChild, NgModule, TemplateRef } from "@angular/core";
 import { AgGridAngular } from "ag-grid-angular";
 import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
 import { Router } from "@angular/router";
 
 import { User } from "../../../../../models";
-import { UserService } from "../../../../../services";
+import { UserService, AlertService } from "../../../../../services";
+
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: "app-list-user",
@@ -13,6 +16,7 @@ import { UserService } from "../../../../../services";
 })
 export class ListUserComponent implements OnInit {
   @ViewChild("agGrid") agGrid: AgGridAngular;
+  @ViewChild('confirmTemplate') confirmTemplate: any;
 
   public columnDefs: ColDef[];
   private api: GridApi;
@@ -28,7 +32,13 @@ export class ListUserComponent implements OnInit {
   public currentPage = 0; // default page no to load data
   public paginationData: any;
 
-  constructor(private router: Router, private userService: UserService) {
+  modalRef: BsModalRef;
+  public selectedId: Guid = null;
+  public selectedIds = [];
+
+  constructor(private router: Router, private userService: UserService,
+    private modalService: BsModalService,
+    private alertService: AlertService) {
     this.columnDefs = this.createColumnDefs();
   }
 
@@ -102,25 +112,15 @@ export class ListUserComponent implements OnInit {
   }
 
   onRowClicked(params): void {
-    let userId = 0;
-    let action = "";
     if (
       params.event.srcElement !== undefined &&
       params.event.srcElement.getAttribute("id")
     ) {
-      userId = params.data.id;
+      this.selectedId = params.data.id;
       if (params.event.srcElement.getAttribute("id") === "delete") {
-        action = "delete";
+        this.openConfirmation();
       } else if (params.event.srcElement.getAttribute("id") == "edit") {
-        action = "edit";
-      }
-    }
-
-    if (userId) {
-      if (action === "edit") {
         this.editUser(params.data);
-      } else if (action === "delete") {
-        this.deleteUser(userId);
       }
     }
   }
@@ -132,19 +132,14 @@ export class ListUserComponent implements OnInit {
   deleteSelectedRows() {
     this.loading = true;
     const selectRows = this.api.getSelectedRows();
-    const selectedIds = selectRows.map((row) => row.id);
-    this.userService.deleteMultiple(selectedIds).subscribe((response) => {
-      this.rowData = this.rowData.filter(
-        (row) => !selectedIds.includes(row.id)
-      );
-    });
-    this.loading = false;
+    this.selectedIds = selectRows.map((row) => row.id);
+    this.openConfirmation();
   }
 
-  deleteUser(userId) {
+  deleteUser() {
     this.loading = true;
-    this.userService.delete(userId).subscribe((user) => {
-      this.rowData = this.rowData.filter((u) => u.id !== userId);
+    this.userService.delete(this.selectedId).subscribe((user) => {
+      this.rowData = this.rowData.filter((u) => u.id !== this.selectedId);
       this.loading = false;
     });
   }
@@ -178,4 +173,33 @@ export class ListUserComponent implements OnInit {
       this.currentPage = JSON.parse(this.paginationData).CurrnetPage;
     });
   }
+
+  openConfirmation() {
+    this.modalRef = this.modalService.show(this.confirmTemplate, {class: 'modal-sm'});
+  }
+
+  decline(): void {
+    this.modalRef.hide();
+    this.loading = false;
+  }
+
+
+  confirm(): void {
+    if (this.selectedId != null) {
+    this.deleteUser();
+    } else if (this.selectedIds.length > 0) {
+      this.userService.deleteMultiple(this.selectedIds).subscribe((response) => {
+        this.rowData = this.rowData.filter(
+          (row) => !this.selectedIds.includes(row.id)
+        );
+      });
+      this.alertService.success('Deleted successfully.', {
+        autoClose: true,
+        keepAfterRouteChange: false,
+      });
+      this.loading = false;
+    }
+    this.modalRef.hide();
+  }
+
 }

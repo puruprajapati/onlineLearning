@@ -1,24 +1,28 @@
-import { Component, OnInit, ViewChild, NgModule } from "@angular/core";
-import { AgGridAngular } from "ag-grid-angular";
-import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
-import { Router } from "@angular/router";
+import { Component, OnInit, ViewChild, NgModule, TemplateRef } from '@angular/core';
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef, ColumnApi, GridApi } from 'ag-grid-community';
+import { Router } from '@angular/router';
 
-import { Teacher } from "../../../../../models";
-import { EnumRole } from "../../../../../enums";
+import { Teacher } from '../../../../../models';
+import { EnumRole } from '../../../../../enums';
 import {
   TeacherService,
   AuthenticationService,
   AlertService,
   ConfirmationDialogService,
-} from "../../../../../services";
+} from '../../../../../services';
+
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Guid } from 'guid-typescript';
 
 @Component({
-  selector: "app-list-teacher",
-  templateUrl: "./list-teacher.component.html",
-  styleUrls: ["./list-teacher.component.css"],
+  selector: 'app-list-teacher',
+  templateUrl: './list-teacher.component.html',
+  styleUrls: ['./list-teacher.component.css'],
 })
 export class ListTeacherComponent implements OnInit {
-  @ViewChild("agGrid") agGrid: AgGridAngular;
+  @ViewChild('agGrid') agGrid: AgGridAngular;
+  @ViewChild('confirmTemplate') confirmTemplate: any;
 
   public columnDefs: ColDef[];
   private api: GridApi;
@@ -31,22 +35,27 @@ export class ListTeacherComponent implements OnInit {
 
   public paginationPageSize = 10;
   public totalPages = 1; // default no of pagination navigation button
-  public url = "teacher";
+  public url = 'teacher';
   public currentPage = 0; // default page no to load data
   public paginationData: any;
+
+  modalRef: BsModalRef;
+  public selectedId: Guid = null;
+  public selectedIds = [];
 
   constructor(
     private router: Router,
     private teacherService: TeacherService,
     private confirmationDialogService: ConfirmationDialogService,
     private alertService: AlertService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private modalService: BsModalService
   ) {
     this.columnDefs = this.createColumnDefs();
   }
 
   ngOnInit(): void {
-    let currentUser = this.authenticationService.currentUserValue;
+    const currentUser = this.authenticationService.currentUserValue;
     if (currentUser.userRole === EnumRole.SuperAdmin.toString()) {
       this.isSuperAdmin = true;
     }
@@ -59,50 +68,50 @@ export class ListTeacherComponent implements OnInit {
   private createColumnDefs() {
     return [
       {
-        headerName: "",
-        field: "selectField",
+        headerName: '',
+        field: 'selectField',
         editable: false,
         checkboxSelection: true,
         width: 50,
       },
       {
-        headerName: "School Name",
-        field: "schoolName",
+        headerName: 'School Name',
+        field: 'schoolName',
         editable: false,
         sortable: true,
         filter: true,
         hide: !this.isSuperAdmin,
       },
       {
-        headerName: "Teacher Name",
-        field: "name",
+        headerName: 'Teacher Name',
+        field: 'name',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Address",
-        field: "address",
+        headerName: 'Address',
+        field: 'address',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Contact Number",
-        field: "contactNumber",
+        headerName: 'Contact Number',
+        field: 'contactNumber',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Email",
-        field: "emailAddress",
+        headerName: 'Email',
+        field: 'emailAddress',
         editable: false,
         sortable: true,
         filter: true,
       },
       {
-        headerName: "Actions",
+        headerName: 'Actions',
         width: 250,
         cellRenderer: (params) => {
           return `<a id='delete'><i id='delete' class='fa fa-trash' aria-hidden='true' style='color:#FF0000;' (click)='deleteRow()'></i> Delete</a> &nbsp; &nbsp;
@@ -116,28 +125,19 @@ export class ListTeacherComponent implements OnInit {
     this.api = params.api;
     this.columnApi = params.columnApi;
     this.api.sizeColumnsToFit();
-    this.api.setDomLayout("autoHeight");
+    this.api.setDomLayout('autoHeight');
   }
 
   onRowClicked(params): void {
-    let modelId = 0;
-    let action = "";
     if (
       params.event.srcElement !== undefined &&
-      params.event.srcElement.getAttribute("id")
+      params.event.srcElement.getAttribute('id')
     ) {
-      modelId = params.data.id;
-      if (params.event.srcElement.getAttribute("id") === "delete") {
-        action = "delete";
-      } else if (params.event.srcElement.getAttribute("id") == "edit") {
-        action = "edit";
-      }
-    }
-    if (modelId) {
-      if (action === "edit") {
+       this.selectedId = params.data.id;
+      if (params.event.srcElement.getAttribute('id') === 'delete') {
+        this.openConfirmation();
+      } else if (params.event.srcElement.getAttribute('id') == 'edit') {
         this.editModel(params.data);
-      } else if (action === "delete") {
-        this.deleteModel(modelId);
       }
     }
   }
@@ -150,30 +150,22 @@ export class ListTeacherComponent implements OnInit {
     this.alertService.clear();
     this.loading = true;
     const selectRows = this.api.getSelectedRows();
-    const selectedIds = selectRows.map((row) => row.id);
-    this.teacherService.deleteMultiple(selectedIds).subscribe((response) => {
-      this.rowData = this.rowData.filter(
-        (row) => !selectedIds.includes(row.id)
-      );
-      this.loading = false;
-      this.alertService.success("Deleted successfully.", {
-        autoClose: true,
-        keepAfterRouteChange: false,
-      });
-    });
+    this.selectedIds = selectRows.map((row) => row.id);
+    this.openConfirmation();
   }
 
-  deleteModel(modelId) {
+  deleteModel() {
     this.alertService.clear();
     this.loading = true;
 
-    this.teacherService.delete(modelId).subscribe((modelData) => {
-      this.rowData = this.rowData.filter((u) => u.id !== modelId);
+    this.teacherService.delete(this.selectedId).subscribe((modelData) => {
+      this.rowData = this.rowData.filter((u) => u.id !== this.selectedId);
       this.loading = false;
-      this.alertService.success("Deleted successfully.", {
+      this.alertService.success('Deleted successfully.', {
         autoClose: true,
         keepAfterRouteChange: false,
       });
+      this.selectedId = null;
     });
   }
 
@@ -184,7 +176,7 @@ export class ListTeacherComponent implements OnInit {
       .subscribe((response) => {
         this.loading = false;
         this.rowData = response.body;
-        this.paginationData = response.headers.get("X-Pagination");
+        this.paginationData = response.headers.get('X-Pagination');
         if (this.paginationData) {
           this.totalPages = JSON.parse(this.paginationData).TotalPages;
           this.currentPage = JSON.parse(this.paginationData).CurrentPage - 1;
@@ -195,7 +187,7 @@ export class ListTeacherComponent implements OnInit {
   editModel(modelData) {
     // used observable to transfer data from list to edit
     this.teacherService.changeSelectedModel(modelData);
-    this.router.navigate(["/settings/teacher-edit", modelData.id]);
+    this.router.navigate(['/settings/teacher-edit', modelData.id]);
   }
 
   fetchData($event) {
@@ -203,9 +195,38 @@ export class ListTeacherComponent implements OnInit {
     $event.subscribe((dataSource) => {
       this.loading = false;
       this.rowData = dataSource.body;
-      this.paginationData = dataSource.headers.get("X-Pagination");
+      this.paginationData = dataSource.headers.get('X-Pagination');
       this.totalPages = JSON.parse(this.paginationData).TotalPages;
       this.currentPage = JSON.parse(this.paginationData).CurrnetPage;
     });
   }
+
+  openConfirmation() {
+    this.modalRef = this.modalService.show(this.confirmTemplate, {class: 'modal-sm'});
+  }
+
+  decline(): void {
+    this.modalRef.hide();
+    this.loading = false;
+  }
+
+
+  confirm(): void {
+    if (this.selectedId != null) {
+    this.deleteModel();
+    } else if (this.selectedIds.length > 0) {
+      this.teacherService.deleteMultiple(this.selectedId).subscribe((response) => {
+        this.rowData = this.rowData.filter(
+          (row) => !this.selectedIds.includes(row.id)
+        );
+        this.loading = false;
+        this.alertService.success('Deleted successfully.', {
+          autoClose: true,
+          keepAfterRouteChange: false,
+        });
+        this.selectedIds = [];
+    });
+      this.modalRef.hide();
+  }
+ }
 }
