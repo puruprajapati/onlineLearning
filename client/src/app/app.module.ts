@@ -1,38 +1,39 @@
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule } from '@angular/platform-browser';
 
-import { NgModule} from "@angular/core";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgModule} from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   LocationStrategy,
   HashLocationStrategy,
   PathLocationStrategy,
-} from "@angular/common";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+} from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
-import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
-import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
 
-import { JwtInterceptor, ErrorInterceptor } from "./helpers";
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 
 // Import containers
-import { DefaultLayoutComponent } from "./containers";
+import { DefaultLayoutComponent } from './containers';
 
-import { P404Component } from "./views/application/error/404.component";
-import { P500Component } from "./views/application/error/500.component";
-import { LoginComponent } from "./views/application/login/login.component";
-import { RegisterComponent } from "./views/application/register/register.component";
+import { P404Component } from './views/application/error/404.component';
+import { P500Component } from './views/application/error/500.component';
+import { LoginComponent } from './views/application/login/login.component';
+import { RegisterComponent } from './views/application/register/register.component';
 
-import { PaginationModule } from "./views/application/shared/pagination/pagination.module";
-import { UploadModule } from "./views/application/shared/upload/upload.module";
-import { ConfirmationDialogModule } from "./views/application/shared/confirmation-dialog/confirmation-dialog.module";
+import { PaginationModule } from './views/application/shared/pagination/pagination.module';
+import { UploadModule } from './views/application/shared/upload/upload.module';
+import { ConfirmationDialogModule } from './views/application/shared/confirmation-dialog/confirmation-dialog.module';
+import { MomentModule } from 'ngx-moment';
 
 const APP_CONTAINERS = [DefaultLayoutComponent];
 
@@ -42,21 +43,21 @@ import {
   AppHeaderModule,
   AppFooterModule,
   AppSidebarModule,
-} from "@coreui/angular";
+} from '@coreui/angular';
 
 // Import routing module
-import { AppRoutingModule } from "./app.routing";
+import { AppRoutingModule } from './app.routing';
 
-import { AlertModule } from "./views/application/shared/alert/alert.module";
+import { AlertModule } from './views/application/shared/alert/alert.module';
 
 // Import 3rd party components
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { TabsModule } from "ngx-bootstrap/tabs";
-import { ChartsModule } from "ng2-charts";
-import { NgProgressModule } from "ngx-progressbar";
-import { NgProgressRouterModule } from "ngx-progressbar/router";
-import { ModalModule, BsModalRef } from "ngx-bootstrap/modal";
-import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ChartsModule } from 'ng2-charts';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressRouterModule } from 'ngx-progressbar/router';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -84,7 +85,8 @@ import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
     UploadModule,
     ConfirmationDialogModule,
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MomentModule
   ],
   declarations: [
     AppComponent,
