@@ -143,7 +143,15 @@ namespace OnlineLearning.Api
 
 
       services.AddAutoMapper(typeof(Startup));
-
+      services.AddSwaggerGen(options =>  
+          {  
+              options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo  
+              {  
+                  Title = "LMS API",  
+                  Version = "v1",  
+                  Description = "LMS API",  
+              });  
+          });  
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -176,6 +184,9 @@ namespace OnlineLearning.Api
       {
         endpoints.MapControllers();
       });
+
+      app.UseSwagger();  
+      app.UseSwaggerUI(options =>options.SwaggerEndpoint("/swagger/v1/swagger.json", "LMS API"));    
     }
   }
 }
