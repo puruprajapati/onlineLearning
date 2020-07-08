@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { tap, catchError, map } from "rxjs/operators";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { tap, catchError, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import { environment } from "../../../environments/environment";
-import { School } from "../../models";
+import { environment } from '../../../environments/environment';
+import { School } from '../../models';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class SchoolService {
   private selectedSchool: BehaviorSubject<School>;
   public currentSelectedSchool: Observable<School>;
@@ -24,7 +24,7 @@ export class SchoolService {
     return this.http
       .get<School[]>(
         `${environment.apiUrl}/school?PageNumber=${pageNumber}&PageSize=${pageSize}`,
-        { observe: "response" }
+        { observe: 'response' }
       )
       .pipe(tap((response) => response));
   }

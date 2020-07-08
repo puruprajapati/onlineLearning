@@ -1,9 +1,10 @@
 <div class="box box-default">
   <div class="box-header with-border">
     <div class="text-right">
-      <a [routerLink]="['/settings/class-add']" class="btn btn-primary"
-        ><i class="fa fa-plus"></i> Create</a
-      >
+      <!--  [routerLink]="['/settings/class-add']" -->
+      <button (click)="addClass()" class="btn btn-primary"
+        ><i class="fa fa-plus"></i> Create
+      </button>
       <button
         (click)="deleteSelectedRows()"
         [disabled]="!rowsSelected()"

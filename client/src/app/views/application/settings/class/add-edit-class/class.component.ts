@@ -2,37 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  FormGroupName,
+  Validators
 } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {
   ClassService,
   AlertService,
-  AuthenticationService,
 } from '../../../../../services';
 
 @Component({
-  selector: 'app-add-class',
-  templateUrl: './add-class.component.html',
-  styleUrls: ['./add-class.component.css']
+  selector: 'app-class',
+  templateUrl: './class.component.html',
+  styleUrls: ['./class.component.css']
 })
-export class AddClassComponent implements OnInit {
+export class ClassComponent implements OnInit {
   modelForm: FormGroup;
   public submitted: boolean = false;
   public loading: boolean = false;
+  public selectedClass = null;
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private classService: ClassService) { }
 
   ngOnInit(): void {
     this.resetForm();
-    const currentUser = this.authenticationService.currentUserValue;
+    this.classService.currentSelectedClass.subscribe(
+      (classDetail) => (this.selectedClass = classDetail)
+    );
+    if (this.selectedClass) {
+      this.modelForm.patchValue(this.selectedClass);
+    }
   }
 
   get f() {
@@ -59,6 +62,29 @@ onSubmit() {
   }
 
   this.loading = true;
+
+  if (this.selectedClass) {
+
+    this.selectedClass.description = this.f.description.value;
+    this.selectedClass.className = this.f.className.value;
+
+    this.classService
+    .udpate(this.selectedClass)
+    .pipe(first())
+    .subscribe(
+      (data) => {
+        this.alertService.success('Class updated successfully.', {
+          autoClose: true,
+          keepAfterRouteChange: true,
+        });
+        this.router.navigate(['/settings/class']);
+      },
+      (error) => {
+        this.alertService.error(error);
+        this.loading = false;
+      }
+    );
+  } else {
   this.classService
     .add(this.modelForm.value)
     .pipe(first())
@@ -75,6 +101,7 @@ onSubmit() {
         this.loading = false;
       }
     );
+  } 
 }
 
 }

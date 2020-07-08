@@ -17,7 +17,7 @@
               <form [formGroup]="modelForm" (ngSubmit)="onSubmit()">
                 <div class="card">
                   <div class="card-header">
-                    <strong>Create new Class</strong>
+                    <strong>{{selectedClass === null ? 'Create new Class' : 'Edit Class' }}</strong>
                   </div>
                   <div class="card-body">
                     <div class="row">

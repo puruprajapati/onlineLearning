@@ -168,6 +168,11 @@ export class ListClassComponent implements OnInit {
     this.router.navigate(['/settings/class-edit', modelData.id]);
   }
 
+  addClass(){
+    this.classSerice.changeSelectedClass(null);
+    this.router.navigate(['/settings/class-add']);
+  }
+
   fetchData($event) {
     this.loading = true;
     $event.subscribe((dataSource) => {

@@ -1,24 +1,24 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { first } from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { first } from 'rxjs/operators';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormGroupName,
-} from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { School, List } from "../../../../../models";
+} from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+// import { School, List } from '../../../../../models';
 import {
   SchoolService,
   AlertService,
   RoleService,
-} from "../../../../../services";
-import { STATUS } from "../../../../../enums";
+} from '../../../../../services';
+import { STATUS } from '../../../../../enums';
 
 @Component({
-  selector: "app-edit-school",
-  templateUrl: "./edit-school.component.html",
-  styleUrls: ["./edit-school.component.css"],
+  selector: 'app-edit-school',
+  templateUrl: './edit-school.component.html',
+  styleUrls: ['./edit-school.component.css'],
 })
 export class EditSchoolComponent implements OnInit {
   modelForm: FormGroup;
@@ -52,13 +52,13 @@ export class EditSchoolComponent implements OnInit {
 
   resetForm() {
     this.modelForm = this.formBuilder.group({
-      schoolCode: ["", Validators.required],
-      name: ["", Validators.required],
-      emailAddress: ["", [Validators.required, Validators.email]],
-      contactNumber: ["", Validators.required],
-      logoLocation: [""],
-      address: [""],
-      active: [""],
+      schoolCode: ['', Validators.required],
+      name: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]],
+      contactNumber: ['', Validators.required],
+      logoLocation: [''],
+      address: [''],
+      active: [''],
     });
   }
 
@@ -87,11 +87,11 @@ export class EditSchoolComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success("Update successful.", {
+          this.alertService.success('Update successful.', {
             autoClose: true,
             keepAfterRouteChange: true,
           });
-          this.router.navigate(["/settings/school"]);
+          this.router.navigate(['/settings/school']);
         },
         (error) => {
           this.alertService.error(error);
