@@ -1,26 +1,24 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { first } from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { first } from 'rxjs/operators';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormGroupName,
-} from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { UploadResponse } from "../../../../../models";
+} from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UploadResponse } from '../../../../../models';
 import {
   TeacherService,
   AlertService,
   AuthenticationService,
-} from "../../../../../services";
-import { EnumRole } from "../../../../../enums";
-
-import { environment } from "../../../../../../environments/environment";
+} from '../../../../../services';
+import { EnumRole } from '../../../../../enums';
 
 @Component({
-  selector: "app-add-teacher",
-  templateUrl: "./add-teacher.component.html",
-  styleUrls: ["./add-teacher.component.css"],
+  selector: 'app-add-teacher',
+  templateUrl: './add-teacher.component.html',
+  styleUrls: ['./add-teacher.component.css'],
 })
 export class AddTeacherComponent implements OnInit {
   modelForm: FormGroup;
@@ -39,7 +37,7 @@ export class AddTeacherComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetForm();
-    let currentUser = this.authenticationService.currentUserValue;
+    const currentUser = this.authenticationService.currentUserValue;
     if (currentUser.userRole === EnumRole.SuperAdmin.toString()) {
       this.isSuperAdmin = true;
     }
@@ -51,12 +49,12 @@ export class AddTeacherComponent implements OnInit {
 
   resetForm() {
     this.modelForm = this.formBuilder.group({
-      name: ["", Validators.required],
-      address: ["", Validators.required],
-      contactNumber: ["", Validators.required],
-      emailAddress: ["", [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      contactNumber: ['', Validators.required],
+      emailAddress: ['', [Validators.required, Validators.email]],
       schoolId: [],
-      userName: ["", Validators.required],
+      userName: ['', Validators.required],
     });
   }
 
@@ -71,21 +69,17 @@ export class AddTeacherComponent implements OnInit {
       return;
     }
 
-    if (!this.isSuperAdmin) {
-      this.modelForm.value.schoolId = this.authenticationService.currentUserValue.schoolId.toString();
-    }
-
     this.loading = true;
     this.teacherService
       .add(this.modelForm.value)
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success("Teacher created successfully.", {
+          this.alertService.success('Teacher created successfully.', {
             autoClose: true,
             keepAfterRouteChange: true,
           });
-          this.router.navigate(["/settings/teacher"]);
+          this.router.navigate(['/settings/teacher']);
         },
         (error) => {
           this.alertService.error(error);

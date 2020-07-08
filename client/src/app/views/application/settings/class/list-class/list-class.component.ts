@@ -75,14 +75,6 @@ export class ListClassComponent implements OnInit {
         width: 50,
       },
       {
-        headerName: 'School Name',
-        field: 'schoolName',
-        editable: false,
-        sortable: true,
-        filter: true,
-        hide: this.isSuperAdmin,
-      },
-      {
         headerName: 'Class Name',
         field: 'className',
         editable: false,

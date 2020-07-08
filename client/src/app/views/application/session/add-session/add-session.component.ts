@@ -1,25 +1,25 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { first } from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { first } from 'rxjs/operators';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   FormGroupName,
-} from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
-import { List } from "../../../../models";
+} from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { List } from '../../../../models';
 import {
   SessionService,
   ListService,
   AlertService,
   AuthenticationService,
-} from "../../../../services";
-import { EnumRole } from "../../../../enums";
+} from '../../../../services';
+import { EnumRole } from '../../../../enums';
 
 @Component({
-  selector: "app-add-session",
-  templateUrl: "./add-session.component.html",
-  styleUrls: ["./add-session.component.css"],
+  selector: 'app-add-session',
+  templateUrl: './add-session.component.html',
+  styleUrls: ['./add-session.component.css'],
 })
 export class AddSessionComponent implements OnInit {
   modelForm: FormGroup;
@@ -47,7 +47,7 @@ export class AddSessionComponent implements OnInit {
   ngOnInit(): void {
     this.resetForm();
     this.getList();
-    let currentUser = this.authenticationService.currentUserValue;
+    const currentUser = this.authenticationService.currentUserValue;
     if (currentUser.userRole === EnumRole.SuperAdmin.toString()) {
       this.isSuperAdmin = true;
     }
@@ -62,15 +62,15 @@ export class AddSessionComponent implements OnInit {
 
   resetForm() {
     this.modelForm = this.formBuilder.group({
-      sessionTitle: ["", Validators.required],
-      sessionDesc: ["", Validators.required],
-      classId: ["", Validators.required],
-      teacherId: ["", Validators.required],
+      sessionTitle: ['', Validators.required],
+      sessionDesc: ['', Validators.required],
+      classId: ['', Validators.required],
+      teacherId: ['', Validators.required],
       schoolId: [],
-      scheduledDate: ["", Validators.required],
-      startingTime: ["", Validators.required],
-      endingTime: ["", [Validators.required]],
-      sessionStatusId: ["", Validators.required],
+      scheduledDate: ['', Validators.required],
+      startingTime: ['', Validators.required],
+      endingTime: ['', [Validators.required]],
+      sessionStatusId: ['', Validators.required],
     });
   }
 
@@ -106,11 +106,11 @@ export class AddSessionComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success("Session created successfully.", {
+          this.alertService.success('Session created successfully.', {
             autoClose: true,
             keepAfterRouteChange: true,
           });
-          this.router.navigate(["/session"]);
+          this.router.navigate(['/session']);
         },
         (error) => {
           this.alertService.error(error);

@@ -1,1 +1,99 @@
-<p>add-class works!</p>
+<div class="box box-default">
+    <div class="box-header with-border">
+      <div class="text-right">
+        <a
+          [routerLink]="['/settings/class']"
+          class="btn btn-primary btn-flat btn-social"
+          ><i class="fa fa-list"></i> List</a
+        >
+      </div>
+    </div>
+    <br />
+    <div class="box-body">
+      <div class="animated fadeIn">
+        <div>
+          <div class="row">
+            <div class="col-sm-12">
+              <form [formGroup]="modelForm" (ngSubmit)="onSubmit()">
+                <div class="card">
+                  <div class="card-header">
+                    <strong>Create new Class</strong>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="className"
+                            >Class Name
+                            <span class="text-danger">*</span></label
+                          >
+                          <input
+                            type="text"
+                            formControlName="className"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid': submitted && f.className.errors
+                            }"
+                          />
+                          <div
+                            *ngIf="submitted && f.className.errors"
+                            class="invalid-feedback"
+                          >
+                            <div *ngIf="f.className.errors.required">
+                              Class Name is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="description"
+                            >Description</label
+                          >
+                          <input
+                            type="text"
+                            formControlName="description"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+  
+  
+                  </div>
+                  <div class="card-footer">
+                    <div class="form-group">
+                      <button
+                        [disabled]="loading"
+                        class="btn btn-primary btn-flat btn-social"
+                      >
+                        <i class="fa fa-save"></i
+                        ><span
+                          *ngIf="loading"
+                          class="spinner-border spinner-border-sm mr-1"
+                        ></span>
+                        Save
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary btn-flat btn-social"
+                        (click)="resetForm()"
+                      >
+                        <i class="fa fa-times"></i> Cancel
+                      </button>
+                      <span class="text-danger pull-right"
+                        >* indicates mandatory fields</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

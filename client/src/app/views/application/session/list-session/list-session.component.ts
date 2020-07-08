@@ -233,7 +233,6 @@ export class ListSessionComponent implements OnInit {
 
   editModel(modelData) {
     // used observable to transfer data from list to edit
-    debugger;
     this.sessionService.changeSelectedModel(modelData);
     this.router.navigate(['/settings/session-edit', modelData.id]);
   }
