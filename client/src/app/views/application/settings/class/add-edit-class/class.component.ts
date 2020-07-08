@@ -45,8 +45,8 @@ export class ClassComponent implements OnInit {
 
   resetForm() {
     this.modelForm = this.formBuilder.group({
-      className: ['', Validators.required],
-      description: ['']
+      className: [this.selectedClass ? this.selectedClass.className : '', Validators.required],
+      description: [this.selectedClass ? this.selectedClass.description : '']
   });
 }
 
@@ -101,7 +101,7 @@ onSubmit() {
         this.loading = false;
       }
     );
-  } 
+  }
 }
 
 }
